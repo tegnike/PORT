@@ -11,4 +11,4 @@ else
 fi
 done
 
-docker exec -i container_web_1 rubocop $CMD_ARGS
+docker exec -i port_web_1 rubocop $CMD_ARGS
