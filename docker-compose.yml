@@ -34,16 +34,11 @@ services:
     tty: true
     links:
       - db
+      - chrome
   spring:
     <<: *app
     command: bundle exec spring server
     ports: []
-  solargraph:
-    <<: *app
-    command: bundle exec solargraph socket --host=0.0.0.0 --port=7658
-    ports:
-      - "8091:7658"
-    links: []
 
 volumes:
   bundle:
@@ -51,4 +46,4 @@ volumes:
   data:
     driver: local
   redis-data:
-      driver: local
+    driver: local
