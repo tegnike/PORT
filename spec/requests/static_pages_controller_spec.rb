@@ -33,11 +33,11 @@ RSpec.describe StaticPagesController, type: :request do
     end
   end
 
-  describe "GET #privacy" do
+  describe "GET #terms" do
     it "returns http success" do
-      get privacy_path
+      get terms_path
       expect(response).to have_http_status(:success)
-      expect(response.body).to include "#{full_title("Privacy")}"
+      expect(response.body).to include "#{full_title("Terms")}"
     end
   end
 end
