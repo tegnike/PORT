@@ -1,0 +1,43 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <%= link_to "Port", '#', class: "navbar-brand", id: "logo" %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+        <ul class="navbar-nav mr-auto">　
+          <li class="nav-item">
+            <%= link_to "About", about_path, class: "nav-link" %>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav">
+          <% if user_signed_in? %>
+            <li class="nav-item"><strong><%= link_to "投稿する", "#" %></strong></li>
+            <li class="nav-item dropdown">
+             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               マイアカウント
+             </a>
+             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+               <%= link_to "username", "#" %>
+               <%= link_to 'プロフィール変更', "#" %>
+               <div class="dropdown-divider"></div>
+               <%= link_to 'ログアウト', "#", method: :delete %>
+             </div>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "ユーザ登録", "#", class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログイン", "#", class: "nav-link" %>
+            </li>
+          <% end %>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</header>
