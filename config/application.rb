@@ -32,5 +32,10 @@ module App
 
     # Redis
     config.cache_store = :redis_store, "redis://localhost:6379/0/cache", { expires_in: 90.minutes }
+
+    # generator setting
+    config.generators do |g|
+      g.assets false
+    end
   end
 end

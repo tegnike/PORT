@@ -14,6 +14,11 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+require "simplecov"
+
+SimpleCov.start "rails"
+
 RSpec.configure do |config|
   config.warnings = false
 # The settings below are suggested to provide a good initial experience
