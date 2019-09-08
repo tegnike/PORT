@@ -21,7 +21,7 @@
                マイアカウント
              </a>
              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-               <%= link_to current_user.username, "#" %>
+               <%= link_to current_user.username, current_user %>
                <%= link_to 'プロフィール変更', edit_user_registration_path %>
                <div class="dropdown-divider">
                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
