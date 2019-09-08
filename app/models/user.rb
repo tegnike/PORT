@@ -13,7 +13,7 @@ class User < ApplicationRecord
       user.uid = auth["uid"]
       user.username = auth["info"]["nickname"]
       user.profile = auth["info"]["description"]
-      user.image = auth["info"]["image"]
+      user.remote_image_url = auth["info"]["image"]
       user.password = Devise.friendly_token[0, 20]
       user.email = User.dumy_email(auth)
     end
