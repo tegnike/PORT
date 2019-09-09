@@ -51,6 +51,10 @@ gem "omniauth-google-oauth2"
 # .env
 gem "dotenv-rails"
 
+# rails_admin
+gem "cancancan"
+gem "rails_admin"
+
 group :production do
   gem "fog"
 end
