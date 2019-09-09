@@ -17,13 +17,13 @@
 
 console.log('Hello World from Webpacker')
 
-import 'stylesheets/application';
-import 'javascripts/application';
-require.context('../images', true, /\.(png|jpg|jpeg|svg)$/);
-
 import 'jquery/dist/jquery.js'
 import 'popper.js/dist/popper.js'
 import 'bootstrap/dist/js/bootstrap'
+
+import 'stylesheets/application';
+import 'javascripts/application';
+require.context('../images', true, /\.(png|jpg|jpeg|svg)$/);
 
 import Rails from 'rails-ujs';
 Rails.start();

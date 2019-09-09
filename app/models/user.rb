@@ -2,7 +2,7 @@ class User < ApplicationRecord
   mount_uploader :image, ImageUploader
   validates :username, presence: true, length: { maximum: 50 }, allow_nil: true
   validates :profile, length: { maximum: 200 }
-  validate  :image_size
+  validate  :size_range
   devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :trackable, :validatable,
            :confirmable, :lockable, :timeoutable, :omniauthable, omniauth_providers: [:twitter, :github, :google_oauth2]
@@ -19,15 +19,17 @@ class User < ApplicationRecord
       user.profile = auth["info"]["description"]
       user.remote_image_url = auth["info"]["image"]
       user.password = Devise.friendly_token[0, 20]
-      user.email = User.dumy_email(auth)
+      if auth["info"]["email"]
+        user.email = user["info"]["email"]
+      else
+        user.email = self.dumy_email(auth)
+      end
     end
   end
 
   private
-    def image_size
-      if image.size > 5.megabytes
-        errors.add(:image, "should be less than 5MB")
-      end
+    def size_range
+      1..5.megabytes
     end
 
     def self.dumy_email(auth)
