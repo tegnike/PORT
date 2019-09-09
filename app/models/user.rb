@@ -7,6 +7,10 @@ class User < ApplicationRecord
            :recoverable, :rememberable, :trackable, :validatable,
            :confirmable, :lockable, :timeoutable, :omniauthable, omniauth_providers: [:twitter, :github, :google_oauth2]
 
+  def remember_me
+    true
+  end
+
   def self.from_omniauth(auth)
     find_or_initialize_by(provider: auth["provider"], uid: auth["uid"]) do |user|
       user.provider = auth["provider"]
