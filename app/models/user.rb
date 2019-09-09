@@ -2,7 +2,6 @@ class User < ApplicationRecord
   mount_uploader :image, ImageUploader
   validates :username, presence: true, length: { maximum: 50 }, allow_nil: true
   validates :profile, length: { maximum: 200 }
-  validate  :size_range
   devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :trackable, :validatable,
            :confirmable, :lockable, :timeoutable, :omniauthable, omniauth_providers: [:twitter, :github, :google_oauth2]
@@ -28,10 +27,6 @@ class User < ApplicationRecord
   end
 
   private
-    def size_range
-      1..5.megabytes
-    end
-
     def self.dumy_email(auth)
       "#{auth.uid}-#{auth.provider}@example.com"
     end
