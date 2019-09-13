@@ -19,7 +19,7 @@ class User < ApplicationRecord
       user.remote_image_url = auth["info"]["image"]
       user.password = Devise.friendly_token[0, 20]
       if auth["info"]["email"]
-        user.email = user["info"]["email"]
+        user.email = auth["info"]["email"]
       else
         user.email = self.dumy_email(auth)
       end
