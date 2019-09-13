@@ -21,6 +21,9 @@ jobs:
       - image: selenium/standalone-chrome
         name: chrome
 
+      - image: redis
+        name: redis
+
     working_directory: ~/repo
 
     steps:

@@ -30,7 +30,8 @@ gem "jbuilder", "~> 2.5"
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem "carrierwave"
+gem "mini_magick"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -40,6 +41,23 @@ gem "bootsnap", ">= 1.1.0", require: false
 
 # Redis
 gem "redis-rails"
+
+# Devise
+gem "devise"
+gem "omniauth-twitter"
+gem "omniauth-github"
+gem "omniauth-google-oauth2"
+
+# .env
+gem "dotenv-rails"
+
+# rails_admin
+gem "cancancan"
+gem "rails_admin"
+
+group :production do
+  gem "fog"
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -53,6 +71,7 @@ group :development, :test do
   gem "webdrivers"
   gem "rspec_junit_formatter"
   gem "simplecov"
+  gem "faker"
 end
 
 group :development do

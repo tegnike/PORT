@@ -17,6 +17,10 @@
 
 console.log('Hello World from Webpacker')
 
+import 'jquery/dist/jquery.js'
+import 'popper.js/dist/popper.js'
+import 'bootstrap/dist/js/bootstrap'
+
 import 'stylesheets/application';
 import 'javascripts/application';
 require.context('../images', true, /\.(png|jpg|jpeg|svg)$/);
