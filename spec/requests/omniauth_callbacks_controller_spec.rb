@@ -2,12 +2,27 @@ require "rails_helper"
 
 RSpec.describe OmniauthCallbacksController, type: :request do
   describe "GET #sns_authentication" do
-    subject { post user_twitter_omniauth_callback_path }
+    subject {
+      allow_any_instance_of(OmniauthCallbacksController).to receive(:auth_params).and_return(
+        {
+          provider: "sns",
+          uid: "XXXXX",
+          info: {
+            nickname: "mockuser",
+            description: "これはprofileです。",
+            email: email,
+            image: "http://www.ryolab.org/media/images/dummy-profile-pic-300x300.jpg"
+          },
+          credentials: {
+            token: "token"
+          }
+        }.with_indifferent_access
+      )
+      post user_twitter_omniauth_callback_path
+    }
 
     context "set oauth information" do
-      before {
-        allow_any_instance_of(OmniauthCallbacksController).to receive(:auth_params).and_return(auth_params_mock)
-      }
+      let(:email) { "omniauth@example.com" }
       it "increases user count and get 302 response" do
         expect { subject }.to change { User.count }.by(1)
         expect(response.status).to eq(302)
@@ -23,9 +38,7 @@ RSpec.describe OmniauthCallbacksController, type: :request do
     end
 
     context "set oauth information without email" do
-      before {
-        allow_any_instance_of(OmniauthCallbacksController).to receive(:auth_params).and_return(auth_params_mock_no_email)
-      }
+      let(:email) { nil }
       it "user has correct information" do
         subject
         @user = User.last

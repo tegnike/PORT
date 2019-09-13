@@ -58,7 +58,6 @@ RSpec.configure do |config|
 
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include RequestHelpers, type: :request
-  config.include OmniauthMacros, type: :request
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
