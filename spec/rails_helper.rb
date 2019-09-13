@@ -7,6 +7,8 @@ require "rspec/rails"
 require "capybara/rspec"
 require "factory_bot_rails"
 require "shoulda/matchers"
+require "devise"
+require "faker"
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -26,6 +28,7 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
+OmniAuth.config.test_mode = true
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
@@ -52,6 +55,10 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   config.infer_spec_type_from_file_location!
   config.include FactoryBot::Syntax::Methods
+
+  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include RequestHelpers, type: :request
+  config.include OmniauthMacros, type: :request
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction

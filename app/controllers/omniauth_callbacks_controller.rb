@@ -12,7 +12,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def sns_authentication
-    @user = User.from_omniauth(request.env["omniauth.auth"].except("extra"))
+    @user = User.from_omniauth(auth_params)
 
     unless @user.persisted?
       @user.skip_confirmation!
@@ -20,5 +20,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
 
     sign_in_and_redirect @user
+  end
+
+  def auth_params
+    request.env["omniauth.auth"].except("extra")
   end
 end
