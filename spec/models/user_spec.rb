@@ -19,10 +19,13 @@ RSpec.describe User, type: :model do
     let(:user2) { create(:user) }
     subject(:follow) { user1.follow(user2) }
     subject(:unfollow) { user1.unfollow(user2) }
-    it "shows correct follow and unfollow method" do
+    it "shows correct follow method" do
       expect(user1.following?(user2)).to be_falsey
       follow
       expect(user1.following?(user2)).to be_truthy
+    end
+    it "shows correct unfollow method" do
+      follow
       expect(user2.followers.include?(user1)).to be_truthy
       unfollow
       expect(user1.following?(user2)).to be_falsey
