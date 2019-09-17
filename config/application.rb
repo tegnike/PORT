@@ -37,5 +37,8 @@ module App
     config.generators do |g|
       g.assets false
     end
+
+    # setting for without javascript
+    config.action_view.embed_authenticity_token_in_remote_forms = true
   end
 end

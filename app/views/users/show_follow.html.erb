@@ -1,0 +1,21 @@
+<% provide(:title, @title) %>
+<h1>Users#show</h1>
+<section class="user_show fdb-block fp-active" data-block-type="testimonials" data-id="1">
+  <div class="container">
+    <div class="fdb-box">
+      <ul>
+        <% @users.each do |user| %>
+          <li>
+            <%= link_to user.username, user %>
+            <%= user.email %>
+          </li>
+        <% end %>
+      </ul>
+      <%= paginate @users %>
+    </div>
+    <section class="stats">
+      <%= render 'shared/stats' %>
+    </section>
+    <%= render 'follow_form' if user_signed_in? %>
+  </div>
+</section>
