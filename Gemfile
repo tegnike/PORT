@@ -41,19 +41,18 @@ gem "bootsnap", ">= 1.1.0", require: false
 
 # Redis
 gem "redis-rails"
-
 # Devise
 gem "devise"
 gem "omniauth-twitter"
 gem "omniauth-github"
 gem "omniauth-google-oauth2"
-
 # .env
 gem "dotenv-rails"
-
 # rails_admin
 gem "cancancan"
 gem "rails_admin"
+# pagination
+gem "kaminari"
 
 group :production do
   gem "fog"
