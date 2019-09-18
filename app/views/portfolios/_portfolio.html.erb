@@ -1,0 +1,11 @@
+<li id="portfolio-<%= portfolio.id %>">
+  <span class="user"><%= link_to portfolio.user.username, portfolio.user %></span>
+  <span class="title"><%= portfolio.title %></span>
+  <span class="content"><%= portfolio.content %></span>
+  <%= image_tag portfolio.image.url, class: "image" if portfolio.image? %>
+  <%= link_to portfolio.web_url, portfolio.web_url, class: "web_url" %>
+  <%= link_to portfolio.git_url, portfolio.git_url, class: "git_url" %>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(portfolio.created_at) %> ago.
+  </span>
+</li>

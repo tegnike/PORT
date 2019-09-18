@@ -24,3 +24,13 @@
     <%= render 'follow_form' if user_signed_in? %>
   </div>
 </section>
+<section>
+  <% if @user.portfolios.any? %>
+   <h3>Portfolios (<%= @user.portfolios.count %>)</h3>
+   <%= paginate @portfolios %>
+   <ol class="portfolios">
+     <%= render @portfolios %>
+   </ol>
+   <%= paginate @portfolios %>
+ <% end %>
+</section>
