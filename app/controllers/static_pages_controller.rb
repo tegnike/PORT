@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
+    @portfolio = current_user.portfolios.build if user_signed_in?
   end
 
   def help

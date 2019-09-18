@@ -8,4 +8,8 @@
   <span class="timestamp">
     Posted <%= time_ago_in_words(portfolio.created_at) %> ago.
   </span>
+  <% if current_user?(portfolio.user) %>
+    <%= link_to "削除する", portfolio, method: :delete,
+                                     data: { confirm: "本当に削除しますか？" } %>
+  <% end %>
 </li>

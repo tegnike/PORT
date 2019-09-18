@@ -15,4 +15,5 @@ Rails.application.routes.draw do
     end
   end
   resources :relationships, only: [:create, :destroy]
+  resources :portfolios, only: [:create, :destroy]
 end
