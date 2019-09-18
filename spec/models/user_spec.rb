@@ -31,4 +31,14 @@ RSpec.describe User, type: :model do
       expect(user1.following?(user2)).to be_falsey
     end
   end
+
+  describe "ユーザー削除時の仕様をテストする" do
+    let!(:portfolio) { create(:portfolio, user_id: user.id) }
+    before {
+      user.destroy
+    }
+    it "関連するマイクロソフトも削除されること" do
+      expect(Portfolio.where(user: user)).to be_empty
+    end
+  end
 end
