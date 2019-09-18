@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/kobaltz/actiontext.git
+  revision: ef59c4ba99d1b7614dd47f5a294eef553224db88
+  branch: archive
+  specs:
+    actiontext (0.1.0)
+      nokogiri
+      rails (>= 5.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -598,6 +607,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actiontext!
   bootsnap (>= 1.1.0)
   byebug
   cancancan
@@ -609,6 +619,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   fog
+  image_processing
   jbuilder (~> 2.5)
   kaminari
   launchy

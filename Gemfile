@@ -53,6 +53,9 @@ gem "cancancan"
 gem "rails_admin"
 # pagination
 gem "kaminari"
+# WYSIWYG
+gem "actiontext", github: "kobaltz/actiontext", branch: "archive", require: "action_text"
+gem "image_processing"
 
 group :production do
   gem "fog"
