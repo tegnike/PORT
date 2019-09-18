@@ -4,11 +4,11 @@
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control' %>
 
-    <%= f.label :content %><br>
-    <%= f.text_area :content %><br>
+    <%= f.label :content %>
+    <%= f.rich_text_area :content %>
 
-    <%= f.label :picture %><br>
-    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+    <%= f.label :image %><br>
+    <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %><br>
 
     <%= f.label :web_url %>
     <%= f.text_field :web_url, class: 'form-control' %>
