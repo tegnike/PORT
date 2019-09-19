@@ -25,8 +25,8 @@
   </div>
 </section>
 <section>
+  <h3><%= pluralize(@user.portfolios.count, "portfolio") %></h3>
   <% if @user.portfolios.any? %>
-   <h3>Portfolios (<%= @user.portfolios.count %>)</h3>
    <%= paginate @portfolios %>
    <ol class="portfolios">
      <%= render @portfolios %>
