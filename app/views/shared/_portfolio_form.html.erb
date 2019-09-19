@@ -1,0 +1,21 @@
+<%= form_for(@portfolio) do |f| %>
+  <div class="field">
+
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control' %>
+
+    <%= f.label :content %>
+    <%= f.rich_text_area :content %>
+
+    <%= f.label :image %><br>
+    <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %><br>
+
+    <%= f.label :web_url %>
+    <%= f.text_field :web_url, class: 'form-control' %>
+
+    <%= f.label :git_url %>
+    <%= f.text_field :git_url, class: 'form-control' %>
+
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>

@@ -68,6 +68,20 @@ acorn@^5.0.0:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
   integrity sha512-T/zvzYRfbVojPWahDsE5evJdHb3oJoQfFbsrKM7w5Zcs++Tr257tia3BmMP8XYVjp1S9RZXQMh7gao96BlqZOw==
 
+"actiontext@https://github.com/kobaltz/actiontext":
+  version "0.1.0"
+  resolved "https://github.com/kobaltz/actiontext#ef59c4ba99d1b7614dd47f5a294eef553224db88"
+  dependencies:
+    activestorage ">=5.2.0"
+    trix ">=1.0.0"
+
+activestorage@>=5.2.0:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/activestorage/-/activestorage-5.2.3.tgz#04df0a194d15f7a04abbba313f584fbea2c5a66f"
+  integrity sha512-B0PHne9Bvpsapw1WqPZF8YafdN5pohOAUgR5ZGSijBOJKDGb+IJ6ib8Js9mfWNCmuCPCrCzHca/mJ2wD7UBJxA==
+  dependencies:
+    spark-md5 "^3.0.0"
+
 ajv-keywords@^3.1.0:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.4.1.tgz#ef916e271c64ac12171fd8384eaae6b2345854da"
@@ -6559,6 +6573,11 @@ source-map@^0.6.1, source-map@~0.6.1:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
 
+spark-md5@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/spark-md5/-/spark-md5-3.0.0.tgz#3722227c54e2faf24b1dc6d933cc144e6f71bfef"
+  integrity sha1-NyIifFTi+vJLHcbZM8wUTm9xv+8=
+
 spdx-correct@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/spdx-correct/-/spdx-correct-3.1.0.tgz#fb83e504445268f154b074e218c87c003cd31df4"
@@ -6976,6 +6995,11 @@ trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
   integrity sha1-yy4SAwZ+DI3h9hQJS5/kVwTqYAM=
+
+trix@>=1.0.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/trix/-/trix-1.2.0.tgz#b314101abd1d8d3d5da22ae5b866a719a73a6e21"
+  integrity sha512-gJ7edoWzcnc9DBjsgeGkmotVpyVhFQTlSOmUYjwFn71NlGixAhNgsu8pVIq/jkIkbk6om0PSetc9cRJm+qU3+A==
 
 "true-case-path@^1.0.2":
   version "1.0.3"

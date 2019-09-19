@@ -20,6 +20,7 @@ console.log('Hello World from Webpacker')
 import 'jquery/dist/jquery.js'
 import 'popper.js/dist/popper.js'
 import 'bootstrap/dist/js/bootstrap'
+import "actiontext"
 
 import 'stylesheets/application';
 import 'javascripts/application';
