@@ -33,8 +33,8 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
         fill_in "Title", with: "test_title"
         fill_in_rich_text_area "portfolio_content", with: "test_content"
         attach_file "portfolio_image", "#{Rails.root}/spec/factories/rails.png"
-        fill_in "Web url", with: "test_web_url"
-        fill_in "Git url", with: "test_git_url"
+        fill_in "Web url", with: "http://example/web_url"
+        fill_in "Git url", with: "http://example/git_url"
         click_button "Post"
       }
       it "can post a portfolio" do
@@ -83,8 +83,8 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
         fill_in "Title", with: "test_title"
         fill_in_rich_text_area "portfolio_content", with: "test_content"
         attach_file "portfolio_image", "#{Rails.root}/spec/factories/rails.png"
-        fill_in "Web url", with: "test_web_url"
-        fill_in "Git url", with: "test_git_url"
+        fill_in "Web url", with: "http://example/web_url"
+        fill_in "Git url", with: "http://example/git_url"
         click_button "Post"
         visit user_path(user)
       }

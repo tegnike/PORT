@@ -14,7 +14,6 @@ class PortfoliosController < ApplicationController
 
   def destroy
     @portfolio.destroy
-    flash[:success] = "ポートフォリオを削除しました。"
     redirect_to request.referrer || root_url, notice: "ポートフォリオを削除しました。"
   end
 

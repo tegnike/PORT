@@ -2,7 +2,9 @@
   <span class="user"><%= link_to portfolio.user.username, portfolio.user %></span>
   <span class="title"><%= portfolio.title %></span>
   <span class="content"><%= portfolio.content %></span>
-  <%= image_tag portfolio.image.url, class: "image" if portfolio.image? %>
+  <% if portfolio.image? %>
+    <%= image_tag portfolio.image.url, class: "image" %>
+  <% end %>
   <%= link_to portfolio.web_url, portfolio.web_url, class: "web_url" %>
   <%= link_to portfolio.git_url, portfolio.git_url, class: "git_url" %>
   <span class="timestamp">
