@@ -13,8 +13,12 @@ class PortfoliosController < ApplicationController
   end
 
   def destroy
-    @portfolio.destroy
-    redirect_to request.referrer || root_url, notice: "ポートフォリオを削除しました。"
+    if @portfolio.destroy
+      redirect_to request.referrer || root_url, notice: "ポートフォリオを削除しました。"
+    else
+      flash.now[:alert] = "ポートフォリオの削除に失敗しました。"
+      render "static_pages/home"
+    end
   end
 
   private
