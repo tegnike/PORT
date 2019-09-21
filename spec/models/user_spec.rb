@@ -32,13 +32,30 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "ユーザー削除時の仕様をテストする" do
+  describe "association with portfolio" do
     let!(:portfolio) { create(:portfolio, user_id: user.id) }
     before {
       user.destroy
     }
-    it "関連するマイクロソフトも削除されること" do
+    it "delete user's portfolio" do
       expect(Portfolio.where(user: user)).to be_empty
+    end
+  end
+
+  describe "favorite function" do
+    let(:portfolio) { create(:portfolio) }
+    subject(:favorite) { user.add_favorite(portfolio) }
+    subject(:unfavorite) { user.remove_favorite(portfolio) }
+    it "shows correct favorite method" do
+      expect(user.has_favorite?(portfolio)).to be_falsey
+      favorite
+      expect(user.has_favorite?(portfolio)).to be_truthy
+    end
+    it "shows correct unfavorite method" do
+      favorite
+      expect(portfolio.favorite_users.include?(user)).to be_truthy
+      unfavorite
+      expect(user.has_favorite?(portfolio)).to be_falsey
     end
   end
 end
