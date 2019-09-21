@@ -11,9 +11,10 @@ Rails.application.routes.draw do
   get "/terms", to: "static_pages#terms"
   resources :users, only: [:show] do
     member do
-      get :following, :followers
+      get :following, :followers, :favorites
     end
   end
   resources :relationships, only: [:create, :destroy]
   resources :portfolios, only: [:create, :destroy]
+  resources :favorites, only: [:create, :destroy]
 end

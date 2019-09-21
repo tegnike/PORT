@@ -1,6 +1,9 @@
 <li id="portfolio-<%= portfolio.id %>">
   <span class="user"><%= link_to portfolio.user.username, portfolio.user %></span>
-  <span class="title"><%= portfolio.title %></span>
+  <% if user_signed_in? %>
+    <%= render 'favorites/favorite_form', { portfolio: portfolio, user: user } %>
+  <% end %>
+  <span class="title"><%= portfolio.title %></span> <span class="favorite_count">(<%= portfolio.favorite_users.count %>)</span>
   <span class="content"><%= portfolio.content %></span>
   <% if portfolio.image? %>
     <%= image_tag portfolio.image.url, class: "image" %>
