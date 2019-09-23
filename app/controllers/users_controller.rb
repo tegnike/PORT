@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @title = @user.username
-    @portfolios = @user.portfolios.page(params[:page]).per(5)
+    @portfolios = @user.portfolios.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def following
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   def favorites
     @title = "いいねしたポートフォリオ"
     @user = User.find(params[:id])
-    @portfolios = @user.favorite_portfolios.page(params[:page]).per(5)
+    @portfolios = @user.favorite_portfolios.order(created_at: :desc).page(params[:page]).per(5)
     render "show"
   end
 end

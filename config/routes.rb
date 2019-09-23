@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :portfolios, only: [:create, :destroy]
   resources :favorites, only: [:create, :destroy]
+  get "rankings/favorite"
 end

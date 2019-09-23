@@ -25,10 +25,17 @@ followers.each { |follower| follower.follow(user) }
 
 users = User.order(:created_at).take(6)
 10.times do
-  users.each { |u| u.portfolios.create!(
+  users.each { |portfolio_usr| portfolio_usr.portfolios.create!(
     title: Faker::Lorem.sentence(word_count: 3),
     content: Faker::Lorem.sentence(word_count: 20),
     image: open("#{Rails.root}/db/fixtures/rails.png"),
     web_url: "http://port-port.herokuapp.com",
     git_url: "http://port-port.herokuapp.com") }
+end
+
+users.each do |favorite_user|
+  portfolios = Portfolio.order("RANDOM()").limit(10)
+  portfolios.each do |portfolio|
+    favorite_user.add_favorite(portfolio)
+  end
 end
