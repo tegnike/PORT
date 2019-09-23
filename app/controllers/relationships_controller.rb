@@ -6,7 +6,7 @@ class RelationshipsController < ApplicationController
       if @user = User.find(params[:followed_id])
         current_user.follow(@user)
         format.html { redirect_to @user }
-        format.js
+        format.js { render :create }
       else
         flash.now[:alert] = "ユーザーをフォローできませんでした。"
         format.js { render :new }
@@ -19,7 +19,7 @@ class RelationshipsController < ApplicationController
       if @user = Relationship.find(params[:id]).followed
         current_user.unfollow(@user)
         format.html { redirect_to @user }
-        format.js
+        format.js { render :destroy }
       else
         flash.now[:alert] = "ユーザーのフォローを解除できませんでした。"
         format.js { render :new }
