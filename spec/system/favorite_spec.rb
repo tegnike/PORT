@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe "Following", type: :system, js: true do
-  describe "follow function" do
+RSpec.describe "Favorite", type: :system, js: true do
+  describe "favorite function" do
     let(:user1) { create(:user, email: "user@example.com", password: "password", password_confirmation: "password") }
     let(:user2) { create(:user) }
     before {
@@ -70,7 +70,7 @@ RSpec.describe "Following", type: :system, js: true do
       it "shows correct favorites information" do
         expect(user1.favorites).not_to be_empty
         expect(page).to have_content user1.favorites.count.to_s
-        user1.favorite_portfolios.page(1).per(5).each do |portfolio|
+        user1.favorite_portfolios.page(1).order(created_at: :desc).per(5).each do |portfolio|
           expect(page).to have_content "#{portfolio.title}"
         end
       end
