@@ -56,6 +56,8 @@ gem "kaminari"
 # WYSIWYG
 gem "actiontext", github: "kobaltz/actiontext", branch: "archive", require: "action_text"
 gem "image_processing"
+# active strage for amazon S3
+gem "aws-sdk-s3", require: false
 
 group :production do
   gem "fog"
