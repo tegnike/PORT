@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :portfolios, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_portfolios, through: :favorites, source: :portfolio
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
@@ -15,13 +17,21 @@ class User < ApplicationRecord
   def follow(other_user)
     following << other_user
   end
-
   def unfollow(other_user)
     active_relationships.find_by(followed_id: other_user.id).destroy
   end
-
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def add_favorite(portfolio)
+    favorite_portfolios << portfolio
+  end
+  def remove_favorite(portfolio)
+    favorites.find_by(portfolio_id: portfolio.id).destroy
+  end
+  def has_favorite?(portfolio)
+    favorite_portfolios.include?(portfolio)
   end
 
   def remember_me

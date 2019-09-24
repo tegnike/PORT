@@ -1,0 +1,3 @@
+$("#portfolio-<%= @portfolio.id %> #favorite_form").html("<%= escape_javascript(render partial: 'favorites/favorite', locals: { portfolio: @portfolio, user: @user }) %>");
+$("#portfolio-<%= @portfolio.id %> .favorite_count").html("(<%= @portfolio.favorite_users.count %>)");
+$("#favorites").html('<%= @user.favorite_portfolios.count %>');

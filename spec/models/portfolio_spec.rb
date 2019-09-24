@@ -52,12 +52,4 @@ RSpec.describe Portfolio, type: :model do
     end
   end
 
-  describe "make portfolios which have different created_at" do
-    let!(:first) { create(:portfolio, created_at: 10.minutes.ago) }
-    let!(:second) { create(:portfolio, created_at: 2.hours.ago) }
-    let!(:last) { create(:portfolio, created_at: Time.zone.now) }
-    it "expess portfolios by descending order" do
-      expect(Portfolio.first).to eq last
-    end
-  end
 end
