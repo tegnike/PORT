@@ -11,7 +11,7 @@
   <%= link_to portfolio.web_url, portfolio.web_url, class: "web_url" %>
   <%= link_to portfolio.git_url, portfolio.git_url, class: "git_url" %>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(portfolio.created_at) %> ago.
+    <%= time_ago_in_words(portfolio.created_at) %>前に作成
   </span>
   <% if current_user?(portfolio.user) %>
     <%= link_to "削除する", portfolio, method: :delete,

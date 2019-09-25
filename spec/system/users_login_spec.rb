@@ -9,7 +9,7 @@ RSpec.describe "UsersLoginTest", type: :system, js: true do
         visit new_user_session_path
         fill_in "user_email", with: "user@example.com"
         fill_in "user_password", with: ""
-        click_button "Log in"
+        click_button "ログイン"
       }
       it "render new_user_session_path" do
         expect(current_path).to eq new_user_session_path

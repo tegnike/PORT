@@ -10,7 +10,7 @@ RSpec.describe "UsersSignup", type: :system, js: true do
       attach_file "user_image", "#{Rails.root}/spec/factories/rails.png"
       fill_in "user_password", with: password
       fill_in "user_password_confirmation", with: password_confirmation
-      click_on "Sign up"
+      click_on "アカウント登録"
     }
     context "try to sign up by invalid user info" do
       let(:username) { "" }

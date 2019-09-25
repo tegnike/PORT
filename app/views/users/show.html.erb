@@ -32,7 +32,7 @@
   </div>
 </section>
 <section>
-  <h3><%= pluralize(@user.portfolios.count, "portfolio") %></h3>
+  <h3><%= @user.portfolios.count %> ポートフォリオ</h3>
   <% if @user.portfolios.any? %>
    <%= paginate @portfolios %>
    <ol class="portfolios">

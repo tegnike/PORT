@@ -6,8 +6,8 @@ RSpec.describe "ShowFollowTest", type: :system, js: true do
     before {
       create_list(:user, 30)
       User.where.not(email: "user@example.com").each do |user|
-        user1.following << user
-        user1.followers << user
+        user1.follow(user)
+        user.follow(user1)
       end
       login(user1)
     }

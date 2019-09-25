@@ -7,23 +7,23 @@ RSpec.describe "Following", type: :system, js: true do
     let(:user3) { create(:user) }
     let(:user4) { create(:user) }
     before {
-      user1.following << user3
-      user1.following << user4
-      user2.following << user1
-      user4.following << user1
-
+      user1.follow(user3)
+      user1.follow(user4)
+      user2.follow(user1)
+      user4.follow(user1)
       login(user1)
     }
     context "access to other user page" do
       before { visit user_path(user2) }
       it "shows follow/unfollow button operate correctly" do
         expect(user1.following).not_to include(user2)
-        click_button "Follow"
+        click_button "フォロー"
         sleep 1
         user1.reload
         expect(user1.following).to include(user2)
-        click_button "Unfollow"
-        sleep 1
+        click_button "フォロー中"
+        page.driver.browser.switch_to.alert.accept
+        find ".btn-primary"
         user1.reload
         expect(user1.following).not_to include(user2)
       end

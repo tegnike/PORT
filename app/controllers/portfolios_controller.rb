@@ -7,7 +7,7 @@ class PortfoliosController < ApplicationController
     if @portfolio.save
       redirect_to user_path(current_user), notice: "ポートフォリオを作成しました"
     else
-      flash.now[:alert] = "情報が不正です。ご確認ください。"
+      flash.now[:alert] = "情報が不正です。内容をご確認ください。"
       render "static_pages/home"
     end
   end

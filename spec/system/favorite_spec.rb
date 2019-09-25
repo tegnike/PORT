@@ -11,7 +11,7 @@ RSpec.describe "Favorite", type: :system, js: true do
     }
     subject(:favorite) {
       first("ol li").click_button "☆"
-      sleep 1
+      find ".btn-warning"
       user1.reload
     }
     subject(:unfavorite) {
@@ -23,18 +23,18 @@ RSpec.describe "Favorite", type: :system, js: true do
     context "access to my page" do
       before { visit user_path(user1) }
       it "shows favorite/unfavorite button operate correctly" do
-        expect(page).to have_content "0 favorites"
+        expect(page).to have_content "お気に入り 0"
         expect(page.first("ol li")).not_to have_css ".btn-warning"
         expect(page.first("ol li")).to have_content "(0)"
 
         expect { favorite }.to change { Favorite.count }.by(1)
-        expect(page).to have_content "1 favorite"
+        expect(page).to have_content "お気に入り 1"
         expect(page.first("ol li")).to have_css ".btn-warning"
         expect(page.first("ol li")).to have_content "(1)"
 
         expect { unfavorite }.to change { Favorite.count }.by(-1)
-        expect(page).to have_content "0 favorites"
-        expect(page.first("ol li")).not_to have_css "☆.btn-warning"
+        expect(page).to have_content "お気に入り 0"
+        expect(page.first("ol li")).not_to have_css ".btn-warning"
         expect(page.first("ol li")).to have_content "(0)"
       end
     end
@@ -42,18 +42,18 @@ RSpec.describe "Favorite", type: :system, js: true do
     context "access to other user page" do
       before { visit user_path(user2) }
       it "shows favorite/unfavorite button operate correctly" do
-        expect(page).to have_content "0 favorites"
+        expect(page).to have_content "お気に入り 0"
         expect(page.first("ol li")).not_to have_css ".btn-warning"
         expect(page.first("ol li")).to have_content "(0)"
 
         expect { favorite }.to change { Favorite.count }.by(1)
-        expect(page).to have_content "0 favorites"
+        expect(page).to have_content "お気に入り 0"
         expect(page.first("ol li")).to have_css ".btn-warning"
         expect(page.first("ol li")).to have_content "(1)"
 
         expect { unfavorite }.to change { Favorite.count }.by(-1)
-        expect(page).to have_content "0 favorites"
-        expect(page.first("ol li")).not_to have_css "☆.btn-warning"
+        expect(page).to have_content "お気に入り 0"
+        expect(page.first("ol li")).not_to have_css ".btn-warning"
         expect(page.first("ol li")).to have_content "(0)"
       end
     end

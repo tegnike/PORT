@@ -17,7 +17,7 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
         attach_file "portfolio_image", "#{Rails.root}/spec/factories/rails.png"
         fill_in "portfolio_web_url", with: ""
         fill_in "portfolio_git_url", with: ""
-        click_button "Post"
+        click_button "投稿"
         sleep 1
       }
       it "can't post a portfolio" do
@@ -31,7 +31,7 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
         attach_file "portfolio_image", "#{Rails.root}/spec/factories/rails.png"
         fill_in "portfolio_web_url", with: "http://example/web_url"
         fill_in "portfolio_git_url", with: "http://example/git_url"
-        click_button "Post"
+        click_button "投稿"
       }
       it "can post a portfolio" do
         expect(current_path).to eq user_path(user1)
@@ -65,8 +65,8 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
     before { login(user) }
     context "user doesn't post any portfolio yet" do
       before { visit user_path(user) }
-      it "shows '0 portfolios'" do
-        expect(page).to have_content "0 portfolios"
+      it "shows '0 ポートフォリオ'" do
+        expect(page).to have_content "0 ポートフォリオ"
       end
     end
     context "user post a portfolio" do
@@ -76,11 +76,11 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
         attach_file "portfolio_image", "#{Rails.root}/spec/factories/rails.png"
         fill_in "portfolio_web_url", with: "http://example/web_url"
         fill_in "portfolio_git_url", with: "http://example/git_url"
-        click_button "Post"
+        click_button "投稿"
         visit user_path(user)
       }
-      it "shows '1 portfolio'" do
-        expect(page).to have_content "1 portfolio"
+      it "shows '1 ポートフォリオ'" do
+        expect(page).to have_content "1 ポートフォリオ"
       end
     end
   end
