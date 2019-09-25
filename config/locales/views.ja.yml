@@ -1,0 +1,22 @@
+ja:
+  static_pages:
+    about:
+      title: "PORTとは"
+    help:
+      title: "ヘルプ"
+    policy:
+      title: "プライバシーポリシー"
+    terms:
+      title: "利用規約"
+  users:
+    show:
+      title: "%{user_name}"
+    following:
+      title: "フォローユーザ"
+    followers:
+      title: "フォロワー"
+    favorites:
+      title: "お気に入り"
+  rankings:
+    favorite:
+      title: "お気に入りランキング"

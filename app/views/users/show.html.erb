@@ -1,4 +1,11 @@
-<% provide(:title, @title) %>
+<% if @path.is('users#show') %>
+  <% provide(:title, t(".title", user_name: @user.username)) %>
+<% elsif @path.is('users#favorites') %>
+  <% provide(:title, t("users.favorites.title")) %>
+<% else %>
+  <% provide(:title, "") %>
+<% end %>
+
 <h1>Users#show</h1>
 <section class="user_show fdb-block fp-active" data-block-type="testimonials" data-id="1">
   <div class="container">
