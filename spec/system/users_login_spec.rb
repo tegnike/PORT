@@ -13,11 +13,11 @@ RSpec.describe "UsersLoginTest", type: :system, js: true do
       }
       it "render new_user_session_path" do
         expect(current_path).to eq new_user_session_path
-        expect(page).to have_selector ".alert", text: "メールアドレスまたはパスワードが違います。"
+        expect(page).to have_selector ".alert-alert", text: "メールアドレスまたはパスワードが違います。"
       end
       it "doesn't show alert message after moving to root_path" do
         visit root_path
-        expect(page).to have_no_css ".alert", text: "メールアドレスまたはパスワードが違います。"
+        expect(page).to have_no_css ".alert-alert", text: "メールアドレスまたはパスワードが違います。"
       end
     end
 

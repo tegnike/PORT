@@ -47,7 +47,7 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
         visit user_path(user1)
         first("ol li").click_link "削除する"
         page.driver.browser.switch_to.alert.accept
-        find ".notice", text: "ポートフォリオを削除しました。"
+        find ".alert-notice", text: "ポートフォリオを削除しました。"
       }
       it "delete a portfolio" do
         expect { subject }.to change { Portfolio.count }.by(-1)
