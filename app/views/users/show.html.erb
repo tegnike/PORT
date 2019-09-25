@@ -19,9 +19,6 @@
           <p class="lead"><%= @user.profile %></p>
           <p class="h3 mt-4 mt-lg-5"><strong><%= @user.username %></strong></p>
           <p><em>email: <%= @user.email %></em></p>
-          <% if @user.try(:admin?) %>
-            <p class="admin_btn col-xs-offset-1 col-xs-10 col-xs-offset-1"><%= link_to "管理画面", rails_admin_path %></p>
-          <% end %>
         </div>
       </div>
     </div>

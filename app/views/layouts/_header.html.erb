@@ -24,6 +24,9 @@
                <li><%= link_to current_user.username, current_user %></li>
                <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
                <li class="dropdown-divider"></li>
+               <% if @user.try(:admin?) %>
+                 <li><%= link_to "管理画面", rails_admin_path %></li>
+               <% end %>
                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
              </ul>
             </li>
