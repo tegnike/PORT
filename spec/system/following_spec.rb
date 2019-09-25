@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Following", type: :system, js: true do
   describe "follow function" do
-    let(:user1) { create(:user, email: "user@example.com", password: "password", password_confirmation: "password") }
+    let(:user1) { create_user }
     let(:user2) { create(:user) }
     let(:user3) { create(:user) }
     let(:user4) { create(:user) }
@@ -12,10 +12,7 @@ RSpec.describe "Following", type: :system, js: true do
       user2.following << user1
       user4.following << user1
 
-      visit new_user_session_path # log in by user1
-      fill_in "Email", with: "user@example.com"
-      fill_in "Password", with: "password"
-      click_button "Log in"
+      login(user1)
     }
     context "access to other user page" do
       before { visit user_path(user2) }

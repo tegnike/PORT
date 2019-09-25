@@ -2,16 +2,12 @@ require "rails_helper"
 
 RSpec.describe "Favorite", type: :system, js: true do
   describe "favorite function" do
-    let(:user1) { create(:user, email: "user@example.com", password: "password", password_confirmation: "password") }
+    let(:user1) { create_user }
     let(:user2) { create(:user) }
     before {
       create_list(:portfolio, 10, user_id: user1.id)
       create_list(:portfolio, 10, user_id: user2.id)
-
-      visit new_user_session_path # log in by user1
-      fill_in "Email", with: "user@example.com"
-      fill_in "Password", with: "password"
-      click_button "Log in"
+      login(user1)
     }
     subject(:favorite) {
       first("ol li").click_button "☆"

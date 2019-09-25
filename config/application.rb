@@ -40,5 +40,6 @@ module App
 
     # setting for without javascript
     config.action_view.embed_authenticity_token_in_remote_forms = true
+    config.i18n.default_locale = :ja
   end
 end

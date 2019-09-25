@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "FavoriteRanking", type: :system, js: true do
   describe "favorite ranking page" do
-    let(:user) { create(:user, email: "user@example.com", password: "password", password_confirmation: "password") }
+    let(:user) { create_user }
     before {
       create_list(:user, 10)
       create_list(:portfolio, 10, user_id: user.id)
@@ -10,10 +10,7 @@ RSpec.describe "FavoriteRanking", type: :system, js: true do
       (0..9).each do |n|
         users[0..n].each { |u| u.add_favorite(user.portfolios[n]) }
       end
-      visit new_user_session_path # log in by user1
-      fill_in "Email", with: "user@example.com"
-      fill_in "Password", with: "password"
-      click_button "Log in"
+      login(user)
     }
 
     context "access to favorite page" do
