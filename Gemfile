@@ -62,6 +62,7 @@ gem "aws-sdk-s3", require: false
 gem "rails-i18n"
 gem "devise-i18n"
 gem "devise-i18n-views"
+gem "i18n-js"
 
 group :production do
   gem "fog"

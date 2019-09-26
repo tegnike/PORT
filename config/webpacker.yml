@@ -20,6 +20,7 @@ default: &default
   extract_css: false
 
   static_assets_extensions:
+    - .erb
     - .jpg
     - .jpeg
     - .png
@@ -34,6 +35,7 @@ default: &default
     - .woff2
 
   extensions:
+    - .erb
     - .mjs
     - .js
     - .sass

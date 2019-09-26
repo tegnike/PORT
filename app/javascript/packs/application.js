@@ -21,6 +21,7 @@ import 'jquery/dist/jquery.js'
 import 'popper.js/dist/popper.js'
 import 'bootstrap/dist/js/bootstrap'
 import "actiontext"
+import I18n from 'src/i18n-js/index.js.erb'
 
 import 'stylesheets/application';
 import 'javascripts/application';
