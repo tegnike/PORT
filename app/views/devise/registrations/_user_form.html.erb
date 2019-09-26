@@ -16,7 +16,7 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <% if yield(:action) == "PUT" %>
+  <% if controller.action_name == "edit" %>
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div><%= t(".currently_waiting_confirmation_for_email", email: resource.unconfirmed_email) %></div>
     <% end %>
@@ -29,7 +29,7 @@
 
   <div class="field">
     <%= f.label :password %>
-    <% if yield(:action) == "PUT" %>
+    <% if controller.action_name == "edit" %>
       <%= t("devise.registrations.edit.leave_blank_if_you_don_t_want_to_change_it") %><br />
     <% end %>
     <% if @minimum_password_length %>
@@ -43,7 +43,7 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <% if yield(:action) == "PUT" %>
+  <% if controller.action_name == "edit" %>
     <div class="field">
       <%= f.label :current_password %> <%= t("devise.registrations.edit.we_need_your_current_password_to_confirm_your_changes") %><br />
       <%= f.password_field :current_password, autocomplete: "current-password" %>

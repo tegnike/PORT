@@ -10,7 +10,7 @@ class FavoritesController < ApplicationController
         format.html { redirect_to @portfolio }
         format.js { render :create }
       else
-        flash.now[:alert] = "お気に入り登録に失敗しました。"
+        flash.now[:alert] = t("flash.alert", matter: "お気に入りの登録")
         format.js { render :new }
       end
     end
@@ -25,7 +25,7 @@ class FavoritesController < ApplicationController
         format.html { redirect_to @portfolio }
         format.js { render :destroy }
       else
-        flash.now[:alert] = "お気に入りを削除できませんでした。"
+        flash.now[:alert] = t("flash.alert", matter: "お気に入りの削除")
         format.js { render :new }
       end
     end

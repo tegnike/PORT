@@ -1,7 +1,7 @@
 <% if object.errors.any? %>
   <div id="error_explanation">
     <h2 class="alert alert-danger">
-      <%= object.errors.count %>件のエラーが発生したため投稿は保存されませんでした。
+      <%= t("shared.error_messages.count", count: object.errors.count) %>
     </h2>
     <ul>
     <% object.errors.full_messages.each do |message| %>

@@ -1,13 +1,13 @@
 <footer class="footer">
   <small>
-    <%= link_to "PORT", root_path, class: "navbar-brand", id: "logo" %>
+    <%= link_to t("common.title"), root_path, class: "navbar-brand", id: "logo" %>
   </small>
   <nav>
     <ul>
-      <li><%= link_to "利用規約", terms_path %></li>
-      <li><%= link_to "プライバシー", policy_path %></li>
-      <li><%= link_to "ヘルプ", help_path %></li>
-      <li><%= link_to "Portとは", about_path %></li>
+      <li><%= link_to t("common.terms"), terms_path %></li>
+      <li><%= link_to t("common.policy"), policy_path %></li>
+      <li><%= link_to t("common.help"), help_path %></li>
+      <li><%= link_to t("common.about"), about_path %></li>
     </ul>
   </nav>
 </footer>

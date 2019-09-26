@@ -34,11 +34,11 @@ ja:
         message: "ログイン失敗が繰り返されたため、アカウントはロックされています。"
       email_changed:
         greeting: "こんにちは、%{recipient}さん!"
-        we_re_contacting_you_to_notify_you_that_your_email_is_being_changed_to: "登録されているメールが%{email}に変更されたことをお知らせいたします。"
-        we_re_contacting_you_to_notify_you_that_your_email_has_been_changed_to: "登録されているメールが%{email}に変更されたことをお知らせいたします。"
+        your_email_is_being_changed: "登録されているメールが%{email}に変更されたことをお知らせいたします。"
+        your_email_has_been_changed: "登録されているメールが%{email}に変更されたことをお知らせいたします。"
       password_change:
         greeting: "こんにちは、%{recipient}さん!"
-        we_re_contacting_you_to_notify_you_that_your_password_has_been_changed: "登録されているパスワードが変更されたことをお知らせいたします。"
+        your_password_has_been_changed: "登録されているパスワードが変更されたことをお知らせいたします。"
     passwords:
       edit:
         change_my_password: "パスワードを変更する"

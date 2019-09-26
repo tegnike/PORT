@@ -45,7 +45,7 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
     context "push delete button" do
       subject {
         visit user_path(user1)
-        first("ol li").click_link "削除する"
+        first("ol li").click_link "削除"
         page.driver.browser.switch_to.alert.accept
         find ".alert-notice", text: "ポートフォリオを削除しました。"
       }
@@ -56,7 +56,7 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
     context "access to other user page" do
       before { visit user_path(user2) }
       it "doesn't show delete link" do
-        expect(page).not_to have_link "削除する"
+        expect(page).not_to have_link "削除"
       end
     end
   end

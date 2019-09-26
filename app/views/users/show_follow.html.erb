@@ -1,10 +1,4 @@
-<% if @path.is('users#following') %>
-  <% provide(:title, t("users.following.title")) %>
-<% elsif @path.is('users#followers') %>
-  <% provide(:title, t("users.followers.title")) %>
-<% else %>
-  <% provide(:title, "") %>
-<% end %>
+<% provide(:title, t("users.#{controller.action_name}.title", user_name: @user.username)) %>
 
 <h1>Users#show</h1>
 <section class="user_show fdb-block fp-active" data-block-type="testimonials" data-id="1">

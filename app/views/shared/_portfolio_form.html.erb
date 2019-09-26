@@ -2,21 +2,21 @@
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
 
-    <%= f.label "タイトル" %>
+    <%= f.label t("shared.portfolio_form.title") %>
     <%= f.text_field :title, class: 'form-control' %>
 
-    <%= f.label "内容" %>
+    <%= f.label t("shared.portfolio_form.content") %>
     <%= f.rich_text_area :content %>
 
-    <%= f.label "サムネイル画像" %><br>
+    <%= f.label t("shared.portfolio_form.image") %><br>
     <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %><br>
 
-    <%= f.label "WEB URL" %>
+    <%= f.label t("shared.portfolio_form.web_url") %>
     <%= f.text_field :web_url, class: 'form-control' %>
 
-    <%= f.label "GIT URL" %>
+    <%= f.label t("shared.portfolio_form.git_url") %>
     <%= f.text_field :git_url, class: 'form-control' %>
 
   </div>
-  <%= f.submit "投稿", class: "btn btn-primary" %>
+  <%= f.submit t("btn.create"), class: "btn btn-primary" %>
 <% end %>

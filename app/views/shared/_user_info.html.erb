@@ -1,3 +1,3 @@
 <h1><%= current_user.username %></h1>
-<span><%= link_to "マイプロフィール", current_user %></span><br>
+<span><%= link_to t("common.my_profile"), current_user %></span><br>
 <span>マイポートフォリオ <%= current_user.portfolios.count %></span>

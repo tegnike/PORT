@@ -11,10 +11,10 @@
   <%= link_to portfolio.web_url, portfolio.web_url, class: "web_url" %>
   <%= link_to portfolio.git_url, portfolio.git_url, class: "git_url" %>
   <span class="timestamp">
-    <%= time_ago_in_words(portfolio.created_at) %>前に作成
+    <%= time_ago_in_words(portfolio.created_at) %><%= t("common.time_ago") %>
   </span>
   <% if current_user?(portfolio.user) %>
-    <%= link_to "削除する", portfolio, method: :delete,
-                                     data: { confirm: "本当に削除しますか？" } %>
+    <%= link_to t("btn.delete"), portfolio, method: :delete,
+                                     data: { confirm: t("common.delete_confirmation") } %>
   <% end %>
 </li>
