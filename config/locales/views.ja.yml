@@ -1,0 +1,62 @@
+ja:
+  common:
+    title: "PORT"
+    about: "PORTとは"
+    help: "ヘルプ"
+    policy: "プライバシーポリシー"
+    terms: "利用規約"
+    my_profile: "マイプロフィール"
+    time_ago: "前に作成"
+    delete_confirmation: "本当に削除しますか？"
+    unfollow_confirmation: "%{username}さんをフォロー解除しますか？"
+  header:
+    about: "はじめに"
+    post: "投稿する"
+    myaccount: "マイアカウント"
+    profile_edit: "プロフィール編集"
+    admin: "管理画面"
+    logout: "ログアウト"
+    sign_up: "ユーザ登録"
+    login: "ログイン"
+  static_pages:
+    about:
+      title: "PORTとは"
+    help:
+      title: "ヘルプ"
+    policy:
+      title: "プライバシーポリシー"
+    terms:
+      title: "利用規約"
+  users:
+    show:
+      title: "%{user_name}"
+    following:
+      title: "フォローユーザ"
+    followers:
+      title: "フォロワー"
+    favorites:
+      title: "お気に入り"
+  rankings:
+    favorite:
+      title: "お気に入りランキング"
+  shared:
+    error_messages:
+      count: "%{count}件のエラーが発生したため投稿は保存されませんでした。"
+    portfolio_form:
+      title: "タイトル"
+      content: "内容"
+      image: "サムネイル画像"
+      web_url: "WEB URL"
+      git_url: "GIT URL"
+  flash:
+    login: "ログインしました。"
+    create: "%{item}を作成しました。"
+    delete: "%{item}を削除しました。"
+    alert: "%{matter}に失敗しました。"
+  btn:
+    follow: "フォロー中"
+    unfollow: "フォロー"
+    favorite: "★"
+    unfavorite: "☆"
+    create: "投稿"
+    delete: "削除"

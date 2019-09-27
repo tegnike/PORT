@@ -1,6 +1,5 @@
-<% provide(:title, "お気に入りランキング") %>
+<% provide(:title, t(".title")) %>
 <h1>Rankings#favorite</h1>
-<p>Find me in app/views/rankings/favorite.html.erb</p>
 <ol class="portfolios">
   <%= render @portfolios, user: current_user %>
 </ol>

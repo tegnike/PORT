@@ -5,18 +5,17 @@ class PortfoliosController < ApplicationController
   def create
     @portfolio = current_user.portfolios.build(portfolio_params)
     if @portfolio.save
-      redirect_to user_path(current_user), notice: "ポートフォリオを作成しました"
+      redirect_to user_path(current_user), notice: t("flash.create", item: "ポートフォリオ")
     else
-      flash.now[:alert] = "情報が不正です。ご確認ください。"
       render "static_pages/home"
     end
   end
 
   def destroy
     if @portfolio.destroy
-      redirect_to request.referrer || root_url, notice: "ポートフォリオを削除しました。"
+      redirect_to request.referrer || root_url, notice: t("flash.delete", item: "ポートフォリオ")
     else
-      flash.now[:alert] = "ポートフォリオの削除に失敗しました。"
+      flash.now[:alert] = t("flash.alert", matter: "ポートフォリオの削除")
       render "static_pages/home"
     end
   end

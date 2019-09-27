@@ -53,6 +53,7 @@ p {
 header {
   nav {
     background-color: #e3f2fd;
+    margin-bottom: 15px;
   }
   #logo {
     float: left;
@@ -88,6 +89,35 @@ footer {
       margin-left: 15px;
     }
   }
+}
+
+/* flash_message */
+.alert-alert {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.alert-alert hr {
+  border-top-color: #f1b0b7;
+}
+
+.alert-alert .alert-link {
+  color: #491217;
+}
+
+.alert-notice {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.alert-notice hr {
+  border-top-color: #b1dfbb;
+}
+
+.alert-notice .alert-link {
+  color: #0b2e13;
 }
 
 /* user_show */

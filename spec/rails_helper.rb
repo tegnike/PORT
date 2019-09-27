@@ -58,6 +58,7 @@ RSpec.configure do |config|
 
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include RequestHelpers, type: :request
+  config.include SystemHelpers, type: :system
   config.include ActionTextHelper, type: :system
 
   config.before(:suite) do

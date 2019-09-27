@@ -8,7 +8,7 @@ class RelationshipsController < ApplicationController
         format.html { redirect_to @user }
         format.js { render :create }
       else
-        flash.now[:alert] = "ユーザーをフォローできませんでした。"
+        flash.now[:alert] = t("flash.alert", matter: "ユーザのフォロー")
         format.js { render :new }
       end
     end
@@ -21,7 +21,7 @@ class RelationshipsController < ApplicationController
         format.html { redirect_to @user }
         format.js { render :destroy }
       else
-        flash.now[:alert] = "ユーザーのフォローを解除できませんでした。"
+        flash.now[:alert] = t("flash.alert", matter: "ユーザのフォロー解除")
         format.js { render :new }
       end
     end

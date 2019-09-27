@@ -58,6 +58,11 @@ gem "actiontext", github: "kobaltz/actiontext", branch: "archive", require: "act
 gem "image_processing"
 # active strage for amazon S3
 gem "aws-sdk-s3", require: false
+# i18n
+gem "rails-i18n"
+gem "devise-i18n"
+gem "devise-i18n-views"
+gem "i18n-js"
 
 group :production do
   gem "fog"

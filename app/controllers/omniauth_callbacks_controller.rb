@@ -19,6 +19,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @user.save!
     end
 
+    flash[:notice] = t("flash.login")
     sign_in_and_redirect @user
   end
 

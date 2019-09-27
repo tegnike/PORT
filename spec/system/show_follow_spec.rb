@@ -2,17 +2,14 @@ require "rails_helper"
 
 RSpec.describe "ShowFollowTest", type: :system, js: true do
   describe "following and follower pages" do
-    let!(:user1) { create(:user, email: "user@example.com", password: "password", password_confirmation: "password") }
+    let!(:user1) { create_user }
     before {
       create_list(:user, 30)
       User.where.not(email: "user@example.com").each do |user|
-        user1.following << user
-        user1.followers << user
+        user1.follow(user)
+        user.follow(user1)
       end
-      visit new_user_session_path
-      fill_in "Email", with: "user@example.com"
-      fill_in "Password", with: "password"
-      click_button "Log in"
+      login(user1)
     }
     context "access to following page" do
       before { visit following_user_path(user1) }

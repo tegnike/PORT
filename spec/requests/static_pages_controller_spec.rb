@@ -13,7 +13,7 @@ RSpec.describe StaticPagesController, type: :request do
     it "returns http success" do
       get help_path
       expect(response).to have_http_status(:success)
-      expect(response.body).to include "#{full_title("Help")}"
+      expect(response.body).to include "#{full_title("ヘルプ")}"
     end
   end
 
@@ -21,7 +21,7 @@ RSpec.describe StaticPagesController, type: :request do
     it "returns http success" do
       get about_path
       expect(response).to have_http_status(:success)
-      expect(response.body).to include "#{full_title("About")}"
+      expect(response.body).to include "#{full_title("PORTとは")}"
     end
   end
 
@@ -29,7 +29,7 @@ RSpec.describe StaticPagesController, type: :request do
     it "returns http success" do
       get policy_path
       expect(response).to have_http_status(:success)
-      expect(response.body).to include "#{full_title("Policy")}"
+      expect(response.body).to include "#{full_title("プライバシーポリシー")}"
     end
   end
 
@@ -37,7 +37,7 @@ RSpec.describe StaticPagesController, type: :request do
     it "returns http success" do
       get terms_path
       expect(response).to have_http_status(:success)
-      expect(response.body).to include "#{full_title("Terms")}"
+      expect(response.body).to include "#{full_title("利用規約")}"
     end
   end
 end
