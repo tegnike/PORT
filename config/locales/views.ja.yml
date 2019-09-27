@@ -6,7 +6,7 @@ ja:
     policy: "プライバシーポリシー"
     terms: "利用規約"
     my_profile: "マイプロフィール"
-    time_ago: "前に作成"
+    time_ago: "%{time}前に作成"
     delete_confirmation: "本当に削除しますか？"
     unfollow_confirmation: "%{username}さんをフォロー解除しますか？"
   header:
@@ -36,6 +36,15 @@ ja:
       title: "フォロワー"
     favorites:
       title: "お気に入り"
+  portfolios:
+    show:
+      title: "%{portfolio_title}"
+      web_url: "WEBサイト"
+      git_url: "Github"
+    new:
+      title: "ポートフォリオ新規作成"
+    edit:
+      title: "ポートフォリオ編集"
   rankings:
     favorite:
       title: "お気に入りランキング"
@@ -51,6 +60,7 @@ ja:
   flash:
     login: "ログインしました。"
     create: "%{item}を作成しました。"
+    update: "%{item}を更新しました。"
     delete: "%{item}を削除しました。"
     alert: "%{matter}に失敗しました。"
   btn:
@@ -59,4 +69,6 @@ ja:
     favorite: "★"
     unfavorite: "☆"
     create: "投稿"
+    edit: "編集"
+    update: "更新"
     delete: "削除"

@@ -17,9 +17,6 @@ RSpec.describe "UsersProfile", type: :system, js: true do
     it "shows correct pagination of portfolios" do
       user.portfolios.page(1).order(created_at: :desc).per(5).each do |portfolio|
         expect(page).to have_content "#{portfolio.title}"
-        expect(page).to have_css "#portfolio-#{portfolio.id}>img.image"
-        expect(page).to have_link "#{portfolio.web_url}"
-        expect(page).to have_link "#{portfolio.git_url}"
       end
     end
   end

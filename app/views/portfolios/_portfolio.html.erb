@@ -1,20 +1,12 @@
 <li id="portfolio-<%= portfolio.id %>">
-  <span class="user"><%= link_to portfolio.user.username, portfolio.user %></span>
+  <%= link_to portfolio.user.username, portfolio.user %>
+  <span class="timestamp">
+    <%= t("common.time_ago", time: time_ago_in_words(portfolio.created_at)) %>
+  </span>
   <% if user_signed_in? %>
     <%= render 'favorites/favorite_form', { portfolio: portfolio, user: user } %>
   <% end %>
-  <span class="title"><%= portfolio.title %></span> <span class="favorite_count">(<%= portfolio.favorite_users.count %>)</span>
-  <span class="content"><%= portfolio.content %></span>
-  <% if portfolio.image? %>
-    <%= image_tag portfolio.image.url, class: "image" %>
-  <% end %>
-  <%= link_to portfolio.web_url, portfolio.web_url, class: "web_url" %>
-  <%= link_to portfolio.git_url, portfolio.git_url, class: "git_url" %>
-  <span class="timestamp">
-    <%= time_ago_in_words(portfolio.created_at) %><%= t("common.time_ago") %>
-  </span>
-  <% if current_user?(portfolio.user) %>
-    <%= link_to t("btn.delete"), portfolio, method: :delete,
-                                     data: { confirm: t("common.delete_confirmation") } %>
-  <% end %>
+  <%= link_to portfolio.title, portfolio, class: "title" %> <span class="favorite_count">(<%= portfolio.favorite_users.count %>)</span><br>
+  <%= link_to t("portfolios.show.web_url"), portfolio.web_url, class: "web_url" %>
+  <%= link_to t("portfolios.show.git_url"), portfolio.git_url, class: "git_url" %>
 </li>

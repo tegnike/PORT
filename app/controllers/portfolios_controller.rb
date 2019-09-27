@@ -1,19 +1,38 @@
 class PortfoliosController < ApplicationController
-  before_action :authenticate_user!
-  before_action :correct_user, only: [:destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
+
+  def show
+    @portfolio = Portfolio.find(params[:id])
+  end
+
+  def new
+    @portfolio = current_user.portfolios.build
+  end
 
   def create
     @portfolio = current_user.portfolios.build(portfolio_params)
     if @portfolio.save
-      redirect_to user_path(current_user), notice: t("flash.create", item: "ポートフォリオ")
+      redirect_to @portfolio, notice: t("flash.create", item: "ポートフォリオ")
     else
-      render "static_pages/home"
+      render "new"
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @portfolio.update_attributes(portfolio_params)
+      redirect_to @portfolio, notice: t("flash.update", item: "ポートフォリオ")
+    else
+      render "edit"
     end
   end
 
   def destroy
     if @portfolio.destroy
-      redirect_to request.referrer || root_url, notice: t("flash.delete", item: "ポートフォリオ")
+      redirect_to @portfolio.user || root_url, notice: t("flash.delete", item: "ポートフォリオ")
     else
       flash.now[:alert] = t("flash.alert", matter: "ポートフォリオの削除")
       render "static_pages/home"

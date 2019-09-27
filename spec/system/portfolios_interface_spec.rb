@@ -8,7 +8,7 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
       create_list(:portfolio, 10, user_id: user1.id)
       create_list(:portfolio, 10, user_id: user2.id)
       login(user1)
-      visit root_path
+      visit new_portfolio_path
     }
     context "try to post an invalid portfolio" do
       before {
@@ -34,18 +34,18 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
         click_button "投稿"
       }
       it "can post a portfolio" do
-        expect(current_path).to eq user_path(user1)
-        expect(page).to have_selector ".title", text: "title"
-        expect(page).to have_selector ".content", text: "content"
+        expect(current_path).to eq portfolio_path(Portfolio.find_by(title: "test_title"))
+        expect(page).to have_selector ".title", text: "test_title"
+        expect(page).to have_selector ".content", text: "test_content"
         expect(page).to have_css ".image"
-        expect(page).to have_selector ".web_url", text: "web_url"
-        expect(page).to have_selector ".git_url", text: "git_url"
+        expect(page).to have_selector ".web_url", text: "WEBサイト"
+        expect(page).to have_selector ".git_url", text: "Github"
       end
     end
     context "push delete button" do
       subject {
-        visit user_path(user1)
-        first("ol li").click_link "削除"
+        visit portfolio_path(Portfolio.find_by(user_id: user1.id))
+        click_link "削除"
         page.driver.browser.switch_to.alert.accept
         find ".alert-notice", text: "ポートフォリオを削除しました。"
       }
@@ -53,8 +53,8 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
         expect { subject }.to change { Portfolio.count }.by(-1)
       end
     end
-    context "access to other user page" do
-      before { visit user_path(user2) }
+    context "access to other user's portfolio page" do
+      before { visit portfolio_path(Portfolio.find_by(user_id: user2.id)) }
       it "doesn't show delete link" do
         expect(page).not_to have_link "削除"
       end
