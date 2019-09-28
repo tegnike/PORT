@@ -3,6 +3,11 @@
   <span class="timestamp">
     <%= t("common.time_ago", time: time_ago_in_words(portfolio.created_at)) %>
   </span>
+  <% unless portfolio.pageview == nil %>
+    <span class="pageview">
+      <%= t("common.pageview", score: portfolio.pageview) %>
+    </span>
+  <% end %>
   <% if user_signed_in? %>
     <%= render 'favorites/favorite_form', { portfolio: portfolio, user: user } %>
   <% end %>

@@ -1,0 +1,5 @@
+<% provide(:title, t("rankings.#{controller.action_name}.title")) %>
+<h1>Rankings#pageview</h1>
+<ol class="portfolios">
+  <%= render @portfolios, user: current_user %>
+</ol>

@@ -7,7 +7,7 @@ class PortfoliosController < ApplicationController
     portfolio_id = @portfolio.id
     unless current_user == @portfolio.user || cookies.permanent.signed["#{portfolio_id}"]
       cookies.permanent.signed["#{portfolio_id}"] = @portfolio.id
-      REDIS.zincrby "portfolios/total", 1, @portfolio.id
+      REDIS.zincrby "portfolios/#{Date.today}", 1, @portfolio.id
     end
   end
 

@@ -12,6 +12,9 @@ ja:
     unfollow_confirmation: "%{username}さんをフォロー解除しますか？"
   header:
     about: "はじめに"
+    favorite: "お気に入り"
+    total_pv: "総合アクセス"
+    weekly_pv: "週間アクセス"
     post: "投稿する"
     myaccount: "マイアカウント"
     profile_edit: "プロフィール編集"
@@ -49,6 +52,10 @@ ja:
   rankings:
     favorite:
       title: "お気に入りランキング"
+    total_pv:
+      title: "総合アクセスランキング"
+    weekly_pv:
+      title: "週間アクセスランキング"
   shared:
     error_messages:
       count: "%{count}件のエラーが発生したため投稿は保存されませんでした。"
