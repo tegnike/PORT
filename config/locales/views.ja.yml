@@ -7,6 +7,7 @@ ja:
     terms: "利用規約"
     my_profile: "マイプロフィール"
     time_ago: "%{time}前に作成"
+    pageview: "%{score} views"
     delete_confirmation: "本当に削除しますか？"
     unfollow_confirmation: "%{username}さんをフォロー解除しますか？"
   header:

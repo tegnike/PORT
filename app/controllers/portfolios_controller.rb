@@ -4,6 +4,11 @@ class PortfoliosController < ApplicationController
 
   def show
     @portfolio = Portfolio.find(params[:id])
+    portfolio_id = @portfolio.id
+    unless current_user == @portfolio.user || cookies.permanent.signed["#{portfolio_id}"]
+      cookies.permanent.signed["#{portfolio_id}"] = @portfolio.id
+      REDIS.zincrby "portfolios/total", 1, @portfolio.id
+    end
   end
 
   def new
