@@ -15,7 +15,7 @@ class Portfolio < ApplicationRecord
 
   def self.pv_data(span, title)
     keys = []
-    (span..Date.today).each do |date|
+    (span..Date.tomorrow).each do |date|
       keys << "portfolios/#{date.strftime("%Y-%m-%d")}"
     end
     REDIS.zunionstore("portfolios/#{title}", keys)

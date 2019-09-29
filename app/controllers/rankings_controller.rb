@@ -16,9 +16,8 @@ class RankingsController < ApplicationController
   end
 
   private
-
     def pv_action(span, matter)
-      @portfolios = Portfolio.pv_data(span, "weekly")
+      @portfolios = Portfolio.pv_data(span, action_name)
       unless @portfolios
         flash.now[:alert] = t("flash.get_alert", matter: matter)
         render "static_pages/home"
