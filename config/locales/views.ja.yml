@@ -12,6 +12,7 @@ ja:
     unfollow_confirmation: "%{username}さんをフォロー解除しますか？"
   header:
     about: "はじめに"
+    ranking: "ランキング"
     favorite: "お気に入り"
     total_pv: "総合アクセス"
     weekly_pv: "週間アクセス"
@@ -71,6 +72,7 @@ ja:
     update: "%{item}を更新しました。"
     delete: "%{item}を削除しました。"
     alert: "%{matter}に失敗しました。"
+    get_alert: "%{matter}の取得に失敗しました。"
   btn:
     follow: "フォロー中"
     unfollow: "フォロー"

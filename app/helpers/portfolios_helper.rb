@@ -5,6 +5,6 @@ module PortfoliosHelper
       keys << "portfolios/#{date.strftime("%Y-%m-%d")}"
     end
     REDIS.zunionstore("portfolios/total/#{portfolio.id}", keys)
-    (score = (REDIS.zscore "portfolios/total/#{portfolio.id}", portfolio.id)) ? score.to_i : 0
+    (score = (REDIS.zscore("portfolios/total/#{portfolio.id}", portfolio.id))) ? score.to_i : 0
   end
 end
