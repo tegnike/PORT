@@ -36,7 +36,9 @@ class PortfoliosController < ApplicationController
   end
 
   def destroy
+    portfolio = @portfolio
     if @portfolio.destroy
+      delete_redis(portfolio)
       redirect_to @portfolio.user || root_url, notice: t("flash.delete", item: "ポートフォリオ")
     else
       flash.now[:alert] = t("flash.alert", matter: "ポートフォリオの削除")
@@ -52,5 +54,12 @@ class PortfoliosController < ApplicationController
     def correct_user
       @portfolio = current_user.portfolios.find_by(id: params[:id])
       redirect_to root_url if @portfolio.nil?
+    end
+
+    def delete_redis(portfolio)
+      (portfolio.created_at.to_datetime..Date.tomorrow).each do |date|
+        REDIS.zrem "portfolios/#{date.strftime("%Y-%m-%d")}", portfolio.id
+      end
+      REDIS.del "portfolios/total/#{portfolio.id}"
     end
 end
