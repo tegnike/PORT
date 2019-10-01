@@ -60,8 +60,9 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
       end
     end
   end
+
   describe "portfolio's post count" do
-    let!(:user) { create(:user, email: "user@example.com", password: "password", password_confirmation: "password") }
+    let!(:user) { create_user }
     before { login(user) }
     context "user doesn't post any portfolio yet" do
       before { visit user_path(user) }
@@ -81,6 +82,46 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
       }
       it "shows '1 ポートフォリオ'" do
         expect(page).to have_content "1 ポートフォリオ"
+      end
+    end
+  end
+
+  describe "pageview count" do
+    let!(:user1) { create_user }
+    let(:user2) { create(:user) }
+    let(:portfolio1) { create(:portfolio, user_id: user1.id) }
+    let(:portfolio2) { create(:portfolio, user_id: user2.id) }
+    context "access to my portfolio page" do
+      before {
+        login(user1)
+        visit portfolio_path(portfolio1)
+      }
+      it "doesn't increase pv by owner's access" do
+        expect(page).to have_content "0 views"
+      end
+    end
+    context "access to the portfolio page 2 times by other user" do
+      before {
+        login(user2)
+        visit portfolio_path(portfolio1)
+        logout
+        login(user2)
+        visit portfolio_path(portfolio1)
+        logout
+        login(user1)
+        visit portfolio_path(portfolio1)
+      }
+      it "increases just 1 pv" do
+        expect(page).to have_content "1 views"
+      end
+    end
+    context "access to other user's portfolio page" do
+      before {
+        login(user1)
+        visit portfolio_path(portfolio2)
+      }
+      it "doesn't show pv count" do
+        expect(page).not_to have_content "views"
       end
     end
   end

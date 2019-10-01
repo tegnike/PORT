@@ -60,6 +60,7 @@ RSpec.configure do |config|
   config.include RequestHelpers, type: :request
   config.include SystemHelpers, type: :system
   config.include ActionTextHelper, type: :system
+  config.include ActiveSupport::Testing::TimeHelpers
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction

@@ -79,11 +79,25 @@ RSpec.describe PortfoliosController, type: :request do
 
   describe "DELETE #destroy" do
     context "try to delete portfolio before log in" do
-      let!(:portfolio) { create(:portfolio) }
+      let!(:portfolio) { create(:portfolio, user_id: user.id) }
       subject { delete portfolio_path(portfolio) }
-      it "can't delete portfolio and redirect  to login_url" do
+      it "can't delete portfolio and redirect to login_url" do
         expect { subject }.to change { Portfolio.count }.by(0)
         expect(response).to redirect_to new_user_session_path
+      end
+    end
+
+    context "try to delete portfolio after log in" do
+      let!(:portfolio) { create(:portfolio, user_id: user.id) }
+      before {
+        login(user)
+        REDIS.zadd("portfolios/total/#{portfolio.id}", 1, portfolio.id)
+      }
+      subject { delete portfolio_path(portfolio) }
+      it "can delete portfolio and redis_data" do
+        expect { subject }.to change { Portfolio.count }.by(-1)
+        expect(response).to redirect_to user_path(portfolio.user)
+        expect(REDIS.keys("portfolios/total/#{portfolio.id}")).to be_empty
       end
     end
 
@@ -91,9 +105,7 @@ RSpec.describe PortfoliosController, type: :request do
       let(:user1) { create(:user) }
       let(:user2) { create(:user) }
       let!(:portfolio) { create(:portfolio, user_id: user2.id) }
-      before {
-        login(user1)
-      }
+      before { login(user1) }
       subject { delete portfolio_path(portfolio) }
       it "can't delete portfolio and redirect to login_url" do
         expect { subject }.to change { Portfolio.count }.by(0)
