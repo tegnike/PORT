@@ -102,12 +102,11 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
     end
     context "access to the portfolio page 2 times by other user" do
       before {
-        login(user2)
-        visit portfolio_path(portfolio1)
-        logout
-        login(user2)
-        visit portfolio_path(portfolio1)
-        logout
+        2.times do
+          login(user2)
+          visit portfolio_path(portfolio1)
+          logout
+        end
         login(user1)
         visit portfolio_path(portfolio1)
       }

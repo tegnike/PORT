@@ -1,7 +1,7 @@
 class RankingsController < ApplicationController
   def favorite
     @portfolios = Portfolio.find(Favorite.ranking)
-    rescue => e
+    rescue ActiveRecord::RecordNotFound => e
       flash.now[:alert] = current_user.admin ? e.message : t("flash.get_alert", matter: t(".title"))
       render "static_pages/home"
   end
@@ -18,7 +18,7 @@ class RankingsController < ApplicationController
     def pv_action(span, matter)
       @portfolios = Portfolio.pv_data(span, action_name)
       render "pageview"
-      rescue => e
+      rescue ActiveRecord::RecordNotFound => e
         flash.now[:alert] = current_user.admin ? e.message : t("flash.get_alert", matter: t(".title"))
         @portfolio = current_user.portfolios.build if user_signed_in?
         render "static_pages/home"
