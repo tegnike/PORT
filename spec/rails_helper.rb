@@ -64,6 +64,7 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner[:redis].db = "redis://redis:6379/1"
   end
 
   config.around(:each) do |example|
@@ -79,6 +80,10 @@ RSpec.configure do |config|
   config.before(:each, type: :system, js: true) do
     driven_by :selenium_chrome
     host! "http://#{Capybara.server_host}:#{Capybara.server_port}"
+  end
+
+  config.after(:each) do
+    DatabaseCleaner[:redis].clean
   end
 
   config.define_derived_metadata do |meta|
