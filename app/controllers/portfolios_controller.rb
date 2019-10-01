@@ -4,10 +4,12 @@ class PortfoliosController < ApplicationController
 
   def show
     @portfolio = Portfolio.find(params[:id])
-    portfolio_id = @portfolio.id
-    unless current_user == @portfolio.user || cookies.permanent.signed["#{portfolio_id}"]
-      cookies.permanent.signed["#{portfolio_id}"] = @portfolio.id
-      REDIS.zincrby "portfolios/#{Date.today}", 1, @portfolio.id
+    if current_user
+      cookies_id = current_user.id * 100000 + @portfolio.id
+      unless current_user == @portfolio.user || cookies.permanent.signed["#{cookies_id}"]
+        cookies.permanent.signed["#{cookies_id}"] = SecureRandom.base64(12)
+        REDIS.zincrby "portfolios/#{Date.today}", 1, @portfolio.id
+      end
     end
   end
 
