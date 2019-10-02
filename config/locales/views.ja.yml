@@ -6,11 +6,16 @@ ja:
     policy: "プライバシーポリシー"
     terms: "利用規約"
     my_profile: "マイプロフィール"
-    time_ago: "前に作成"
+    time_ago: "%{time}前に作成"
+    pageview: "%{score} views"
     delete_confirmation: "本当に削除しますか？"
     unfollow_confirmation: "%{username}さんをフォロー解除しますか？"
   header:
     about: "はじめに"
+    ranking: "ランキング"
+    favorite: "お気に入り"
+    total_pv: "総合アクセス"
+    weekly_pv: "週間アクセス"
     post: "投稿する"
     myaccount: "マイアカウント"
     profile_edit: "プロフィール編集"
@@ -36,9 +41,22 @@ ja:
       title: "フォロワー"
     favorites:
       title: "お気に入り"
+  portfolios:
+    show:
+      title: "%{portfolio_title}"
+      web_url: "WEBサイト"
+      git_url: "Github"
+    new:
+      title: "ポートフォリオ新規作成"
+    edit:
+      title: "ポートフォリオ編集"
   rankings:
     favorite:
       title: "お気に入りランキング"
+    total_pv:
+      title: "総合アクセスランキング"
+    weekly_pv:
+      title: "週間アクセスランキング"
   shared:
     error_messages:
       count: "%{count}件のエラーが発生したため投稿は保存されませんでした。"
@@ -51,12 +69,16 @@ ja:
   flash:
     login: "ログインしました。"
     create: "%{item}を作成しました。"
+    update: "%{item}を更新しました。"
     delete: "%{item}を削除しました。"
     alert: "%{matter}に失敗しました。"
+    get_alert: "%{matter}の取得に失敗しました。"
   btn:
     follow: "フォロー中"
     unfollow: "フォロー"
     favorite: "★"
     unfavorite: "☆"
     create: "投稿"
+    edit: "編集"
+    update: "更新"
     delete: "削除"

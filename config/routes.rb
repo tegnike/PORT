@@ -15,7 +15,9 @@ Rails.application.routes.draw do
     end
   end
   resources :relationships, only: [:create, :destroy]
-  resources :portfolios, only: [:create, :destroy]
+  resources :portfolios, only: [:show, :new, :create, :edit, :update, :destroy]
   resources :favorites, only: [:create, :destroy]
   get "rankings/favorite"
+  get "rankings/total_pv"
+  get "rankings/weekly_pv"
 end

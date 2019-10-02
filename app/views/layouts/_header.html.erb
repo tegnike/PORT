@@ -10,10 +10,22 @@
           <li class="nav-item">
             <%= link_to t("header.about"), about_path, class: "nav-link" %>
           </li>
+          <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <%= t("header.ranking") %>
+           </a>
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+             <li><%= link_to t("header.favorite"), rankings_favorite_path %></li>
+             <li><%= link_to t("header.total_pv"), rankings_total_pv_path %></li>
+             <li><%= link_to t("header.weekly_pv"), rankings_weekly_pv_path %></li>
+           </ul>
+          </li>
         </ul>
         <ul class="navbar-nav">
           <% if user_signed_in? %>
-            <li class="nav-item"><strong><%= link_to t("header.post"), "#", class: "nav-link" %></strong></li>
+            <li class="nav-item">
+              <strong><%= link_to t("header.post"), new_portfolio_path, class: "nav-link" %></strong>
+            </li>
             <li class="nav-item dropdown">
              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                <%= t("header.myaccount") %>

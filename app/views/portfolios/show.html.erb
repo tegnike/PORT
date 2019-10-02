@@ -1,0 +1,28 @@
+<% provide(:title, t(".title", portfolio_title: @portfolio.title)) %>
+<h1>Portfolios#show</h1>
+<div id="portfolio-<%= @portfolio.id %>">
+  <%= link_to @portfolio.user.username, @portfolio.user %>
+  <span class="timestamp">
+    <%= t("common.time_ago", time: time_ago_in_words(@portfolio.created_at)) %>
+  </span>
+  <% if @portfolio.user == current_user %>
+    <span class="pageview">
+      <%= t("common.pageview", score: score(@portfolio)) %>
+    </span>
+  <% end %>
+  <% if user_signed_in? %>
+    <%= render 'favorites/favorite_form', { portfolio: @portfolio, user: @portfolio.user } %>
+  <% end %>
+  <%= link_to @portfolio.title, @portfolio, class: "title" %> <span class="favorite_count">(<%= @portfolio.favorite_users.count %>)</span>
+  <span class="content"><%= @portfolio.content %></span>
+  <% if @portfolio.image? %>
+    <%= image_tag @portfolio.image.url, class: "image" %>
+  <% end %>
+  <%= link_to t(".web_url"), @portfolio.web_url, class: "web_url" %>
+  <%= link_to t(".git_url"), @portfolio.git_url, class: "git_url" %>
+  <% if current_user?(@portfolio.user) %>
+    <%= link_to t("btn.edit"), edit_portfolio_path(@portfolio) %>
+    <%= link_to t("btn.delete"), @portfolio, method: :delete,
+                                       data: { confirm: t("common.delete_confirmation") } %>
+  <% end %>
+</div>

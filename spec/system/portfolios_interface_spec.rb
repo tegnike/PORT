@@ -8,7 +8,7 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
       create_list(:portfolio, 10, user_id: user1.id)
       create_list(:portfolio, 10, user_id: user2.id)
       login(user1)
-      visit root_path
+      visit new_portfolio_path
     }
     context "try to post an invalid portfolio" do
       before {
@@ -34,18 +34,18 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
         click_button "投稿"
       }
       it "can post a portfolio" do
-        expect(current_path).to eq user_path(user1)
-        expect(page).to have_selector ".title", text: "title"
-        expect(page).to have_selector ".content", text: "content"
+        expect(current_path).to eq portfolio_path(Portfolio.find_by(title: "test_title"))
+        expect(page).to have_selector ".title", text: "test_title"
+        expect(page).to have_selector ".content", text: "test_content"
         expect(page).to have_css ".image"
-        expect(page).to have_selector ".web_url", text: "web_url"
-        expect(page).to have_selector ".git_url", text: "git_url"
+        expect(page).to have_selector ".web_url", text: "WEBサイト"
+        expect(page).to have_selector ".git_url", text: "Github"
       end
     end
     context "push delete button" do
       subject {
-        visit user_path(user1)
-        first("ol li").click_link "削除"
+        visit portfolio_path(Portfolio.find_by(user_id: user1.id))
+        click_link "削除"
         page.driver.browser.switch_to.alert.accept
         find ".alert-notice", text: "ポートフォリオを削除しました。"
       }
@@ -53,15 +53,16 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
         expect { subject }.to change { Portfolio.count }.by(-1)
       end
     end
-    context "access to other user page" do
-      before { visit user_path(user2) }
+    context "access to other user's portfolio page" do
+      before { visit portfolio_path(Portfolio.find_by(user_id: user2.id)) }
       it "doesn't show delete link" do
         expect(page).not_to have_link "削除"
       end
     end
   end
+
   describe "portfolio's post count" do
-    let!(:user) { create(:user, email: "user@example.com", password: "password", password_confirmation: "password") }
+    let!(:user) { create_user }
     before { login(user) }
     context "user doesn't post any portfolio yet" do
       before { visit user_path(user) }
@@ -81,6 +82,45 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
       }
       it "shows '1 ポートフォリオ'" do
         expect(page).to have_content "1 ポートフォリオ"
+      end
+    end
+  end
+
+  describe "pageview count" do
+    let!(:user1) { create_user }
+    let(:user2) { create(:user) }
+    let(:portfolio1) { create(:portfolio, user_id: user1.id) }
+    let(:portfolio2) { create(:portfolio, user_id: user2.id) }
+    context "access to my portfolio page" do
+      before {
+        login(user1)
+        visit portfolio_path(portfolio1)
+      }
+      it "doesn't increase pv by owner's access" do
+        expect(page).to have_content "0 views"
+      end
+    end
+    context "access to the portfolio page 2 times by other user" do
+      before {
+        2.times do
+          login(user2)
+          visit portfolio_path(portfolio1)
+          logout
+        end
+        login(user1)
+        visit portfolio_path(portfolio1)
+      }
+      it "increases just 1 pv" do
+        expect(page).to have_content "1 views"
+      end
+    end
+    context "access to other user's portfolio page" do
+      before {
+        login(user1)
+        visit portfolio_path(portfolio2)
+      }
+      it "doesn't show pv count" do
+        expect(page).not_to have_content "views"
       end
     end
   end
