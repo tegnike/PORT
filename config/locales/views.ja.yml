@@ -46,10 +46,17 @@ ja:
       title: "%{portfolio_title}"
       web_url: "WEBサイト"
       git_url: "Github"
+      progress_index: "プログレス一覧"
+      progress_edit: "プログレス作成"
     new:
       title: "ポートフォリオ新規作成"
     edit:
       title: "ポートフォリオ編集"
+  progresses:
+    new:
+      title: "プログレス新規作成"
+    edit:
+      title: "プログレス編集"
   rankings:
     favorite:
       title: "お気に入りランキング"
