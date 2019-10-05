@@ -2,10 +2,10 @@ require "rails_helper"
 
 RSpec.describe "ShowFollowTest", type: :system, js: true do
   describe "following and follower pages" do
-    let!(:user1) { create_user }
+    let!(:user1) { create(:user) }
     before {
       create_list(:user, 30)
-      User.where.not(email: "user@example.com").each do |user|
+      User.where.not(id: user1.id).each do |user|
         user1.follow(user)
         user.follow(user1)
       end

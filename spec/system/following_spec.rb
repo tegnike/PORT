@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Following", type: :system, js: true do
   describe "follow function" do
-    let(:user1) { create_user }
+    let(:user1) { create(:user) }
     let(:user2) { create(:user) }
     let(:user3) { create(:user) }
     let(:user4) { create(:user) }

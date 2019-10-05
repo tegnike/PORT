@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "FavoriteRanking", type: :system, js: true do
   describe "favorite ranking page" do
-    let(:user) { create_user }
+    let(:user) { create(:user) }
     before {
       create_list(:user, 10)
       create_list(:portfolio, 10, user_id: user.id)

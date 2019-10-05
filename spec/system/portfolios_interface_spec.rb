@@ -12,7 +12,7 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
   }
 
   describe "portfolio post UI" do
-    let(:user1) { create_user }
+    let(:user1) { create(:user) }
     let(:user2) { create(:user) }
     before {
       login(user1)
@@ -70,7 +70,7 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
   end
 
   describe "portfolio's post count" do
-    let!(:user) { create_user }
+    let!(:user) { create(:user) }
     before { login(user) }
     context "user doesn't post any portfolio yet" do
       before { visit user_path(user) }
@@ -90,7 +90,7 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
   end
 
   describe "pageview count" do
-    let(:user1) { create_user }
+    let(:user1) { create(:user) }
     let(:user2) { create(:user) }
     let(:portfolio1) { create(:portfolio, user: user1) }
     let(:portfolio2) { create(:portfolio, user: user2) }
