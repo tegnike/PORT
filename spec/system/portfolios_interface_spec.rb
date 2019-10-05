@@ -1,12 +1,20 @@
 require "rails_helper"
 
 RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
+  subject(:correct_post) {
+    fill_in "portfolio_title", with: "test_title"
+    fill_in_rich_text_area "portfolio_content", with: "test_content"
+    attach_file "portfolio_image", "#{Rails.root}/spec/factories/rails.png"
+    fill_in "portfolio_web_url", with: "http://example/web_url"
+    fill_in "portfolio_git_url", with: "http://example/git_url"
+    fill_in_rich_text_area "progress_content", with: "test_prorgess"
+    click_button "投稿"
+  }
+
   describe "portfolio post UI" do
     let(:user1) { create_user }
     let(:user2) { create(:user) }
     before {
-      create_list(:portfolio, 10, user_id: user1.id)
-      create_list(:portfolio, 10, user_id: user2.id)
       login(user1)
       visit new_portfolio_path
     }
@@ -17,6 +25,7 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
         attach_file "portfolio_image", "#{Rails.root}/spec/factories/rails.png"
         fill_in "portfolio_web_url", with: ""
         fill_in "portfolio_git_url", with: ""
+        fill_in_rich_text_area "progress_content", with: ""
         click_button "投稿"
         sleep 1
       }
@@ -25,14 +34,7 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
       end
     end
     context "try to post a valid portfolio" do
-      before {
-        fill_in "portfolio_title", with: "test_title"
-        fill_in_rich_text_area "portfolio_content", with: "test_content"
-        attach_file "portfolio_image", "#{Rails.root}/spec/factories/rails.png"
-        fill_in "portfolio_web_url", with: "http://example/web_url"
-        fill_in "portfolio_git_url", with: "http://example/git_url"
-        click_button "投稿"
-      }
+      before { correct_post }
       it "can post a portfolio" do
         expect(current_path).to eq portfolio_path(Portfolio.find_by(title: "test_title"))
         expect(page).to have_selector ".title", text: "test_title"
@@ -40,11 +42,13 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
         expect(page).to have_css ".image"
         expect(page).to have_selector ".web_url", text: "WEBサイト"
         expect(page).to have_selector ".git_url", text: "Github"
+        expect(page).to have_selector "#progress", text: "test_prorgess"
       end
     end
     context "push delete button" do
+      before { correct_post }
       subject {
-        visit portfolio_path(Portfolio.find_by(user_id: user1.id))
+        visit portfolio_path(Portfolio.find_by(user: user1))
         click_link "削除"
         page.driver.browser.switch_to.alert.accept
         find ".alert-notice", text: "ポートフォリオを削除しました。"
@@ -54,7 +58,11 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
       end
     end
     context "access to other user's portfolio page" do
-      before { visit portfolio_path(Portfolio.find_by(user_id: user2.id)) }
+      let(:portfolio2) { create(:portfolio, user: user2) }
+      let!(:progress2) { create(:progress, portfolio: portfolio2) }
+      before {
+        visit portfolio_path(Portfolio.find_by(user: user2))
+      }
       it "doesn't show delete link" do
         expect(page).not_to have_link "削除"
       end
@@ -72,12 +80,7 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
     end
     context "user post a portfolio" do
       before {
-        fill_in "portfolio_title", with: "test_title"
-        fill_in_rich_text_area "portfolio_content", with: "test_content"
-        attach_file "portfolio_image", "#{Rails.root}/spec/factories/rails.png"
-        fill_in "portfolio_web_url", with: "http://example/web_url"
-        fill_in "portfolio_git_url", with: "http://example/git_url"
-        click_button "投稿"
+        correct_post
         visit user_path(user)
       }
       it "shows '1 ポートフォリオ'" do
@@ -87,10 +90,12 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
   end
 
   describe "pageview count" do
-    let!(:user1) { create_user }
+    let(:user1) { create_user }
     let(:user2) { create(:user) }
-    let(:portfolio1) { create(:portfolio, user_id: user1.id) }
-    let(:portfolio2) { create(:portfolio, user_id: user2.id) }
+    let(:portfolio1) { create(:portfolio, user: user1) }
+    let(:portfolio2) { create(:portfolio, user: user2) }
+    let!(:progress1) { create(:progress, portfolio: portfolio1) }
+    let!(:progress2) { create(:progress, portfolio: portfolio2) }
     context "access to my portfolio page" do
       before {
         login(user1)

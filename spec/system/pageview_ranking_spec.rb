@@ -6,6 +6,7 @@ RSpec.describe "PageviewRanking", type: :system, js: true do
     before {
       create_list(:user, 30)
       create_list(:portfolio, 20, user_id: user.id)
+      Portfolio.all.each { |portfolio| create(:progress, portfolio: portfolio) }
       users = User.all
       n = 19
       users[0..19].each do |u|
