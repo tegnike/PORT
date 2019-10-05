@@ -73,6 +73,7 @@ ja:
       image: "サムネイル画像"
       web_url: "WEB URL"
       git_url: "GIT URL"
+      progress: "プログレス"
   flash:
     login: "ログインしました。"
     create: "%{item}を作成しました。"

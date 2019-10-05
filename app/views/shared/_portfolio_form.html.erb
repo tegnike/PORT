@@ -17,6 +17,15 @@
     <%= f.label t("shared.portfolio_form.git_url") %>
     <%= f.text_field :git_url, class: 'form-control' %>
 
+    <% if controller.action_name = ("new" || "home") %>
+      <div class="field">
+        <%= f.fields_for :progresses do |g| %>
+          <%= g.label t("shared.portfolio_form.progress") %>
+          <%= g.rich_text_area :content, id: "progress_content" %>
+        <% end %>
+      </div>
+    <% end %>
+
   </div>
   <%= f.submit "#{yield(:submit_text)}", class: "btn btn-primary" %>
 <% end %>

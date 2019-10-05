@@ -27,4 +27,11 @@
     <%= link_to t("btn.delete"), @portfolio, method: :delete,
                                        data: { confirm: t("common.delete_confirmation") } %>
   <% end %>
+  <h2>プログレス</h2>
+  <div id="progress">
+    <span class="content"><%= @progress.content %></span>
+    <% if @portfolio.user == current_user %>
+      <%= link_to t("btn.edit"), edit_portfolio_progress_path(@portfolio, @progress) %>
+    <% end %>
+  </div>
 </div>
