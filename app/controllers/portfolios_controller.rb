@@ -22,9 +22,10 @@ class PortfoliosController < ApplicationController
   def create
     @portfolio = current_user.portfolios.build(portfolio_params)
     if @portfolio.save
-      redirect_to @portfolio, notice: t("flash.create", item: "ポートフォリオ")
+      flash_success
+      redirect_to @portfolio
     else
-      flash.now[:alert] = t("flash.alert", matter: "ポートフォリオの作成")
+      flash_failed
       render "new"
     end
   end
@@ -34,9 +35,10 @@ class PortfoliosController < ApplicationController
 
   def update
     if @portfolio.update_attributes(portfolio_params)
-      redirect_to @portfolio, notice: t("flash.update", item: "ポートフォリオ")
+      flash_success
+      redirect_to @portfolio
     else
-      flash.now[:alert] = t("flash.alert", matter: "ポートフォリオの更新")
+      flash_failed
       render "edit"
     end
   end
@@ -45,9 +47,10 @@ class PortfoliosController < ApplicationController
     portfolio = @portfolio
     if @portfolio.destroy
       delete_redis(portfolio)
-      redirect_to @portfolio.user, notice: t("flash.delete", item: "ポートフォリオ")
+      flash_success
+      redirect_to @portfolio.user
     else
-      flash.now[:alert] = t("flash.alert", matter: "ポートフォリオの削除")
+      flash_failed
       redirect_root
     end
   end
@@ -67,14 +70,7 @@ class PortfoliosController < ApplicationController
     def correct_user
       @portfolio = current_user.portfolios.find_by(id: params[:id])
       if @portfolio.nil?
-        case action_name
-        when "edit"
-          flash.now[:alert] = t("flash.get_alert", matter: "ページ")
-        when "update"
-          flash.now[:alert] = t("flash.alert", matter: "ポートフォリオの更新")
-        when "destroy"
-          flash.now[:alert] = t("flash.alert", matter: "ポートフォリオの削除")
-        end
+        flash_failed
         redirect_root
       end
     end

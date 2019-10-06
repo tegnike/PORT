@@ -15,4 +15,12 @@ class ApplicationController < ActionController::Base
       end
       render "static_pages/home"
     end
+
+    def flash_success
+      flash[:notice] = t("flash.success", action: t(".action"))
+    end
+
+    def flash_failed
+      flash.now[:alert] = t("flash.failed", action: t(".action"))
+    end
 end

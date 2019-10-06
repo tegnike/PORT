@@ -14,9 +14,10 @@ class ProgressesController < ApplicationController
   def create
     @progress = @portfolio.progresses.new(progress_params)
     if @progress.save
-      redirect_to @portfolio, notice: t("flash.create", item: "プログレス")
+      flash_success
+      redirect_to @portfolio
     else
-      flash.now[:alert] = t("flash.alert", matter: "プログレスの作成")
+      flash_failed
       render "new"
     end
   end
@@ -26,18 +27,20 @@ class ProgressesController < ApplicationController
 
   def update
     if @progress.update_attributes(progress_params)
-      redirect_to portfolio_progresses_path(@portfolio), notice: t("flash.update", item: "プログレス")
+      flash_success
+      redirect_to portfolio_progresses_path(@portfolio)
     else
-      flash.now[:alert] = t("flash.alert", matter: "プログレスの更新")
+      flash_failed
       render "edit"
     end
   end
 
   def destroy
     if @progress.destroy
-      redirect_to portfolio_progresses_path(@portfolio), notice: t("flash.delete", item: "プログレス")
+      flash_success
+      redirect_to portfolio_progresses_path(@portfolio)
     else
-      flash.now[:alert] = t("flash.alert", matter: "プログレスの削除")
+      flash_failed
       redirect_root
     end
   end
@@ -54,14 +57,7 @@ class ProgressesController < ApplicationController
     def correct_user
       @progress = @portfolio.progresses.find_by(id: params[:id])
       if @progress.nil?
-        case action_name
-        when "edit"
-          flash.now[:alert] = t("flash.get_alert", matter: "ページ")
-        when "update"
-          flash.now[:alert] = t("flash.alert", matter: "プログレスの更新")
-        when "destroy"
-          flash.now[:alert] = t("flash.alert", matter: "プログレスの削除")
-        end
+        flash_failed
         redirect_root
       end
     end
