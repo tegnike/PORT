@@ -7,4 +7,12 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :profile, :image])
       devise_parameter_sanitizer.permit(:account_update, keys: [:username, :profile, :image])
     end
+
+    def redirect_root
+      if user_signed_in?
+        @portfolio = current_user.portfolios.build
+        @portfolio.progresses.build(content: "最初の投稿です。")
+      end
+      render "static_pages/home"
+    end
 end

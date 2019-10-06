@@ -24,6 +24,7 @@ class PortfoliosController < ApplicationController
     if @portfolio.save
       redirect_to @portfolio, notice: t("flash.create", item: "ポートフォリオ")
     else
+      flash.now[:alert] = t("flash.alert", matter: "ポートフォリオの作成")
       render "new"
     end
   end
@@ -35,6 +36,7 @@ class PortfoliosController < ApplicationController
     if @portfolio.update_attributes(portfolio_params)
       redirect_to @portfolio, notice: t("flash.update", item: "ポートフォリオ")
     else
+      flash.now[:alert] = t("flash.alert", matter: "ポートフォリオの更新")
       render "edit"
     end
   end
@@ -43,10 +45,10 @@ class PortfoliosController < ApplicationController
     portfolio = @portfolio
     if @portfolio.destroy
       delete_redis(portfolio)
-      redirect_to @portfolio.user || root_url, notice: t("flash.delete", item: "ポートフォリオ")
+      redirect_to @portfolio.user, notice: t("flash.delete", item: "ポートフォリオ")
     else
       flash.now[:alert] = t("flash.alert", matter: "ポートフォリオの削除")
-      render "static_pages/home"
+      redirect_root
     end
   end
 
@@ -64,7 +66,17 @@ class PortfoliosController < ApplicationController
 
     def correct_user
       @portfolio = current_user.portfolios.find_by(id: params[:id])
-      redirect_to root_url if @portfolio.nil?
+      if @portfolio.nil?
+        case action_name
+        when "edit"
+          flash.now[:alert] = t("flash.get_alert", matter: "ページ")
+        when "update"
+          flash.now[:alert] = t("flash.alert", matter: "ポートフォリオの更新")
+        when "destroy"
+          flash.now[:alert] = t("flash.alert", matter: "ポートフォリオの削除")
+        end
+        redirect_root
+      end
     end
 
     def delete_redis(portfolio)
