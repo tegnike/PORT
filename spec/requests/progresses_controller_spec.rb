@@ -85,7 +85,7 @@ RSpec.describe ProgressesController, type: :request do
   describe "PATCH #update" do
     context "try to update progress before log in" do
       before {
-        post portfolio_progresses_path(portfolio, progress), params: { progress: { content: "content2" } }
+        put portfolio_progress_path(portfolio, progress), params: { progress: { content: "content2" } }
       }
       it "can't update progress and redirect to login_url" do
         expect(response).to redirect_to new_user_session_path
@@ -94,10 +94,10 @@ RSpec.describe ProgressesController, type: :request do
     context "try to post progress after log in" do
       before {
         login(user)
-        post portfolio_progresses_path(portfolio, progress), params: { progress: { content: "content2" } }
+        put portfolio_progress_path(portfolio, progress), params: { progress: { content: "content2" } }
       }
       it "can update progress and redirect to portfolio_path" do
-        expect(response).to redirect_to portfolio_path(portfolio)
+        expect(response).to redirect_to portfolio_progresses_path(portfolio)
       end
     end
   end
