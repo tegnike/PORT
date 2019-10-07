@@ -33,7 +33,7 @@ class ProgressesController < ApplicationController
 
   def destroy
     if @progress.destroy
-      redirect_to portfolio_progresses_path(@portfolio) || root_url, notice: t("flash.delete", item: "プログレス")
+      redirect_to (portfolio_progresses_path(@portfolio) || root_url), notice: t("flash.delete", item: "プログレス")
     else
       flash.now[:alert] = t("flash.alert", matter: "プログレスの削除")
       render "static_pages/home"

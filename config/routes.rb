@@ -15,8 +15,8 @@ Rails.application.routes.draw do
     end
   end
   resources :relationships, only: [:create, :destroy]
-  resources :portfolios, only: [:show, :new, :create, :edit, :update, :destroy] do
-    resources :progresses, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :portfolios, except: [:index] do
+    resources :progresses, except: [:show]
   end
   resources :favorites, only: [:create, :destroy]
   get "rankings/favorite"
