@@ -51,5 +51,4 @@ RSpec.describe Portfolio, type: :model do
       end
     end
   end
-
 end
