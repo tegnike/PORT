@@ -16,6 +16,7 @@ ja:
     favorite: "お気に入り"
     total_pv: "総合アクセス"
     weekly_pv: "週間アクセス"
+    users: "ユーザ一覧"
     post: "投稿する"
     myaccount: "マイアカウント"
     profile_edit: "プロフィール編集"
@@ -33,6 +34,8 @@ ja:
     terms:
       title: "利用規約"
   users:
+    index:
+      title: "ユーザ一覧"
     show:
       title: "%{user_name}"
     following:
