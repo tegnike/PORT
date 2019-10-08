@@ -46,7 +46,7 @@ class PortfoliosController < ApplicationController
       redirect_to @portfolio.user || root_url, notice: t("flash.delete", item: "ポートフォリオ")
     else
       flash.now[:alert] = t("flash.alert", matter: "ポートフォリオの削除")
-      render "static_pages/home"
+      redirect_to root_url
     end
   end
 

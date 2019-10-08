@@ -4,6 +4,7 @@ class RankingsController < ApplicationController
     rescue ActiveRecord::RecordNotFound => e
       flash.now[:alert] = current_user.admin ? e.message : t("flash.get_alert", matter: t(".title"))
       render "static_pages/home"
+      redirect_to root_url
   end
 
   def total_pv
@@ -22,5 +23,6 @@ class RankingsController < ApplicationController
         flash.now[:alert] = current_user.admin ? e.message : t("flash.get_alert", matter: t(".title"))
         @portfolio = current_user.portfolios.build if user_signed_in?
         render "static_pages/home"
+        redirect_to root_url
     end
 end
