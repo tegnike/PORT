@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    models:
+      user: "ユーザー"
+      portfolio: "ポートフォリオ"
+      progress: "プログレス"
+    attributes:
+      portfolio:
+        title: "タイトル"
+        content: "概要"
+        image: "サムネイル画像"
+        web_url: "WEB URL"
+        git_url: "GIT URL"
+      progress:
+        content: "内容"
+  attributes:
+    created_at: 作成日時
+    updated_at: 更新日時
