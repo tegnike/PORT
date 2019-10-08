@@ -1,0 +1,45 @@
+ja:
+  flash:
+    success: "%{action}しました。"
+    failed: "%{action}できませんでした。"
+  application:
+    message:
+      first_post: "最初の投稿です。"
+  favorites:
+    create:
+      action: "お気に入りを登録"
+    destroy:
+      action: "お気に入りを削除"
+  omniauth_callbacks:
+    sns_authentication:
+      action: "ログイン"
+  portfolios:
+    create:
+      action: "ポートフォリオを作成"
+    edit:
+      action: "ページを取得"
+    update:
+      action: "ポートフォリオを更新"
+    destroy:
+      action: "ポートフォリオを削除"
+  progresses:
+    create:
+      action: "プログレスを作成"
+    edit:
+      action: "ページを取得"
+    update:
+      action: "プログレスを更新"
+    destroy:
+      action: "プログレスを削除"
+  rankings:
+    favorite:
+      action: "お気に入りランキングの取得"
+    total_pv:
+      action: "総合アクセスランキングの取得"
+    weekly_pv:
+      action: "週間アクセスランキングの取得"
+  relationships:
+    create:
+      action: "ユーザのフォロー"
+    destroy:
+      action: "ユーザのフォロー解除"
