@@ -1,6 +1,13 @@
 require "rails_helper"
 
 RSpec.describe UsersController, type: :request do
+  describe "GET #index" do
+    it "returns http success" do
+      get root_path
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe "GET #show" do
     let(:user) { create(:user) }
     context "get user_path before login" do

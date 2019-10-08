@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :index
+
+  def index
+    @users = User.where.not(confirmed_at: nil).order(created_at: :desc).page(params[:page])
+  end
 
   def show
     @user = User.find(params[:id])
