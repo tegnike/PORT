@@ -8,13 +8,15 @@ class PortfoliosController < ApplicationController
       cookies_id = current_user.id * 100000 + @portfolio.id
       unless current_user == @portfolio.user || cookies.permanent.signed["#{cookies_id}"]
         cookies.permanent.signed["#{cookies_id}"] = SecureRandom.base64(12)
-        REDIS.zincrby "portfolios/#{Date.today}", 1, @portfolio.id
+        REDIS.zincrby "portfolios/#{Date.current}", 1, @portfolio.id
       end
     end
+    @progress = @portfolio.progresses.limit(1).order("created_at DESC").first
   end
 
   def new
     @portfolio = current_user.portfolios.build
+    @portfolio.progresses.build(content: "最初の投稿です。")
   end
 
   def create
@@ -50,7 +52,14 @@ class PortfoliosController < ApplicationController
 
   private
     def portfolio_params
-      params.require(:portfolio).permit(:title, :content, :image, :web_url, :git_url)
+      params.require(:portfolio).permit(
+        :title,
+        :content,
+        :image,
+        :web_url,
+        :git_url,
+        progresses_attributes: [ :content ]
+      )
     end
 
     def correct_user

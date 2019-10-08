@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_20_125628) do
+ActiveRecord::Schema.define(version: 2019_10_02_181318) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,6 +69,15 @@ ActiveRecord::Schema.define(version: 2019_09_20_125628) do
     t.index ["user_id"], name: "index_portfolios_on_user_id"
   end
 
+  create_table "progresses", force: :cascade do |t|
+    t.bigint "portfolio_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["portfolio_id", "created_at"], name: "index_progresses_on_portfolio_id_and_created_at"
+    t.index ["portfolio_id"], name: "index_progresses_on_portfolio_id"
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
@@ -114,4 +124,5 @@ ActiveRecord::Schema.define(version: 2019_09_20_125628) do
   add_foreign_key "favorites", "portfolios"
   add_foreign_key "favorites", "users"
   add_foreign_key "portfolios", "users"
+  add_foreign_key "progresses", "portfolios"
 end

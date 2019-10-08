@@ -25,12 +25,21 @@ followers.each { |follower| follower.follow(user) }
 
 users = User.order(:created_at).take(6)
 10.times do
-  users.each { |portfolio_usr| portfolio_usr.portfolios.create!(
-    title: Faker::Lorem.sentence(word_count: 3),
-    content: Faker::Lorem.sentence(word_count: 20),
-    image: open("#{Rails.root}/db/fixtures/rails.png"),
-    web_url: "http://port-port.herokuapp.com",
-    git_url: "http://port-port.herokuapp.com") }
+  users.each do |portfolio_user|
+    portfolio_user.portfolios.create!(
+      title: Faker::Lorem.sentence(word_count: 3),
+      content: Faker::Lorem.sentence(word_count: 20),
+      image: open("#{Rails.root}/db/fixtures/rails.png"),
+      web_url: "http://port-port.herokuapp.com",
+      git_url: "http://port-port.herokuapp.com"
+    )
+  end
+end
+
+Portfolio.all.each do |portfolio|
+  portfolio.progresses.create!(
+    content: Faker::Lorem.sentence(word_count: 20)
+  )
 end
 
 users.each do |favorite_user|

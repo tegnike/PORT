@@ -12,6 +12,8 @@
   <% end %>
   <% if user_signed_in? %>
     <%= render 'favorites/favorite_form', { portfolio: @portfolio, user: @portfolio.user } %>
+    <%= link_to t(".progress_index"), portfolio_progresses_path(@portfolio), class: "progress_index" %>
+    <%= link_to t(".progress_edit"), new_portfolio_progress_path(@portfolio), class: "progress_new" %>
   <% end %>
   <%= link_to @portfolio.title, @portfolio, class: "title" %> <span class="favorite_count">(<%= @portfolio.favorite_users.count %>)</span>
   <span class="content"><%= @portfolio.content %></span>
@@ -25,4 +27,11 @@
     <%= link_to t("btn.delete"), @portfolio, method: :delete,
                                        data: { confirm: t("common.delete_confirmation") } %>
   <% end %>
+  <h2>プログレス</h2>
+  <div id="progress">
+    <span class="content"><%= @progress.content %></span>
+    <% if @portfolio.user == current_user %>
+      <%= link_to t("btn.edit"), edit_portfolio_progress_path(@portfolio, @progress) %>
+    <% end %>
+  </div>
 </div>

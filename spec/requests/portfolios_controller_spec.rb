@@ -2,7 +2,8 @@ require "rails_helper"
 
 RSpec.describe PortfoliosController, type: :request do
   let(:user) { create(:user) }
-  let(:portfolio) { create(:portfolio, user_id: user.id) }
+  let(:portfolio) { create(:portfolio, user: user) }
+  let!(:progress) { create(:progress, portfolio: portfolio) }
 
   describe "GET #show" do
     it "returns http success" do

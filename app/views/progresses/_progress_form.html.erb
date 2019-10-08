@@ -1,0 +1,8 @@
+<%= form_for [@portfolio, @progress] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label t("shared.portfolio_form.content") %>
+  <%= f.rich_text_area :content %>
+
+  <%= f.submit yield(:submit_text), class: "btn btn-primary" %>
+<% end %>

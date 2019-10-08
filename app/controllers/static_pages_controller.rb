@@ -1,6 +1,9 @@
 class StaticPagesController < ApplicationController
   def home
-    @portfolio = current_user.portfolios.build if user_signed_in?
+    if user_signed_in?
+      @portfolio = current_user.portfolios.build
+      @portfolio.progresses.build(content: "最初の投稿です。")
+    end
   end
 
   def help
