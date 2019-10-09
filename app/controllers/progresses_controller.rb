@@ -14,8 +14,10 @@ class ProgressesController < ApplicationController
   def create
     @progress = @portfolio.progresses.new(progress_params)
     if @progress.save
-      redirect_to @portfolio, notice: t("flash.create", item: "プログレス")
+      flash_success
+      redirect_to @portfolio
     else
+      flash_failed
       render "new"
     end
   end
@@ -25,18 +27,21 @@ class ProgressesController < ApplicationController
 
   def update
     if @progress.update_attributes(progress_params)
-      redirect_to portfolio_progresses_path(@portfolio), notice: t("flash.update", item: "プログレス")
+      flash_success
+      redirect_to portfolio_progresses_path(@portfolio)
     else
+      flash_failed
       render "edit"
     end
   end
 
   def destroy
     if @progress.destroy
-      redirect_to (portfolio_progresses_path(@portfolio) || root_url), notice: t("flash.delete", item: "プログレス")
+      flash_success
+      redirect_to portfolio_progresses_path(@portfolio)
     else
-      flash.now[:alert] = t("flash.alert", matter: "プログレスの削除")
-      render "static_pages/home"
+      flash_failed
+      redirect_to root_url
     end
   end
 
@@ -51,6 +56,9 @@ class ProgressesController < ApplicationController
 
     def correct_user
       @progress = @portfolio.progresses.find_by(id: params[:id])
-      redirect_to root_url if @progress.nil?
+      if @progress.nil?
+        flash_failed
+        redirect_to root_url
+      end
     end
 end

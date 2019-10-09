@@ -2,25 +2,25 @@
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
 
-    <%= f.label t("shared.portfolio_form.title") %>
+    <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control' %>
 
-    <%= f.label t("shared.portfolio_form.content") %>
+    <%= f.label :content %>
     <%= f.rich_text_area :content %>
 
-    <%= f.label t("shared.portfolio_form.image") %><br>
+    <%= f.label :image %><br>
     <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %><br>
 
-    <%= f.label t("shared.portfolio_form.web_url") %>
+    <%= f.label :web_url %>
     <%= f.text_field :web_url, class: 'form-control' %>
 
-    <%= f.label t("shared.portfolio_form.git_url") %>
+    <%= f.label :git_url %>
     <%= f.text_field :git_url, class: 'form-control' %>
 
     <% if controller.action_name = ("new" || "home") %>
       <div class="field">
         <%= f.fields_for :progresses do |g| %>
-          <%= g.label t("shared.portfolio_form.progress") %>
+          <%= g.label :content %>
           <%= g.rich_text_area :content, id: "progress_content" %>
         <% end %>
       </div>

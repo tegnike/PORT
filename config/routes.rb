@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get "/about", to: "static_pages#about"
   get "/policy", to: "static_pages#policy"
   get "/terms", to: "static_pages#terms"
-  resources :users, only: [:show] do
+  resources :users, only: [:index, :show] do
     member do
       get :following, :followers, :favorites
     end

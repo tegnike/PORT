@@ -16,14 +16,16 @@ class PortfoliosController < ApplicationController
 
   def new
     @portfolio = current_user.portfolios.build
-    @portfolio.progresses.build(content: "最初の投稿です。")
+    @portfolio.progresses.build(content: t("application.message.first_post"))
   end
 
   def create
     @portfolio = current_user.portfolios.build(portfolio_params)
     if @portfolio.save
-      redirect_to @portfolio, notice: t("flash.create", item: "ポートフォリオ")
+      flash_success
+      redirect_to @portfolio
     else
+      flash_failed
       render "new"
     end
   end
@@ -33,8 +35,10 @@ class PortfoliosController < ApplicationController
 
   def update
     if @portfolio.update_attributes(portfolio_params)
-      redirect_to @portfolio, notice: t("flash.update", item: "ポートフォリオ")
+      flash_success
+      redirect_to @portfolio
     else
+      flash_failed
       render "edit"
     end
   end
@@ -43,10 +47,11 @@ class PortfoliosController < ApplicationController
     portfolio = @portfolio
     if @portfolio.destroy
       delete_redis(portfolio)
-      redirect_to @portfolio.user || root_url, notice: t("flash.delete", item: "ポートフォリオ")
+      flash_success
+      redirect_to @portfolio.user
     else
-      flash.now[:alert] = t("flash.alert", matter: "ポートフォリオの削除")
-      render "static_pages/home"
+      flash_failed
+      redirect_to root_url
     end
   end
 
@@ -64,7 +69,10 @@ class PortfoliosController < ApplicationController
 
     def correct_user
       @portfolio = current_user.portfolios.find_by(id: params[:id])
-      redirect_to root_url if @portfolio.nil?
+      if @portfolio.nil?
+        flash_failed
+        redirect_to root_url
+      end
     end
 
     def delete_redis(portfolio)

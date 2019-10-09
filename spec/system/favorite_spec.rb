@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Favorite", type: :system, js: true do
   describe "favorite function" do
-    let(:user1) { create_user }
+    let(:user1) { create(:user) }
     let(:user2) { create(:user) }
     before {
       create_list(:portfolio, 10, user_id: user1.id)

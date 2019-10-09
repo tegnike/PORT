@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "UsersLoginTest", type: :system, js: true do
   describe "user login" do
-    let!(:user) { create_user }
+    let!(:user) { create(:user) }
 
     context "try to login by invalid user info" do
       before {

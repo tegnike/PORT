@@ -1,6 +1,6 @@
-<% provide(:title, t("users.#{controller.action_name}.title")) %>
+<% provide(:title, t(".title")) %>
 
-<h1>Users#show</h1>
+<h1>Users#index</h1>
 <section class="user_show fdb-block fp-active" data-block-type="testimonials" data-id="1">
   <div class="container">
     <div class="fdb-box">
@@ -9,9 +9,5 @@
       </ul>
       <%= paginate @users %>
     </div>
-    <section class="stats">
-      <%= render 'shared/stats' %>
-    </section>
-    <%= render 'follow_form' if user_signed_in? %>
   </div>
 </section>

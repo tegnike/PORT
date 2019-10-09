@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "UsersProfile", type: :system, js: true do
   describe "user profile page" do
-    let(:user) { create_user }
+    let(:user) { create(:user) }
     before {
       create_list(:portfolio, 10, user_id: user.id)
       login(user)

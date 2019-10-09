@@ -16,6 +16,7 @@ ja:
     favorite: "お気に入り"
     total_pv: "総合アクセス"
     weekly_pv: "週間アクセス"
+    users: "ユーザ一覧"
     post: "投稿する"
     myaccount: "マイアカウント"
     profile_edit: "プロフィール編集"
@@ -33,6 +34,8 @@ ja:
     terms:
       title: "利用規約"
   users:
+    index:
+      title: "ユーザ一覧"
     show:
       title: "%{user_name}"
     following:
@@ -67,20 +70,6 @@ ja:
   shared:
     error_messages:
       count: "%{count}件のエラーが発生したため投稿は保存されませんでした。"
-    portfolio_form:
-      title: "タイトル"
-      content: "内容"
-      image: "サムネイル画像"
-      web_url: "WEB URL"
-      git_url: "GIT URL"
-      progress: "プログレス"
-  flash:
-    login: "ログインしました。"
-    create: "%{item}を作成しました。"
-    update: "%{item}を更新しました。"
-    delete: "%{item}を削除しました。"
-    alert: "%{matter}に失敗しました。"
-    get_alert: "%{matter}の取得に失敗しました。"
   btn:
     follow: "フォロー中"
     unfollow: "フォロー"
