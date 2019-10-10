@@ -1,7 +1,10 @@
+<% provide(:title, t(".title", portfolio_title: @portfolio.title)) %>
 <h1><%= @portfolio.title %></h1>
-<ul>
+<h2>プログレス一覧</h2>
+<ol>
   <% @progresses.each do |progress| %>
   <li id="progress-<%= progress.id %>">
+    <%= link_to "##{get_number(@portfolio, progress)}", portfolio_progress_path(@portfolio, progress), class: "id" %>
     <span class="content"><%= progress.content %></span>
     <% if @portfolio.user == current_user %>
       <%= link_to t("btn.edit"), edit_portfolio_progress_path(@portfolio, progress) %>
@@ -10,4 +13,4 @@
     <% end %>
   </li>
   <% end %>
-</ul>
+</ol>

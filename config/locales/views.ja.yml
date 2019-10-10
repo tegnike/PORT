@@ -56,6 +56,10 @@ ja:
     edit:
       title: "ポートフォリオ編集"
   progresses:
+    index:
+      title: "%{portfolio_title}｜プログレス一覧"
+    show:
+      title: "%{portfolio_title}｜%{progress_id}"
     new:
       title: "プログレス新規作成"
     edit:

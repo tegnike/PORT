@@ -7,4 +7,9 @@ module PortfoliosHelper
     REDIS.zunionstore("portfolios/total/#{portfolio.id}", keys)
     (score = (REDIS.zscore("portfolios/total/#{portfolio.id}", portfolio.id))) ? score.to_i : 0
   end
+
+  def get_number(portfolio, progress)
+    ids = portfolio.progresses.pluck(:id)
+    ids.index(progress.id) + 1
+  end
 end

@@ -7,6 +7,10 @@ class ProgressesController < ApplicationController
     @progresses = @portfolio.progresses.order(created_at: :desc).page(params[:page])
   end
 
+  def show
+    @progress = Progress.find(params[:id])
+  end
+
   def new
     @progress = @portfolio.progresses.build
   end

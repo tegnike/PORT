@@ -29,6 +29,7 @@
   <% end %>
   <h2>プログレス</h2>
   <div id="progress">
+    <%= link_to "##{get_number(@portfolio, @progress)}", portfolio_progress_path(@portfolio, @progress), class: "id" %>
     <span class="content"><%= @progress.content %></span>
     <% if @portfolio.user == current_user %>
       <%= link_to t("btn.edit"), edit_portfolio_progress_path(@portfolio, @progress) %>
