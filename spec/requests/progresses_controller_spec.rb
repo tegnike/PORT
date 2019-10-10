@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe ProgressesController, type: :request do
   let(:user) { create(:user) }
-  let!(:portfolio) { create(:portfolio, user: user) }
+  let(:portfolio) { create(:portfolio, user: user) }
   let!(:progress) { create(:progress, portfolio: portfolio) }
 
   describe "GET #index" do
@@ -16,6 +16,24 @@ RSpec.describe ProgressesController, type: :request do
       before {
         login(user)
         get portfolio_progresses_path(portfolio)
+      }
+      it "returns http success" do
+        expect(response).to have_http_status(:success)
+      end
+    end
+  end
+
+  describe "GET #show" do
+    context "try to access to portfolio_progress_path before log in" do
+      before { get portfolio_progress_path(portfolio, progress) }
+      it "redirect to login_url" do
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+    context "try to access to portfolio_progress_path after log in" do
+      before {
+        login(user)
+        get portfolio_progress_path(portfolio, progress)
       }
       it "returns http success" do
         expect(response).to have_http_status(:success)
