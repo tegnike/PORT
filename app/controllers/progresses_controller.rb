@@ -9,6 +9,8 @@ class ProgressesController < ApplicationController
 
   def show
     @progress = Progress.find(params[:id])
+    @comments = @progress.comments.page(params[:page])
+    @comment = @progress.comments.build
   end
 
   def new
@@ -16,9 +18,10 @@ class ProgressesController < ApplicationController
   end
 
   def create
-    @progress = @portfolio.progresses.new(progress_params)
+    @progress = @portfolio.progresses.build(progress_params)
     if @progress.save
       flash_success
+      @comments = @progress.comments.page(params[:page])
       redirect_to @portfolio
     else
       flash_failed

@@ -1,4 +1,5 @@
 <% provide(:title, t(".title", portfolio_title: @portfolio.title)) %>
+<% provide(:submit_text, t("btn.create")) %>
 <h1>Portfolios#show</h1>
 <div id="portfolio-<%= @portfolio.id %>">
   <%= link_to @portfolio.user.username, @portfolio.user %>
@@ -25,7 +26,7 @@
   <% if current_user?(@portfolio.user) %>
     <%= link_to t("btn.edit"), edit_portfolio_path(@portfolio) %>
     <%= link_to t("btn.delete"), @portfolio, method: :delete,
-                                       data: { confirm: t("common.delete_confirmation") } %>
+      data: { confirm: t("common.delete_confirmation") } %>
   <% end %>
   <h2>プログレス</h2>
   <div id="progress">
@@ -34,5 +35,13 @@
     <% if @portfolio.user == current_user %>
       <%= link_to t("btn.edit"), edit_portfolio_progress_path(@portfolio, @progress) %>
     <% end %>
+    <% unless @comments == nil %>
+    <div id="comments">
+      <ol>
+        <%= render @comments, portfolio: @portfolio, progress: @progress %>
+      </ol>
+    </div>
+    <% end %>
+    <%= render "comments/comment_form" %>
   </div>
 </div>

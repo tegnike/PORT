@@ -64,6 +64,9 @@ ja:
       title: "プログレス新規作成"
     edit:
       title: "プログレス編集"
+  comments:
+    edit:
+      title: "コメント編集"
   rankings:
     favorite:
       title: "お気に入りランキング"

@@ -1,4 +1,5 @@
 <% provide(:title, t(".title", portfolio_title: @portfolio.title, progress_id: get_number(@portfolio, @progress))) %>
+<% provide(:submit_text, t("btn.create")) %>
 <h1>Progresses#show</h1>
 <div id="progress-<%= @progress.id %>">
   <h2><%= @portfolio.title %>｜プログレス #<%= get_number(@portfolio, @progress) %></h2>
@@ -14,4 +15,12 @@
                                          data: { confirm: t("common.delete_confirmation") } %>
     <% end %>
   </div>
+  <% unless @comments == nil %>
+  <div id="comments">
+    <ol>
+      <%= render @comments, portfolio: @portfolio, progress: @progress %>
+    </ol>
+  </div>
+  <% end %>
+  <%= render "comments/comment_form" %>
 </div>

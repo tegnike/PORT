@@ -12,6 +12,10 @@ class PortfoliosController < ApplicationController
       end
     end
     @progress = @portfolio.progresses.limit(1).order("created_at DESC").first
+    # comment index
+    @comments = @progress.comments.page(params[:page])
+    # comment new
+    @comment = @progress.comments.build
   end
 
   def new

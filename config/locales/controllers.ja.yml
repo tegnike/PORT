@@ -5,6 +5,13 @@ ja:
   application:
     message:
       first_post: "最初の投稿です。"
+  comments:
+    create:
+      action: "コメントを作成"
+    update:
+      action: "コメントを編集"
+    destroy:
+      action: "コメントを削除"
   favorites:
     create:
       action: "お気に入りを登録"

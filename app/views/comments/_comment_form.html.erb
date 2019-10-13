@@ -1,0 +1,13 @@
+<%= form_for [@portfolio, @progress, @comment], remote: yield(:remote).presence do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+
+  <%= f.label :comment %>
+  <%= f.rich_text_area :comment %>
+
+  <%= f.label :evaluation %>
+  <%= f.number_field :evaluation, step: "0.1" %>
+
+  <%= f.submit yield(:submit_text), class: "btn btn-primary" %>
+<% end %>

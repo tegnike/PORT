@@ -1,0 +1,9 @@
+<li id="comment-<%= comment.id %>">
+  <span class="comment"><%= comment.comment %></span>
+  <span class="evaluation"><%= comment.evaluation %></span>
+  <% if comment.user == current_user %>
+    <%= link_to t("btn.edit"), edit_portfolio_progress_comment_path(portfolio, progress, comment), remote: true %>
+    <%= link_to t("btn.delete"), portfolio_progress_comment_path(portfolio, progress, comment),
+      method: :delete, data: { confirm: t("common.delete_confirmation") } %>
+  <% end %>
+</li>

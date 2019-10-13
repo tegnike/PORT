@@ -42,6 +42,21 @@ Portfolio.all.each do |portfolio|
   )
 end
 
+Progress.all.each do |progress|
+  progress.comments.create!(
+    user: progress.portfolio.user,
+    comment: Faker::Lorem.sentence(word_count: 20),
+    evaluation: rand(0.0..5.0).round(1)
+  )
+  2.times do
+    progress.comments.create!(
+      user: User.find(rand(1..User.count)),
+      comment: Faker::Lorem.sentence(word_count: 20),
+      evaluation: rand(0.0..5.0).round(1)
+    )
+  end
+end
+
 users.each do |favorite_user|
   portfolios = Portfolio.order("RANDOM()").limit(10)
   portfolios.each do |portfolio|

@@ -1,0 +1,3 @@
+<% provide(:remote, true) %>
+<% provide(:submit_text, t("btn.update")) %>
+$("#comment-<%= @comment.id %>").html("<%= escape_javascript(render "comment_form") %>");

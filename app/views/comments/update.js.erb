@@ -1,0 +1,2 @@
+$(".flash-message").html('<div class="alert alert-notice"><%= alert %></div>');
+$("#comment-<%= @comment.id %>").html("<%= escape_javascript(render partial: "comments/comment", locals: { portfolio: @portfolio, progress: @progress, comment: @comment }) %>");
