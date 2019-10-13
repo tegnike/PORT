@@ -5,11 +5,14 @@
   <% @progresses.each do |progress| %>
   <li id="progress-<%= progress.id %>">
     <%= link_to "##{get_number(@portfolio, progress)}", portfolio_progress_path(@portfolio, progress), class: "id" %>
+    <% unless progress.comments.count == 0 %>
+      <span class="evaluation">評価：<%= average_evaluation(progress) %>（<%= progress.comments.count %> 件）</span>
+    <% end %>
     <span class="content"><%= progress.content %></span>
     <% if @portfolio.user == current_user %>
       <%= link_to t("btn.edit"), edit_portfolio_progress_path(@portfolio, progress) %>
       <%= link_to t("btn.delete"), portfolio_progress_path(@portfolio, progress), method: :delete,
-                                         data: { confirm: t("common.delete_confirmation") } %>
+                  data: { confirm: t("common.delete_confirmation") } %>
     <% end %>
   </li>
   <% end %>

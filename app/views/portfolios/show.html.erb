@@ -26,11 +26,14 @@
   <% if current_user?(@portfolio.user) %>
     <%= link_to t("btn.edit"), edit_portfolio_path(@portfolio) %>
     <%= link_to t("btn.delete"), @portfolio, method: :delete,
-      data: { confirm: t("common.delete_confirmation") } %>
+                data: { confirm: t("common.delete_confirmation") } %>
   <% end %>
   <h2>プログレス</h2>
   <div id="progress">
     <%= link_to "##{get_number(@portfolio, @progress)}", portfolio_progress_path(@portfolio, @progress), class: "id" %>
+    <% unless @progress.comments.count == 0 %>
+      <span class="evaluation">評価：<%= average_evaluation(@progress) %>（<%= @progress.comments.count %> 件）</span>
+    <% end %>
     <span class="content"><%= @progress.content %></span>
     <% if @portfolio.user == current_user %>
       <%= link_to t("btn.edit"), edit_portfolio_progress_path(@portfolio, @progress) %>

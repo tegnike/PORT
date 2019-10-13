@@ -8,6 +8,9 @@
     <span class="timestamp">
       <%= t("common.time_ago", time: time_ago_in_words(@progress.created_at)) %>
     </span>
+    <% unless @progress.comments.count == 0 %>
+      <span class="evaluation">評価：<%= average_evaluation(@progress) %>（<%= @progress.comments.count %> 件）</span>
+    <% end %>
     <span class="content"><%= @progress.content %></span>
     <% if @portfolio.user == current_user %>
       <%= link_to t("btn.edit"), edit_portfolio_progress_path(@portfolio, @progress) %>
