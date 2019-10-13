@@ -27,3 +27,17 @@
   <% end %>
   <%= render "comments/comment_form" %>
 </div>
+
+<% unless @progress.comments.count == 0 %>
+  <script>
+  $('.evaluation').raty({
+    size: 36,
+    starOff:  "<%= asset_pack_path 'images/star-off.png' %>",
+    starOn : "<%= asset_pack_path 'images/star-on.png' %>",
+    starHalf: "<%= asset_pack_path 'images/star-half.png' %>",
+    half: true,
+    readOnly: true,
+    score: <%= average_evaluation(@progress) %>
+  });
+  </script>
+<% end %>
