@@ -24,7 +24,7 @@ class ProgressesController < ApplicationController
       @comments = @progress.comments.page(params[:page])
       redirect_to @portfolio
     else
-      flash_failed
+      flash_failed_render
       render "new"
     end
   end
@@ -37,7 +37,7 @@ class ProgressesController < ApplicationController
       flash_success
       redirect_to portfolio_progresses_path(@portfolio)
     else
-      flash_failed
+      flash_failed_render
       render "edit"
     end
   end
@@ -47,7 +47,7 @@ class ProgressesController < ApplicationController
       flash_success
       redirect_to portfolio_progresses_path(@portfolio)
     else
-      flash_failed
+      flash_failed_redirect
       redirect_to root_url
     end
   end

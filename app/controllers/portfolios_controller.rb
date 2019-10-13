@@ -29,7 +29,7 @@ class PortfoliosController < ApplicationController
       flash_success
       redirect_to @portfolio
     else
-      flash_failed
+      flash_failed_render
       render "new"
     end
   end
@@ -42,7 +42,7 @@ class PortfoliosController < ApplicationController
       flash_success
       redirect_to @portfolio
     else
-      flash_failed
+      flash_failed_render
       render "edit"
     end
   end
@@ -54,7 +54,7 @@ class PortfoliosController < ApplicationController
       flash_success
       redirect_to @portfolio.user
     else
-      flash_failed
+      flash_failed_redirect
       redirect_to root_url
     end
   end
@@ -74,7 +74,7 @@ class PortfoliosController < ApplicationController
     def correct_user
       @portfolio = current_user.portfolios.find_by(id: params[:id])
       if @portfolio.nil?
-        flash_failed
+        flash_failed_redirect
         redirect_to root_url
       end
     end
