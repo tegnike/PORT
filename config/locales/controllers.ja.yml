@@ -8,8 +8,10 @@ ja:
   comments:
     create:
       action: "コメントを作成"
+      validation: "自身のポートフォリオは評価できません。"
     update:
       action: "コメントを編集"
+      validation: "自身のポートフォリオは評価できません。"
     destroy:
       action: "コメントを削除"
   favorites:

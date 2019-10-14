@@ -31,8 +31,8 @@
   <h2>プログレス</h2>
   <div id="progress">
     <%= link_to "##{get_number(@portfolio, @progress)}", portfolio_progress_path(@portfolio, @progress), class: "id" %>
-    <% unless @progress.comments.count == 0 %>
-      <span class="evaluation">評価：<%= average_evaluation(@progress) %>（<%= @progress.comments.count %> 件）</span>
+    <% if @progress.has_any_evaluations? %>
+      <span class="average_evaluation">評価：<%= @progress.average_evaluation %>（<%= @progress.comments.count %> 件）</span>
     <% end %>
     <span class="content"><%= @progress.content %></span>
     <% if @portfolio.user == current_user %>
@@ -49,16 +49,16 @@
   </div>
 </div>
 
-<% unless @progress.comments.count == 0 %>
+<% if @progress.has_any_evaluations? %>
   <script>
-  $('.evaluation').raty({
-    size: 36,
-    starOff:  "<%= asset_pack_path 'images/star-off.png' %>",
-    starOn : "<%= asset_pack_path 'images/star-on.png' %>",
-    starHalf: "<%= asset_pack_path 'images/star-half.png' %>",
-    half: true,
-    readOnly: true,
-    score: <%= average_evaluation(@progress) %>
-  });
+    $('.average_evaluation').raty({
+      size: 36,
+      starOff:  "<%= asset_pack_path 'images/star-off.png' %>",
+      starOn : "<%= asset_pack_path 'images/star-on.png' %>",
+      starHalf: "<%= asset_pack_path 'images/star-half.png' %>",
+      half: true,
+      readOnly: true,
+      score: <%= @progress.average_evaluation %>
+    });
   </script>
 <% end %>

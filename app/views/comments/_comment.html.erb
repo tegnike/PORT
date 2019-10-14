@@ -8,14 +8,16 @@
   <% end %>
 </li>
 
- <script>
- $('#comment-<%= comment.id %> .evaluation').raty({
-   size: 36,
-   starOff:  "<%= asset_pack_path 'images/star-off.png' %>",
-   starOn : "<%= asset_pack_path 'images/star-on.png' %>",
-   starHalf: "<%= asset_pack_path 'images/star-half.png' %>",
-   half: true,
-   readOnly: true,
-   score: <%= comment.evaluation %>
- });
- </script>
+<% if comment.evaluation != nil %>
+  <script>
+    $('#comment-<%= comment.id %> .evaluation').raty({
+      size: 36,
+      starOff:  "<%= asset_pack_path 'images/star-off.png' %>",
+      starOn : "<%= asset_pack_path 'images/star-on.png' %>",
+      starHalf: "<%= asset_pack_path 'images/star-half.png' %>",
+      half: true,
+      readOnly: true,
+      score: <%= comment.evaluation %>
+    });
+  </script>
+<% end %>

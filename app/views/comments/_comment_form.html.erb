@@ -6,10 +6,12 @@
   <%= f.label :comment %>
   <%= f.rich_text_area :comment %>
 
-  <div id="star">
-    <%= f.label :evaluation %>
-    <%= f.hidden_field :evaluation, id: :review_star %>
-  </div>
+  <% unless current_user == @portfolio.user %>
+    <div id="star">
+      <%= f.label :evaluation %>
+      <%= f.hidden_field :evaluation, id: :review_star %>
+    </div>
+  <% end %>
 
   <script>
     $('#star').raty({

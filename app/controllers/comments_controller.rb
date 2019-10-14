@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :get_portfolio_progress
+  before_action :owner_has_evaluation?, only: [:create, :update]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def create
@@ -57,6 +58,15 @@ class CommentsController < ApplicationController
 
     def comment_params
       params.require(:comment).permit(:user_id, :comment, :evaluation)
+    end
+
+    def owner_has_evaluation?
+      if (params[:comment][:user_id].to_i == @portfolio.user_id) && params[:comment][:evaluation] != nil
+        @comment = @progress.comments.build(comment_params)
+        @comments = @progress.comments.page(params[:page])
+        flash.now[:alert] = t(".validation")
+        render "portfolios/show"
+      end
     end
 
     def correct_user
