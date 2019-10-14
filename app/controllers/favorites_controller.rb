@@ -10,7 +10,7 @@ class FavoritesController < ApplicationController
         format.html { redirect_to @portfolio }
         format.js { render :create }
       else
-        flash_failed_render
+        flash_failed_for_render
         format.js { render :new }
       end
     end
@@ -25,7 +25,7 @@ class FavoritesController < ApplicationController
         format.html { redirect_to @portfolio }
         format.js { render :destroy }
       else
-        flash_failed_render
+        flash_failed_for_render
         format.js { render :new }
       end
     end

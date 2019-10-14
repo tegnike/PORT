@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
       flash_success
       redirect_to @portfolio
     else
-      flash_failed_render
+      flash_failed_for_render
       @comments = @progress.comments.page(params[:page])
       render "portfolios/show"
     end
@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
          }
         format.js { render :update }
       else
-        flash_failed_render
+        flash_failed_for_render
         format.js { render :edit }
       end
     end
@@ -45,7 +45,7 @@ class CommentsController < ApplicationController
       @comments = @progress.comments.page(params[:page])
       redirect_to @portfolio
     else
-      flash_failed_redirect
+      flash_failed_for_redirect
       redirect_to root_url
     end
   end
@@ -72,7 +72,7 @@ class CommentsController < ApplicationController
     def correct_user
       @comment = current_user.comments.find_by(id: params[:id])
       if @comment.nil?
-        flash_failed_redirect
+        flash_failed_for_redirect
         redirect_to root_url
       end
     end

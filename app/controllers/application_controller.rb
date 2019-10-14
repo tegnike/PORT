@@ -12,11 +12,11 @@ class ApplicationController < ActionController::Base
       flash[:notice] = t("flash.success", action: t(".action"))
     end
 
-    def flash_failed_redirect
+    def flash_failed_for_redirect
       flash[:alert] = t("flash.failed", action: t(".action"))
     end
 
-    def flash_failed_render
+    def flash_failed_for_render
       flash.now[:alert] = t("flash.failed", action: t(".action"))
     end
 end
