@@ -1,2 +1,2 @@
-$(".flash-message").html("<%= render "shared/flash_messages" %>");
+$(".flash-message").html("<%= escape_javascript(render("shared/flash_messages")) %>");
 $("#comment-<%= @comment.id %>").html("<%= escape_javascript(render partial: "comments/comment", locals: { portfolio: @portfolio, progress: @progress, comment: @comment }) %>");
