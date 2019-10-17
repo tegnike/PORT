@@ -1,13 +1,33 @@
+<% provide(:title, t(".title", portfolio_title: @portfolio.title)) %>
 <h1><%= @portfolio.title %></h1>
-<ul>
+<h2>プログレス一覧</h2>
+<ol>
   <% @progresses.each do |progress| %>
   <li id="progress-<%= progress.id %>">
+    <%= link_to "##{get_number(@portfolio, progress)}", portfolio_progress_path(@portfolio, progress), class: "id" %>
+    <% unless progress.comments.count == 0 %>
+      <span class="average_evaluation">評価：<%= progress.average_evaluation %>（<%= progress.comments.count %> 件）</span>
+    <% end %>
     <span class="content"><%= progress.content %></span>
     <% if @portfolio.user == current_user %>
       <%= link_to t("btn.edit"), edit_portfolio_progress_path(@portfolio, progress) %>
       <%= link_to t("btn.delete"), portfolio_progress_path(@portfolio, progress), method: :delete,
-                                         data: { confirm: t("common.delete_confirmation") } %>
+                  data: { confirm: t("common.delete_confirmation") } %>
+    <% end %>
+
+    <% if progress.has_any_evaluations? %>
+      <script>
+        $('#progress-<%= progress.id %> .average_evaluation').raty({
+          size: 36,
+          starOff:  "<%= asset_pack_path 'images/star-off.png' %>",
+          starOn : "<%= asset_pack_path 'images/star-on.png' %>",
+          starHalf: "<%= asset_pack_path 'images/star-half.png' %>",
+          half: true,
+          readOnly: true,
+          score: <%= progress.average_evaluation %>
+        });
+      </script>
     <% end %>
   </li>
   <% end %>
-</ul>
+</ol>

@@ -1,1 +1,1 @@
-$(".flash-message").html('<div class="alert alert-alert"><%= alert %></div>');
+$(".flash-message").html("<%= escape_javascript(render("shared/flash_messages")) %>");

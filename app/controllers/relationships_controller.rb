@@ -8,7 +8,7 @@ class RelationshipsController < ApplicationController
         format.html { redirect_to @user }
         format.js { render :create }
       else
-        flash_failed
+        flash_failed_for_render
         format.js { render :new }
       end
     end
@@ -21,7 +21,7 @@ class RelationshipsController < ApplicationController
         format.html { redirect_to @user }
         format.js { render :destroy }
       else
-        flash_failed
+        flash_failed_for_render
         format.js { render :new }
       end
     end

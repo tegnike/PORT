@@ -5,13 +5,6 @@ RSpec.describe PortfoliosController, type: :request do
   let(:portfolio) { create(:portfolio, user: user) }
   let!(:progress) { create(:progress, portfolio: portfolio) }
 
-  describe "GET #show" do
-    it "returns http success" do
-      get portfolio_path(portfolio)
-      expect(response).to have_http_status(:success)
-    end
-  end
-
   describe "GET #new" do
     context "get new_portfolio_path before login" do
       before { get new_portfolio_path }

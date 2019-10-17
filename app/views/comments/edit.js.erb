@@ -1,0 +1,5 @@
+<% provide(:remote, true) %>
+<% provide(:id, "edit_comment") %>
+<% provide(:submit_text, t("btn.update")) %>
+$(".flash-message").html("<%= escape_javascript(render("shared/flash_messages")) %>");
+$("#comment-<%= @comment.id %>").html("<%= escape_javascript(render "comment_form") %>");

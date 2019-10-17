@@ -1,0 +1,23 @@
+<li id="comment-<%= comment.id %>">
+  <span class="comment"><%= comment.comment %></span>
+  <span class="evaluation"><%= comment.evaluation %></span>
+  <% if comment.user == current_user %>
+    <%= link_to t("btn.edit"), edit_portfolio_progress_comment_path(portfolio, progress, comment), remote: true %>
+    <%= link_to t("btn.delete"), portfolio_progress_comment_path(portfolio, progress, comment),
+      method: :delete, data: { confirm: t("common.delete_confirmation") } %>
+  <% end %>
+</li>
+
+<% if comment.evaluation != nil %>
+  <script>
+    $('#comment-<%= comment.id %> .evaluation').raty({
+      size: 36,
+      starOff:  "<%= asset_pack_path 'images/star-off.png' %>",
+      starOn : "<%= asset_pack_path 'images/star-on.png' %>",
+      starHalf: "<%= asset_pack_path 'images/star-half.png' %>",
+      half: true,
+      readOnly: true,
+      score: <%= comment.evaluation %>
+    });
+  </script>
+<% end %>

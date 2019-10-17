@@ -1,0 +1,28 @@
+<%= form_for [@portfolio, @progress, @comment], remote: yield(:remote).presence do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+
+  <%= f.label :comment %>
+  <%= f.rich_text_area :comment, id: (yield(:id).presence || "comment_comment") %>
+
+  <% unless current_user == @portfolio.user %>
+    <div id="star">
+      <%= f.label :evaluation %>
+      <%= f.hidden_field :evaluation, id: :review_star %>
+    </div>
+  <% end %>
+
+  <script>
+    $('#star').raty({
+      size     : 36,
+      starOff:  "<%= asset_pack_path 'images/star-off.png' %>",
+      starOn : "<%= asset_pack_path 'images/star-on.png' %>",
+      starHalf: "<%= asset_pack_path 'images/star-half.png' %>",
+      scoreName: "comment[evaluation]",
+      half: true,
+    });
+  </script>
+
+  <%= f.submit yield(:submit_text), class: "btn btn-primary" %>
+<% end %>

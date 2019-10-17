@@ -1,0 +1,43 @@
+<% provide(:title, t(".title", portfolio_title: @portfolio.title, progress_id: get_number(@portfolio, @progress))) %>
+<% provide(:submit_text, t("btn.create")) %>
+<h1>Progresses#show</h1>
+<div id="progress-<%= @progress.id %>">
+  <h2><%= @portfolio.title %>｜プログレス #<%= get_number(@portfolio, @progress) %></h2>
+  <div id="progress">
+    <%= link_to @portfolio.user.username, @portfolio.user %>
+    <span class="timestamp">
+      <%= t("common.time_ago", time: time_ago_in_words(@progress.created_at)) %>
+    </span>
+    <% if @progress.has_any_evaluations?  %>
+      <span class="average_evaluation">評価：<%= @progress.average_evaluation %>（<%= @progress.comments.count %> 件）</span>
+    <% end %>
+    <span class="content"><%= @progress.content %></span>
+    <% if @portfolio.user == current_user %>
+      <%= link_to t("btn.edit"), edit_portfolio_progress_path(@portfolio, @progress) %>
+      <%= link_to t("btn.delete"), portfolio_progress_path(@portfolio, @progress), method: :delete,
+                                         data: { confirm: t("common.delete_confirmation") } %>
+    <% end %>
+  </div>
+  <% unless @comments == nil %>
+  <div id="comments">
+    <ol>
+      <%= render @comments, portfolio: @portfolio, progress: @progress %>
+    </ol>
+  </div>
+  <% end %>
+  <%= render "comments/comment_form" %>
+</div>
+
+<% if @progress.has_any_evaluations? %>
+  <script>
+    $('.average_evaluation').raty({
+      size: 36,
+      starOff:  "<%= asset_pack_path 'images/star-off.png' %>",
+      starOn : "<%= asset_pack_path 'images/star-on.png' %>",
+      starHalf: "<%= asset_pack_path 'images/star-half.png' %>",
+      half: true,
+      readOnly: true,
+      score: <%= @progress.average_evaluation %>
+    });
+  </script>
+<% end %>
