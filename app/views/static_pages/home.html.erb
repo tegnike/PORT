@@ -1,13 +1,80 @@
-<% provide(:submit_text, "投稿") %>
-<h1>StaticPages#home</h1>
-<% if user_signed_in? %>
-  <section class="user_info">
-    <%= render 'shared/user_info' %>
-  </section>
-  <section class="stats">
-    <%= render 'shared/stats' %>
-  </section>
-  <section class="micropost_form">
-    <%= render 'shared/portfolio_form' %>
-  </section>
+<% unless user_signed_in? %>
+  <div class="row top-page-box">
+    <div class="col-md-6 top-page-message">
+      <h1>Hello engineers !</h1>
+      <p>PORTは、エンジニアが自身のポートフォリオを共有するためのサービスです。<br>
+        他のエンジニアのポートフォリオを参考にしたり、レビューを依頼して、ポートフォリオのブラッシュアップに活用しましょう ;)</p>
+    </div>
+    <div class="col-md-6">
+      <div class="snses">
+        <% User.omniauth_providers.each do |provider| %>
+          <%= link_to fa_icon("#{t(".LC.#{provider}")}", text: " #{t(".CL.#{provider}")}", class: "fab"), omniauth_authorize_path(@user, provider), class: "btn #{t(".LC.#{provider}")}" %>
+        <% end %>
+      </div>
+      <div class="text-center or">OR</div>
+      <%= form_for(@user, html: { class: "form-horizontal" }) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="field form-group row">
+          <%= f.label :username, class: "col-sm-4 control-label" %>
+          <div class="col-sm-8">
+            <%= f.text_field :username, class: "form-control", placeholder: "port taro" %>
+          </div>
+        </div>
+        <div class="field form-group row">
+          <%= f.label :email, class: "col-sm-4 control-label" %>
+          <div class="col-sm-8">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "port@example.com" %>
+          </div>
+        </div>
+        <div class="field form-group row">
+          <%= f.label :password, class: "col-sm-4 control-label" %>
+          <div class="col-sm-8">
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "******" %>
+          </div>
+          <div class="col-sm-4"></div>
+          <div class="col-sm-8">
+            <% if @minimum_password_length %>
+              <%= @minimum_password_length %><%= t("devise.registrations.edit.characters_minimum") %>
+            <% end %>
+          </div>
+        </div>
+        <div class="field form-group row">
+          <%= f.label :password_confirmation, class: "col-sm-4 control-label" %>
+          <div class="col-sm-8">
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "******" %>
+          </div>
+        </div>
+        <div class="actions">
+          <%= f.submit t("btn.registration"), class: "btn btn-outline-primary submit"  %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 <% end %>
+<% if user_signed_in? && !(Portfolio.exists?(user_id: current_user.id)) %>
+  <div class="alert alert-warning" role="alert">
+    初めてのポートフォリオを投稿しませんか？ <strong class="post-warning"><%= link_to fa_icon("edit", text: t("header.post"), class: "fas"), new_portfolio_path %></strong>
+  </div>
+<% end %>
+<div class="top-page-info">
+  <main class="main <%= "before-login" unless user_signed_in? %>">
+    <div class="portfolios-header bg-white">
+      <span><i class="fas fa-hand-point-right"></i> 最新のポートフォリオをチェック！</span>
+    </div>
+    <ol class="portfolios">
+      <% if user_signed_in? %>
+        <%= render @portfolios, user: current_user %>
+      <% else %>
+        <%= render @portfolios %>
+      <% end %>
+    </ol>
+    <%= paginate @portfolios %>
+  </main>
+  <% if user_signed_in? %>
+    <aside class="sidebar">
+      <div class="stats-whole bg-white">
+        <%= render 'shared/stats' %>
+      </div>
+    </aside>
+  <% end %>
+</div>

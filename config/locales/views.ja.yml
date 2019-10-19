@@ -25,6 +25,15 @@ ja:
     sign_up: "ユーザ登録"
     login: "ログイン"
   static_pages:
+    home:
+      CL:
+        github: "Github"
+        twitter: "Twitter"
+        google_oauth2: "Google"
+      LC:
+        github: "github"
+        twitter: "twitter"
+        google_oauth2: "google"
     about:
       title: "PORTとは"
     help:
@@ -82,6 +91,7 @@ ja:
     unfollow: "フォロー"
     favorite: "★"
     unfavorite: "☆"
+    registration: "アカウント登録"
     create: "投稿"
     edit: "編集"
     update: "更新"
