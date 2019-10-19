@@ -6,3 +6,8 @@ $('#user_image').bind('change', function() {
     alert(I18n.t('errors.messages.size_range', {locale: "ja"}));
   }
 });
+$(function(){
+  setTimeout(function(){
+    $('.flash-message .alert').addClass("animated fadeOutUp");
+  },1000);
+});
