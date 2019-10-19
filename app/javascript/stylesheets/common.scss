@@ -135,6 +135,39 @@ footer {
 .user_show {
    background-color: skyblue;
 }
+/* stats */
+
+.stats-whole {
+  border: $gray-medium-light 1px solid;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 50px;
+
+  .border-bottom, .border-left {
+    border-color: $gray-medium-light;
+  }
+}
+.stats-user-info {
+  padding: 15px;
+
+  img {
+    border-radius: 5px !important;
+    margin-right: 5px;
+  }
+}
+.stats {
+  display: flex;
+  justify-content: space-between;
+}
+.stat {
+  padding: 10px;
+  width: 33.3%;
+  text-align: center;
+}
+.stat-label {
+  font-size: 14px;
+}
+
 /* portfolio_media */
 
 .portfolios {

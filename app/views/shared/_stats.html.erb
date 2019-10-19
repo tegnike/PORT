@@ -1,21 +1,24 @@
 <% @user ||= current_user %>
+<div class="stats-user-info border-bottom">
+  <%= set_user_image(current_user) %> <%= current_user.username %>
+</div>
 <div class="stats">
-  <a href="<%= following_user_path(@user) %>">
-    フォロー中
-    <strong id="following" class="stat">
+  <a href="<%= following_user_path(@user) %>" class="stat">
+    <strong id="following">
       <%= @user.following.count %>
-    </strong>
+    </strong><br>
+    <span class="stat-label">フォロー</span>
   </a>
-  <a href="<%= followers_user_path(@user) %>">
-    フォロワー
-    <strong id="followers" class="stat">
+  <a href="<%= followers_user_path(@user) %>" class="stat border-left">
+    <strong id="followers">
       <%= @user.followers.count %>
-    </strong>
+    </strong><br>
+    <span class="stat-label">フォロワー</span>
   </a>
-  <a href="<%= favorites_user_path(@user) %>">
-    お気に入り
-    <strong id="favorites" class="stat">
+  <a href="<%= favorites_user_path(@user) %>" class="stat border-left">
+    <strong id="favorites">
       <%= @user.favorite_portfolios.count %>
-    </strong>
+    </strong><br>
+    <span class="stat-label">お気に入り</span>
   </a>
 </div>
