@@ -1,17 +1,26 @@
-<li id="portfolio-<%= portfolio.id %>">
-  <%= link_to portfolio.user.username, portfolio.user %>
-  <span class="timestamp">
-    <%= t("common.time_ago", time: time_ago_in_words(portfolio.created_at)) %>
-  </span>
-  <% unless portfolio.pageview == nil %>
-    <span class="pageview">
-      <%= t("common.pageview", score: portfolio.pageview) %>
-    </span>
+<li id="portfolio-<%= portfolio.id %>" class="media bg-white">
+  <% if portfolio.image.url == nil %>
+    <img src="<%= asset_pack_path 'images/noimage.jpg' %>" class="mr-3"/>
+  <% else %>
+    <%= image_tag portfolio.image.url, class: "mr-3" %>
   <% end %>
-  <% if user_signed_in? %>
-    <%= render 'favorites/favorite_form', { portfolio: portfolio, user: user } %>
-  <% end %>
-  <%= link_to portfolio.title, portfolio, class: "title" %> <span class="favorite_count">(<%= portfolio.favorite_users.count %>)</span><br>
-  <%= link_to t("portfolios.show.web_url"), portfolio.web_url, class: "web_url" %>
-  <%= link_to t("portfolios.show.git_url"), portfolio.git_url, class: "git_url" %>
+  <div class="media-body">
+    <h4><%= link_to portfolio.title, portfolio, class: "title" %></h4>
+    <%= link_to t("portfolios.show.web_url"), portfolio.web_url, class: "btn btn-outline-success" %>
+    <%= link_to t("portfolios.show.git_url"), portfolio.git_url, class: "btn btn-outline-secondary" %>
+    <div class="portfolio-info">
+      <span class="portfolio-info-user">
+        by <%= link_to portfolio.user.username, portfolio.user %>
+        <%= t("common.time_ago", time: time_ago_in_words(portfolio.created_at)) %>
+      </span>
+      <% if user_signed_in? %>
+        <span class="d-inline-block"><%= render 'favorites/favorite_form', { portfolio: portfolio, user: user } %></span>
+      <% end %>
+      <% unless portfolio.pageview == nil %>
+        <span class="pageview">
+          <%= t("common.pageview", score: portfolio.pageview) %>
+        </span>
+      <% end %>
+    </div>
+  </div>
 </li>

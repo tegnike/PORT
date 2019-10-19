@@ -1,5 +1,5 @@
 <%= form_for(current_user.favorites.find_by(portfolio_id: portfolio.id),
     html: { method: :delete }, remote: true) do |f| %>
   <div><%= hidden_field_tag :user_id, user.id %></div>
-  <%= f.submit t("btn.favorite"), class: "btn btn-warning" %>
+  <%= button_tag sanitize("<i class='fas fa-thumbs-up'></i> #{portfolio.favorite_users.count}"), :type => "submit", :class =>"btn btn-favorite" %>
 <% end %>

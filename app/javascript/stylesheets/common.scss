@@ -135,3 +135,32 @@ footer {
 .user_show {
    background-color: skyblue;
 }
+/* portfolio_media */
+
+.portfolios {
+  padding-right: 15px;
+  padding-left: 0px;
+
+  img {
+    width: 25%;
+    height: 125px;
+    object-fit: contain;
+  }
+  .media {
+    height: 125px;
+    margin-bottom: 5px;
+  }
+  .media-body {
+    padding-top: 10px;
+  }
+}
+.portfolio-info {
+  padding-top: 3px;
+}
+.btn-favorite {
+  color: #0070ff;
+}
+.btn-favorite, .btn-unfavorite {
+  padding-top: 0px !important;
+  border: none !important;
+}
