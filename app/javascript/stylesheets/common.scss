@@ -340,3 +340,26 @@ footer {
   padding-top: 0px !important;
   border: none !important;
 }
+
+/* user patial */
+.user-partial {
+  display: flex;
+  background-color: white;
+  margin-bottom: 10px;
+
+  .user-image {
+    width: 73px;
+    margin-right: 10px;
+  }
+  .user-info {
+    margin-right: 15px;
+
+    .user-name {
+      font-size: 1.6rem;
+    }
+  }
+  .follow-form {
+    line-height: 73px;
+    padding: 0;
+  }
+}
