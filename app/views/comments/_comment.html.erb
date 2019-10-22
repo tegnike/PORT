@@ -1,11 +1,35 @@
-<li id="comment-<%= comment.id %>">
-  <span class="comment"><%= comment.comment %></span>
-  <span class="evaluation"><%= comment.evaluation %></span>
-  <% if comment.user == current_user %>
-    <%= link_to t("btn.edit"), edit_portfolio_progress_comment_path(portfolio, progress, comment), remote: true %>
-    <%= link_to t("btn.delete"), portfolio_progress_comment_path(portfolio, progress, comment),
-      method: :delete, data: { confirm: t("common.delete_confirmation") } %>
-  <% end %>
+<li id="comment-<%= comment.id %>" class="media bg-white" >
+  <%= link_to set_user_image(comment.user), comment.progress_owner, class: "user-image" %>
+  <span class="comment-info">
+    <span class="user-info">
+      <% if controller.action_name == "show" %>
+        <span class="action_show">
+          <strong><%= link_to comment.user.username, comment.user %></strong>
+          <span class="created_at"><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></span>
+          <% if comment.evaluation %>
+            <span class="evaluation"><%= comment.evaluation %></span>
+          <% end %>
+        </span>
+      <% else %>
+        <span class="action_comment">
+          <%= link_to set_user_image(comment.progress_owner), comment.progress_owner, class: "user-image" %>
+          <strong><%= link_to comment.progress_owner.username, comment.progress_owner %> の
+          <%= link_to comment.progress.portfolio.title, comment.progress.portfolio %>
+          にコメント</strong> <span class="created_at"><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></span>
+        </span>
+      <% end %>
+      <% if comment.user == current_user %>
+        <%= link_to t("btn.edit"), edit_portfolio_progress_comment_path(comment.progress.portfolio, comment.progress, comment), remote: true %>
+        <%= link_to t("btn.delete"), portfolio_progress_comment_path(comment.progress.portfolio, comment.progress, comment),
+          method: :delete, data: { confirm: t("common.delete_confirmation") } %>
+      <% end %>
+    </span><br>
+    <% if controller.action_name == "show" %>
+      <span class="comment"><%= comment.comment %></span>
+    <% else %>
+      <span class="comment"><%= extract_content(comment.comment) %></span>
+    <% end %>
+  </span>
 </li>
 
 <% if comment.evaluation != nil %>

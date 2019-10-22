@@ -363,3 +363,39 @@ footer {
     padding: 0;
   }
 }
+
+/* comment patial */
+.comments {
+  .media {
+    margin-bottom: 10px;
+  }
+  .user-image {
+    width: 73px;
+    margin-right: 5px;
+  }
+  .comment-info {
+    margin: 5px;
+    line-height: 19px;
+
+    .user-info {
+      font-size: 0.8rem;
+    }
+    .user-image {
+      width: 15px;
+      margin-right: 0px;
+    }
+    a {
+      color: #377bb5;
+    }
+    a:hover {
+      color: #23527c;
+      text-decoration: underline;
+    }
+    .created_at {
+      color: #aaa;
+    }
+    .comment {
+      font-size: 0.8rem;
+    }
+  }
+}

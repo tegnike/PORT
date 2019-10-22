@@ -39,7 +39,7 @@
       <%= link_to t("btn.edit"), edit_portfolio_progress_path(@portfolio, @progress) %>
     <% end %>
     <% unless @comments == nil %>
-    <div id="comments">
+    <div class="comments">
       <ol>
         <%= render @comments, portfolio: @portfolio, progress: @progress %>
       </ol>
