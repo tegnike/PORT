@@ -1,2 +1,7 @@
-$("#follow_form").html("<%= escape_javascript(render('users/unfollow')) %>");
-$("#followers").html('<%= @user.followers.count %>');
+$("#user-<%= @user.id %> .follow-form, .user-info-box .follow-form").html("<%= escape_javascript(render partial: 'users/unfollow', locals: { user: @user }) %>");
+<% case @page_user
+when current_user %>
+  $("#following").html("<%= current_user.following.count %>");
+<% when @user %>
+  $("#followers").html("<%= @user.followers.count %>");
+<% end %>

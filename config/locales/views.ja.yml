@@ -48,11 +48,11 @@ ja:
     show:
       title: "%{user_name}"
     following:
-      title: "フォローユーザ"
+      title: "フォロー | %{user_name}"
     followers:
-      title: "フォロワー"
-    favorites:
-      title: "お気に入り"
+      title: "フォロワー | %{user_name}"
+    comments:
+      title: "コメント | %{user_name}"
   portfolios:
     show:
       title: "%{portfolio_title}"

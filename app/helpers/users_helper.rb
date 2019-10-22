@@ -8,4 +8,8 @@ module UsersHelper
       image_tag(user.image.url, alt: user.username, class: "user-image")
     end
   end
+
+  def is_action?(action_name)
+    controller.action_name == action_name ? "nav-link active" : "nav-link"
+  end
 end

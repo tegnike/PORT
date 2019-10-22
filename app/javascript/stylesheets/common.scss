@@ -26,6 +26,10 @@ a {
 a:hover {
   text-decoration: none;
 }
+ul {
+  list-style: none;
+  padding-left: 0;
+}
 
 /* typography */
 
@@ -152,9 +156,37 @@ footer {
 }
 
 /* user_show */
+.user-info-whole {
+  display: flex;
+  justify-content: space-between;
 
-.user_show {
-   background-color: skyblue;
+  .user-info-box {
+    margin-right: 15px;
+
+    .user-image {
+      margin-bottom: 10px;
+    }
+    img {
+      width: 100%;
+    }
+    form {
+      margin-bottom: 10px;
+    }
+    .btn {
+      width: 100%;
+    }
+    h1 {
+      font-size: 2em;
+      text-align: left;
+      margin-bottom: 10px;
+    }
+    .profile {
+      font-size: 0.9rem;
+    }
+  }
+}
+.nav-tabs {
+  margin-bottom: 15px;
 }
 
 /* top page */

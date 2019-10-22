@@ -1,5 +1,5 @@
-<%= form_for(current_user.active_relationships.find_by(followed_id: @user.id),
-    html: { method: :delete }, data: { confirm: t("common.unfollow_confirmation", username: @user.username) },
-    remote: true) do |f| %>
-  <%= f.submit t("btn.follow"), class: "btn" %>
+<%= form_for(current_user.active_relationships.find_by(followed_id: user.id),
+    html: { method: :delete }, data: { confirm: t("common.unfollow_confirmation", username: user.username) }, remote: true) do |f| %>
+  <div><%= hidden_field_tag :page_id, (params[:page_id].presence || params[:id]) %></div>
+  <%= f.submit t("btn.follow"), class: "btn btn-outline-secondary" %>
 <% end %>

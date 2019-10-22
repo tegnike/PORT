@@ -1,34 +1,53 @@
 <% provide(:title, t("users.#{controller.action_name}.title", user_name: @user.username)) %>
-
-<h1>Users#show</h1>
-<section class="user_show fdb-block fp-active" data-block-type="testimonials" data-id="1">
-  <div class="container">
-    <div class="fdb-box">
-      <div class="row align-items-center justify-content-center">
-        <div class="col-10 col-sm-6 col-md-4 col-lg-3 col-xl-2 m-auto" style="z-index: 10000;">
-          <p><%= set_user_image(@user) %></p>
-        </div>
-
-        <div class="col-12 col-md-8 ml-auto mr-auto mt-4 mt-md-0" style="z-index: 10000;">
-          <p class="lead"><%= @user.profile %></p>
-          <p class="h3 mt-4 mt-lg-5"><strong><%= @user.username %></strong></p>
-          <p><em>email: <%= @user.email %></em></p>
-        </div>
-      </div>
-    </div>
-    <section class="stats">
-      <%= render 'shared/stats' %>
-    </section>
-    <%= render 'follow_form' if user_signed_in? %>
-  </div>
-</section>
-<section>
-  <h3><%= @user.portfolios.count %> ポートフォリオ</h3>
-  <% if @user.portfolios.any? %>
-   <%= paginate @portfolios %>
-   <ol class="portfolios">
-     <%= render @portfolios, user: @user %>
-   </ol>
-   <%= paginate @portfolios %>
- <% end %>
-</section>
+<div class="user-info-whole">
+  <section class="user-info-box col-sm-3">
+    <%= render "shared/user_info" %>
+  </section>
+  <section class="multi-info-box col-sm-9">
+    <h2><%= @user.portfolios.count %> 件のポートフォリオが登録されています。</h2>
+    <% if @user.portfolios.any? %>
+    <ol class="portfolios">
+      <%= render @my_portfolios, user: @user %>
+    </ol>
+    <%= paginate @my_portfolios %>
+    <% end %>
+    <ul class="nav nav-tabs nav-justified">
+      <li class="nav-item favorites" >
+        <%= link_to user_path(@user), class: is_action?("show") do %>
+          お気に入り <span id="favorites"><%= @user.favorites.count %></span>
+        <% end %>
+      </li>
+      <li class="nav-item following" >
+        <%= link_to following_user_path(@user), class: is_action?("following") do %>
+          フォロー <span id="following"><%= @user.following.count %></span>
+        <% end %>
+      </li>
+      <li class="nav-item followers" >
+        <%= link_to followers_user_path(@user), class: is_action?("followers") do %>
+          フォロワー <span id="followers"><%= @user.followers.count %></span>
+        <% end %>
+      </li>
+      <li class="nav-item comments" >
+        <%= link_to comments_user_path(@user), class: is_action?("comments") do %>
+          コメント <span id="comments"><%= @user.comments.count %></span>
+        <% end %>
+      </li>
+    </ul>
+    <% case controller.action_name %>
+    <% when "show" %>
+      <ul class="portfolios">
+        <%= render @portfolios, user: @user %>
+      </ul>
+      <%= paginate @portfolios %>
+    <% when "following", "followers" %>
+      <ul class="users">
+        <%= render @users %>
+      </ul>
+      <%= paginate @users %>
+    <% when "comments" %>
+      <ul class="comments">
+        <%= render @comments %>
+      </ul>
+    <% end %>
+  </section>
+</div>
