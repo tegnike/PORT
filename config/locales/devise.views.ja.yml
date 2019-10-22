@@ -63,9 +63,25 @@ ja:
         back: "戻る"
       new:
         sign_up: "アカウント登録"
+        sign_up_sns:
+          github: "Githubアカウントで登録"
+          twitter: "Twitterアカウントで登録"
+          google_oauth2: "Googleアカウントで登録"
+        sns:
+          github: "github"
+          twitter: "twitter"
+          google_oauth2: "google"
     sessions:
       new:
         sign_in: "ログイン"
+        sign_in_sns:
+          github: "Githubアカウントでログイン"
+          twitter: "Twitterアカウントでログイン"
+          google_oauth2: "Googleアカウントでログイン"
+        sns:
+          github: "github"
+          twitter: "twitter"
+          google_oauth2: "google"
     shared:
       links:
         back: "戻る"

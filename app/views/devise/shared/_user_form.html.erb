@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-6 snses">
+    <% resource_class.omniauth_providers.each do |provider| %>
+      <%= link_to fa_icon("#{t("#{yield(:sns)}.#{provider}")}", text: " #{t("#{yield(:sign_sns)}.#{provider}")}", class: "fab"), omniauth_authorize_path(@user, provider), class: "btn #{t("#{yield(:sns)}.#{provider}")}" %>
+    <% end %>
+    <div class="user-form-links">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <%= form_for(@user, url: yield(:url), html: { class: "form-horizontal" }) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <% if request.fullpath == "/users/sign_up" %>
+        <div class="field form-group">
+          <%= f.text_field :username, class: "form-control", placeholder: "ユーザ名" %>
+        </div>
+      <% end %>
+
+      <div class="field form-group">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "メールアドレス" %>
+      </div>
+
+      <div class="field form-group">
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "パスワード" %>
+        <% if @minimum_password_length %>
+          <p class="ml-1"><%= @minimum_password_length %><%= t("devise.registrations.edit.characters_minimum") %></p>
+        <% end %>
+      </div>
+
+      <% if request.fullpath == "/users/sign_up" %>
+        <div class="field form-group">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "確認用パスワード" %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "#{yield(:title)}", class: "btn btn-outline-primary submit"  %>
+      </div>
+    <% end %>
+  </div>
+</div>

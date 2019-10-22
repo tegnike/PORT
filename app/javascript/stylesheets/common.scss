@@ -20,6 +20,12 @@ textarea {
     margin-bottom: 10px;
   }
 }
+a {
+  color: #333;
+}
+a:hover {
+  text-decoration: none;
+}
 
 /* typography */
 
@@ -233,6 +239,43 @@ footer {
   .sidebar {
     width: 25%;
   }
+}
+
+/* sign up & sign in*/
+.entry-box {
+  padding: 20px;
+  background-color: white;
+
+  .snses {
+    margin-bottom: 15px;
+
+    .btn {
+      width: 80%;
+      color: white;
+      font-weight: 400;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      margin: 0 auto 10px;
+      display: block;
+    }
+    .btn:hover {
+      opacity: 0.8;
+    }
+    .twitter {
+      background-color: #1a97f0;
+    }
+    .github {
+      background-color: #444444;
+    }
+    .google {
+      background-color: #bf4e42;
+    }
+  }
+}
+.user-form-links {
+  font-size: 0.8rem;
+  width: 80%;
+  margin: auto;
 }
 
 /* stats */
