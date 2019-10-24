@@ -624,9 +624,10 @@ aside {
   }
 }
 
-/* portfolio form */
+/* portfolio form & progress form*/
 
-.new_portfolio, .edit_portfolio {
+.new_portfolio, .edit_portfolio,
+.new_progress, .edit_progress {
   background-color: white;
   padding: 20px 20px 50px;
 
@@ -656,9 +657,9 @@ aside {
       border: 15px solid transparent;
       border-top: 15px solid #e0edff;
     }
-    .btn {
-      float: right;
-      padding: 4px 40px;
-    }
+  }
+  .btn {
+    float: right;
+    padding: 4px 40px;
   }
 }

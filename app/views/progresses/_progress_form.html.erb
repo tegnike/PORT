@@ -1,7 +1,12 @@
 <%= form_for [@portfolio, @progress] do |f| %>
+  <% if controller.action_name == "new" %>
+    <h1><%= @portfolio.title %> #<%= @portfolio.progresses.count + 1 %></h1>
+  <% else %>
+    <h1><%= @portfolio.title %> #<%= get_number(@portfolio, @progress) %></h1>
+  <% end %>
+
   <%= render 'shared/error_messages', object: f.object %>
 
-  <%= f.label :content %>
   <%= f.rich_text_area :content %>
 
   <%= f.submit yield(:submit_text), class: "btn btn-primary" %>
