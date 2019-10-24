@@ -160,7 +160,7 @@ footer {
   display: flex;
   justify-content: space-between;
 
-  .user-info-box {
+  .user-info {
     margin-right: 15px;
 
     .user-image {
@@ -187,6 +187,195 @@ footer {
 }
 .nav-tabs {
   margin-bottom: 15px;
+}
+
+/* portfolio show */
+.portfolio-show {
+  display: flex;
+  justify-content: space-between;
+}
+.portfolio-whole {
+  width: 75%;
+  margin-top: 30px;
+  margin-right: 15px;
+  background-color: white;
+  padding: 30px;
+
+  .portfolio-header {
+    margin-bottom: 30px;
+
+    img {
+      width: 32px;
+      margin-right: 5px;
+    }
+    .timestamp, .pageview {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-left: 10px;
+    }
+    .edit {
+      float: right;
+    }
+  }
+  .title {
+    text-align: left;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+  .image {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .content {
+    margin-bottom: 20px;
+  }
+  hr {
+    margin-bottom: 1.5rem;
+  }
+  .progress-user {
+    display: flex;
+    margin-bottom: 30px;
+
+    img {
+      width: 60px;
+      margin-right: 10px;
+    }
+    .profile {
+      color: #777;
+      font-size: 0.8rem;
+      margin-bottom: 5px;
+    }
+    .btn {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+}
+.progress-whole {
+  margin-bottom: 30px;
+
+  h2 {
+    background-color: #dfeffc;
+  }
+  .progress-header {
+    margin-bottom: 20px;
+
+    .average_evaluation {
+      img:first-child {
+        padding-left: 6px
+      }
+      img {
+        padding-bottom: 3px
+      }
+    }
+    .dropdown {
+      float: right;
+    }
+    .dropdown-toggle {
+      padding: 0;
+    }
+    .dropdown-menu {
+      padding: 5px;
+    }
+  }
+  .comments {
+    ol {
+      padding-left: 0;
+    }
+    .user-image {
+      width: auto;
+
+      img {
+        width: 30px;
+        margin-right: 2px;
+        border-radius: 50%;
+      }
+    }
+    .evaluation {
+      img:first-child {
+        padding-left: 4px
+      }
+      img {
+        padding-bottom: 4px
+      }
+    }
+    .trix-content {
+      display: inline-block;
+      position: relative;
+      padding: 10px;
+      background: #edf1ee;
+    }
+    .trix-content:after {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: 3px;
+      left: -19px;
+      border: 8px solid transparent;
+      border-right: 18px solid #edf1ee;
+      -webkit-transform: rotate(35deg);
+      transform: rotate(35deg);
+    }
+  }
+  .comment-form {
+    .user-image {
+      width: 36px;
+      margin-bottom: 10px;
+    }
+    .new_comment {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    #comment_comment {
+      margin-bottom: 10px;
+    }
+    #star {
+      display: inline-block;
+      margin-left: 5px;
+    }
+    .btn {
+      float: right;
+      padding: 2px 12px;
+    }
+  }
+}
+aside {
+  width: 25%;
+
+  .portfolio-side {
+    border: $gray-medium-light 1px solid;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 50px;
+    margin-top: 30px;
+
+    .portfolio-side-list {
+      margin: 10px;
+      display: block;
+    }
+    .relative {
+      position: relative;
+      height: 38px;
+    }
+    .relative a, .relative button {
+      position: absolute;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      padding-bottom: 0;
+    }
+    .relative button {
+      top: 0;
+      color: #007bff;
+    }
+    .relative:hover button, .relative:hover span {
+      color: white
+    }
+  }
+}
+.before-login {
+  width: 100%;
 }
 
 /* top page */

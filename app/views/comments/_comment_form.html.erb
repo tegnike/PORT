@@ -2,16 +2,17 @@
   <%= render 'shared/error_messages', object: f.object %>
 
   <%= f.hidden_field :user_id, :value => current_user.id %>
-
-  <%= f.label :comment %>
   <%= f.rich_text_area :comment, id: (yield(:id).presence || "comment_comment") %>
 
-  <% unless current_user == @portfolio.user %>
-    <div id="star">
-      <%= f.label :evaluation %>
-      <%= f.hidden_field :evaluation, id: :review_star %>
-    </div>
-  <% end %>
+  <div class="comment-form-footer">
+    <% unless current_user == @portfolio.user %>
+      <div id="star">
+        <%= f.hidden_field :evaluation, id: :review_star %>
+      </div>
+    <% end %>
+
+    <%= f.submit yield(:submit_text), class: "btn btn-primary" %>
+  </div>
 
   <script>
     $('#star').raty({
@@ -23,6 +24,4 @@
       half: true,
     });
   </script>
-
-  <%= f.submit yield(:submit_text), class: "btn btn-primary" %>
 <% end %>

@@ -59,7 +59,7 @@ ja:
       web_url: "WEBサイト"
       git_url: "Github"
       progress_index: "プログレス一覧"
-      progress_edit: "プログレス作成"
+      progress_new: "プログレス作成"
     new:
       title: "ポートフォリオ新規作成"
     edit:

@@ -13,7 +13,7 @@ ja:
         git_url: "GIT URL"
       progress:
         content: "内容"
-      comments:
+      comment:
         comment: "コメント"
         evaluation: "評価"
   attributes:

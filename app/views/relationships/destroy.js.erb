@@ -1,4 +1,4 @@
-$("#user-<%= @user.id %> .follow-form, .user-info-box .follow-form").html("<%= escape_javascript(render partial: 'users/follow', locals: { user: @user }) %>");
+$("#user-<%= @user.id %> .follow-form, .user-info .follow-form").html("<%= escape_javascript(render partial: 'users/follow', locals: { user: @user }) %>");
 <% case @page_user %>
 <% when current_user %>
   $("#following").html("<%= current_user.following.count %>");
