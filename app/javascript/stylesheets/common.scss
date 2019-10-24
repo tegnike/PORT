@@ -26,10 +26,6 @@ a {
 a:hover {
   text-decoration: none;
 }
-ul {
-  list-style: none;
-  padding-left: 0;
-}
 
 /* typography */
 
@@ -159,6 +155,8 @@ footer {
 .user-info-whole {
   display: flex;
   justify-content: space-between;
+  background-color: white;
+  padding-top: 15px;
 
   .user-info {
     margin-right: 15px;
@@ -182,6 +180,11 @@ footer {
     }
     .profile {
       font-size: 0.9rem;
+    }
+  }
+  .portfolios {
+    .media {
+      border-bottom: 1px solid #dee2e6;
     }
   }
 }
@@ -617,6 +620,45 @@ aside {
     }
     .comment {
       font-size: 0.8rem;
+    }
+  }
+}
+
+/* portfolio form */
+
+.new_portfolio, .edit_portfolio {
+  background-color: white;
+  padding: 20px 20px 50px;
+
+  input, trix-editor {
+    margin-bottom: 15px;
+  }
+  input::placeholder {
+    color: #c0c0c0;
+  }
+  .field {
+    h2 {
+      background-color: #dfeffc;
+      position: relative;
+      display: inline-block;
+      margin: 0.5rem 0 1.5rem;
+      padding: 7px 10px;
+      min-width: 200px;
+      max-width: 100%;
+      font-size: 16px;
+      border-radius: 4px;
+    }
+    h2:before {
+      content: "";
+      position: absolute;
+      top: 100%;
+      margin-left: -15px;
+      border: 15px solid transparent;
+      border-top: 15px solid #e0edff;
+    }
+    .btn {
+      float: right;
+      padding: 4px 40px;
     }
   }
 }

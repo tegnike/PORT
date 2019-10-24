@@ -1,31 +1,27 @@
 <%= form_for(@portfolio) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
+  <%= render "shared/error_messages", object: f.object %>
   <div class="field">
+    <h2 class="py-2">ポートフォリオ</h2>
 
-    <%= f.label :title %>
-    <%= f.text_field :title, class: 'form-control' %>
+    <%= f.text_field :title, class: "form-control", placeholder: "タイトル" %>
 
-    <%= f.label :content %>
-    <%= f.rich_text_area :content %>
+    <%= f.rich_text_area :content, placeholder: "ポートフォリオを自由に紹介してください。" %>
 
-    <%= f.label :image %><br>
-    <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %><br>
+    <%= f.label :image %><span>（16×9のサイズがキレイに収まります。）</span><br>
+    <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %><br>
 
-    <%= f.label :web_url %>
-    <%= f.text_field :web_url, class: 'form-control' %>
+    <%= f.text_field :web_url, class: "form-control", placeholder: "WEBサイト URL" %>
 
-    <%= f.label :git_url %>
-    <%= f.text_field :git_url, class: 'form-control' %>
+    <%= f.text_field :git_url, class: "form-control", placeholder: "Github URL" %>
 
-    <% if controller.action_name = ("new" || "home") %>
+    <% if controller.action_name = "new" %>
+      <h2 class="py-2">プログレス</h2>
       <div class="field">
         <%= f.fields_for :progresses do |g| %>
-          <%= g.label :content %>
-          <%= g.rich_text_area :content, id: "progress_content" %>
+          <%= g.rich_text_area :content, class: "progress_content", placeholder: "最初のプログレスを記載してください。" %>
         <% end %>
       </div>
     <% end %>
-
+    <%= f.submit "#{yield(:submit_text)}", class: "btn btn-primary" %>
   </div>
-  <%= f.submit "#{yield(:submit_text)}", class: "btn btn-primary" %>
 <% end %>
