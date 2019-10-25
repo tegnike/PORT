@@ -1,0 +1,14 @@
+<div class="portfolio-side">
+  <% if user_signed_in? %>
+    <div class="btn btn-outline-primary portfolio-side-list relative">
+      <%= render "favorites/favorite_form", { portfolio: portfolio, user: portfolio.user }  %>
+    </div>
+    <div class="btn btn-outline-dark portfolio-side-list relative">
+      <%= link_to portfolio_progresses_path(portfolio), class: "progress_index" do %>
+        <span><%= t("portfolios.show.progress_index") %> (<%= portfolio.progresses.count %>)</span>
+      <% end %>
+    </div>
+  <% end %>
+  <%= link_to t("portfolios.show.web_url"), portfolio.web_url, class: "btn btn-outline-success portfolio-side-list" %>
+  <%= link_to t("portfolios.show.git_url"), portfolio.git_url, class: "btn btn-outline-secondary portfolio-side-list" %>
+</div>

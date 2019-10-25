@@ -1,0 +1,24 @@
+<div class="portfolio-header">
+  <%= link_to set_user_image(@portfolio.user), @portfolio.user %>
+  <%= link_to @portfolio.user.username, @portfolio.user %>
+  <span class="timestamp">
+    <%= @portfolio.created_at.strftime("%Y年%-m月%-d日") %>に作成
+  </span>
+  <% if current_user?(@portfolio.user) %>
+    <span class="pageview">
+      <%= t("common.pageview", score: score(@portfolio)) %>
+    </span>
+    <% if controller_name == "portfolios" %>
+      <%= link_to edit_portfolio_path(@portfolio) do %>
+        <span class="edit"><i class="fas fa-pencil-alt"></i> <%= t("btn.edit") %></span>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+<h1 class="title">
+  <% if controller_name == "portfolios" %>
+    <%= @portfolio.title %>
+  <% else %>
+    <%= link_to @portfolio.title, @portfolio %>
+  <% end %>
+</h1>

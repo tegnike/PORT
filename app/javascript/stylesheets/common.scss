@@ -634,6 +634,7 @@ aside {
     margin-right: 5px;
   }
   .comment-info {
+    width: 100%;
     margin: 5px;
     line-height: 19px;
 
@@ -656,6 +657,9 @@ aside {
     }
     .comment {
       font-size: 0.8rem;
+    }
+    .trix-content {
+      width: 100%;
     }
   }
 }
@@ -697,6 +701,19 @@ aside {
   .btn {
     float: right;
     padding: 4px 40px;
+  }
+}
+
+/* progress index */
+
+.progress-index {
+  li {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+  }
+  .edit {
+    float: right;
   }
 }
 

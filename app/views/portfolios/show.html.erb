@@ -2,22 +2,7 @@
 <% provide(:submit_text, t("btn.create")) %>
 <div class="portfolio-show">
   <main class="portfolio-whole <%= "before-login" unless user_signed_in? %>">
-    <div class="portfolio-header">
-      <%= link_to set_user_image(@portfolio.user), @portfolio.user %>
-      <%= link_to @portfolio.user.username, @portfolio.user %>
-      <span class="timestamp">
-        <%= @portfolio.created_at.strftime("%Y年%-m月%-d日") %>に作成
-      </span>
-      <% if current_user?(@portfolio.user) %>
-        <span class="pageview">
-          <%= t("common.pageview", score: score(@portfolio)) %>
-        </span>
-        <%= link_to edit_portfolio_path(@portfolio) do %>
-          <span class="edit"><i class="fas fa-pencil-alt"></i> <%= t("btn.edit") %></span>
-        <% end %>
-      <% end %>
-    </div>
-    <h1 class="title"><%= @portfolio.title %></h1>
+    <%= render "shared/portfolio_info", portfolio: @portfolio %>
     <% if @portfolio.image? %>
       <%= image_tag @portfolio.image.url, class: "image" %>
     <% end %>
@@ -32,9 +17,8 @@
       </div>
     </div>
     <div class="progress-whole">
-      <h2 class="py-2">プログレス</h2>
+      <h2 class="py-2">プログレス <%= link_to "##{get_number(@portfolio, @progress)}", portfolio_progress_path(@portfolio, @progress), class: "id" %></h2>
       <div class="progress-header">
-        <%= link_to "##{get_number(@portfolio, @progress)}", portfolio_progress_path(@portfolio, @progress), class: "id" %>
         <% if @progress.has_any_evaluations? %>
           <span class="average_evaluation">評価：<%= @progress.average_evaluation %></span>（<%= @progress.comments.count %> 件）
         <% end %>
@@ -66,20 +50,7 @@
     </div>
   </main>
   <aside>
-    <div class="portfolio-side">
-      <% if user_signed_in? %>
-        <div class="btn btn-outline-primary portfolio-side-list relative">
-          <%= render "favorites/favorite_form", { portfolio: @portfolio, user: @portfolio.user }  %>
-        </div>
-        <div class="btn btn-outline-dark portfolio-side-list relative">
-          <%= link_to portfolio_progresses_path(@portfolio), class: "progress_index" do %>
-            <span><%= t(".progress_index") %> (<%= @portfolio.progresses.count %>)</span>
-          <% end %>
-        </div>
-      <% end %>
-      <%= link_to t(".web_url"), @portfolio.web_url, class: "btn btn-outline-success portfolio-side-list" %>
-      <%= link_to t(".git_url"), @portfolio.git_url, class: "btn btn-outline-secondary portfolio-side-list" %>
-    </div>
+    <%= render "shared/portfolio_sidebar", portfolio: @portfolio %>
   </aside>
 </div>
 
