@@ -1,11 +1,58 @@
 <% provide(:title, t("devise.registrations.edit.title")) %>
-<% provide(:submit_text, t("devise.registrations.edit.update")) %>
-<h2><%= t(".title") %></h2>
+<div class="user-info-whole">
+  <section class="user-info col-sm-3">
+    <%= render "shared/user_info" %>
+  </section>
+  <section class="multi-info-box col-sm-9">
+    <h2><%= t(".title") %></h2>
+    <%= form_for(@user, url: registration_path(@user), html: { class: "form-horizontal" }) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
 
-<%= render 'user_form' %>
+      <div class="field form-group">
+        <%= f.label :username %>
+        <%= f.text_field :username, class: "form-control", placeholder: "ユーザ名" %>
+      </div>
 
-<h3><%= t(".cancel_my_account") %></h3>
+      <div class="field form-group">
+        <%= f.label :profile %>
+        <%= f.text_area :profile, class: "form-control", placeholder: "プロフィール" %>
+      </div>
 
-<%= button_to t(".cancel_my_account"), registration_path(resource_name), data: { confirm: t(".are_you_sure") }, method: :delete %>
+      <div class="field form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "メールアドレス" %>
+      </div>
 
-<%= link_to t(".back"), :back %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div><%= t(".currently_waiting_confirmation_for_email", email: resource.unconfirmed_email) %></div>
+      <% end %>
+
+      <div class="field form-group">
+        <%= f.label :image %><br />
+        <%= f.file_field :image %>
+      </div>
+
+      <div class="field form-group">
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "パスワード" %>
+        <% if @minimum_password_length %>
+          <p class="ml-1"><%= @minimum_password_length %><%= t("devise.registrations.edit.characters_minimum") %><br><%= t("devise.registrations.edit.leave_blank_if_you_don_t_want_to_change_it") %></p>
+        <% end %>
+      </div>
+
+      <div class="field form-group">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "確認用パスワード" %>
+      </div>
+
+      <div class="field form-group mb-4">
+        <p class="ml-1 mb-0"><%= t("devise.registrations.edit.we_need_your_current_password_to_confirm_your_changes") %>
+        <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: "現在のパスワード" %></p>
+      </div>
+
+      <div class="actions">
+        <%= f.submit t(".title"), class: "btn btn-outline-primary submit"  %>
+        <%= button_to t(".cancel_my_account"), registration_path(resource_name), data: { confirm: t(".are_you_sure") }, method: :delete, class: "btn btn-danger" %>
+      </div>
+    <% end %>
+
+  </section>
+</div>
