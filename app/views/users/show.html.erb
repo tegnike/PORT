@@ -6,9 +6,9 @@
   <section class="multi-info-box col-sm-9">
     <h2><%= @user.portfolios.count %> 件のポートフォリオが登録されています。</h2>
     <% if @user.portfolios.any? %>
-    <ol class="portfolios">
+    <ul class="portfolios">
       <%= render @my_portfolios, user: @user %>
-    </ol>
+    </ul>
     <%= paginate @my_portfolios %>
     <% end %>
     <ul class="nav nav-tabs nav-justified">

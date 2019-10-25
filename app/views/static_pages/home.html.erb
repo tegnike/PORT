@@ -61,13 +61,13 @@
     <div class="portfolios-header bg-white">
       <span><i class="fas fa-hand-point-right"></i> 最新のポートフォリオをチェック！</span>
     </div>
-    <ol class="portfolios">
+    <ul class="portfolios">
       <% if user_signed_in? %>
         <%= render @portfolios, user: current_user %>
       <% else %>
         <%= render @portfolios %>
       <% end %>
-    </ol>
+    </ul>
     <%= paginate @portfolios %>
   </main>
   <% if user_signed_in? %>

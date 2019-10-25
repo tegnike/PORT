@@ -26,6 +26,11 @@ a {
 a:hover {
   text-decoration: none;
 }
+ul, ol {
+  list-style: none;
+  padding-left: 0;
+}
+
 
 /* typography */
 
@@ -112,6 +117,14 @@ footer {
       float: left;
       margin-left: 15px;
     }
+  }
+}
+
+/* error_message */
+#error_explanation {
+  ul {
+    list-style: disc;
+    padding-inline-start: 40px;
   }
 }
 
@@ -304,9 +317,6 @@ footer {
     }
   }
   .comments {
-    ol {
-      padding-left: 0;
-    }
     .user-image {
       width: auto;
 
@@ -578,6 +588,10 @@ aside {
 }
 .portfolio-info {
   padding-top: 3px;
+
+  .pageview {
+    padding-left: 10px;
+  }
 }
 .btn-favorite {
   color: #0070ff;
@@ -683,5 +697,35 @@ aside {
   .btn {
     float: right;
     padding: 4px 40px;
+  }
+}
+
+/* ranking */
+
+.ranking {
+  ol{
+    counter-reset: item;
+    list-style-type: none;
+    padding-left: 50px;
+
+    li {
+      position: relative;
+    }
+    .media:before {
+      counter-increment: item;
+      content: counter(item);
+      font-size: x-large;
+      text-align: center;
+      padding-top: 1px;
+      font-weight: bold;
+      color: #333;
+      position: absolute;
+      top: 40px;
+      left: -50px;
+      width: 40px;
+      height: 40px;
+      background-color: white;
+      border-radius: 50%;
+    }
   }
 }

@@ -1,26 +1,32 @@
-<li id="portfolio-<%= portfolio.id %>" class="media bg-white">
-  <% if portfolio.image.url == nil %>
-    <img src="<%= asset_pack_path 'images/noimage.jpg' %>" class="mr-3"/>
-  <% else %>
-    <%= image_tag portfolio.image.url, class: "mr-3" %>
-  <% end %>
-  <div class="media-body">
-    <h4><%= link_to portfolio.title, portfolio, class: "title" %></h4>
-    <%= link_to t("portfolios.show.web_url"), portfolio.web_url, class: "btn btn-outline-success" %>
-    <%= link_to t("portfolios.show.git_url"), portfolio.git_url, class: "btn btn-outline-secondary" %>
-    <div class="portfolio-info">
-      <span class="portfolio-info-user">
-        by <%= link_to portfolio.user.username, portfolio.user %>
-        <%= t("common.time_ago", time: time_ago_in_words(portfolio.created_at)) %>
-      </span>
-      <% if user_signed_in? %>
-        <span class="d-inline-block"><%= render 'favorites/favorite_form', { portfolio: portfolio, user: user } %></span>
-      <% end %>
-      <% unless portfolio.pageview == nil %>
-        <span class="pageview">
-          <%= t("common.pageview", score: portfolio.pageview) %>
+<li>
+  <div id="portfolio-<%= portfolio.id %>" class="media bg-white">
+    <% if portfolio.image.url == nil %>
+      <img src="<%= asset_pack_path 'images/noimage.jpg' %>" class="mr-3"/>
+    <% else %>
+      <%= image_tag portfolio.image.url, class: "mr-3" %>
+    <% end %>
+    <div class="media-body">
+      <h4><%= link_to portfolio.title, portfolio, class: "title" %></h4>
+      <%= link_to t("portfolios.show.web_url"), portfolio.web_url, class: "btn btn-outline-success" %>
+      <%= link_to t("portfolios.show.git_url"), portfolio.git_url, class: "btn btn-outline-secondary" %>
+      <div class="portfolio-info">
+        <span class="portfolio-info-user">
+          by <%= link_to portfolio.user.username, portfolio.user %>
+          <%= t("common.time_ago", time: time_ago_in_words(portfolio.created_at)) %>
         </span>
-      <% end %>
+        <% if portfolio.pageview != nil %>
+          <span class="pageview">
+            <%= t("common.pageview", score: portfolio.pageview) %>
+          </span>
+        <% elsif portfolio.user == current_user %>
+          <span class="pageview">
+            <%= t("common.pageview", score: score(portfolio)) %>
+          </span>
+        <% end %>
+        <% if user_signed_in? %>
+          <span class="d-inline-block"><%= render 'favorites/favorite_form', { portfolio: portfolio, user: user } %></span>
+        <% end %>
+      </div>
     </div>
   </div>
 </li>
