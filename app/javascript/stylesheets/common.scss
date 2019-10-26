@@ -220,10 +220,13 @@ footer {
 
     .actions {
       display: flex;
+      justify-content: flex-end;
     }
-    .submit {
-      margin-left: 0;
-    }
+  }
+  .delete-action {
+    padding-right: 15px;
+    display: flex;
+    justify-content: flex-end;
   }
 }
 .nav-tabs {
@@ -479,18 +482,19 @@ aside {
   .or {
     margin: 10px auto 15px;
   }
-}
-.submit {
-  margin: auto;
-  display: block;
-  width: 70%;
-  border: 1px solid #ced4da;
-  color: #333;
-}
-.submit:hover {
-  color: #333;
-  border: 1px solid #ced4da;
-  background-color: $gray-medium-light;
+
+  .submit {
+    margin: auto;
+    display: block;
+    width: 70%;
+    border: 1px solid #ced4da;
+    color: #333;
+  }
+  .submit:hover {
+    color: #333;
+    border: 1px solid #ced4da;
+    background-color: $gray-medium-light;
+  }
 }
 
 .post-warning a:hover{
