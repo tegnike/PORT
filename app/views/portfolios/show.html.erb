@@ -46,17 +46,19 @@
       </div>
       <div class="content"><%= @progress.content %></div>
       <% unless @comments == nil %>
-      <div class="comments">
-        <ol>
-          <%= render @comments, portfolio: @portfolio, progress: @progress %>
-        </ol>
-      </div>
+        <div class="comments">
+          <ol>
+            <%= render @comments, portfolio: @portfolio, progress: @progress %>
+          </ol>
+        </div>
       <% end %>
-      <div class="comment-form">
-        <%= link_to set_user_image(@portfolio.user), @portfolio.user, class: "user-image" %>
-        <strong>コメントを投稿する</strong>
-        <%= render "comments/comment_form" %>
-      </div>
+      <% if user_signed_in? %>
+        <div class="comment-form">
+          <%= link_to set_user_image(@portfolio.user), @portfolio.user, class: "user-image" %>
+          <strong>コメントを投稿する</strong>
+          <%= render "comments/comment_form" %>
+        </div>
+      <% end %>
     </div>
   </main>
   <aside>
