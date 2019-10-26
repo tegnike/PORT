@@ -1,5 +1,5 @@
 <%= form_for(current_user.favorites.build, remote: true) do |f| %>
   <div><%= hidden_field_tag :user_id, user.id %></div>
   <div><%= hidden_field_tag :portfolio_id, portfolio.id %></div>
-  <%= button_tag sanitize("<i class='far fa-thumbs-up'></i> #{portfolio.favorite_users.count}"), :type => "submit", :class =>"btn btn-unfavorite" %>
+  <%= button_tag sanitize("<i class='far fa-thumbs-up'></i> #{portfolio.favorite_users.count} <span>#{yield(:favorite)}</span>"), :type => "submit", :class =>"btn btn-unfavorite" %>
 <% end %>

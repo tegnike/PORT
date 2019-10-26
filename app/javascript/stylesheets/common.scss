@@ -251,8 +251,14 @@ footer {
       color: #aaa;
       margin-left: 10px;
     }
-    .edit {
+    .nav-link {
+      padding: 0;
+    }
+    .dropdown {
       float: right;
+    }
+    .dropdown-menu {
+      padding: 5px;
     }
   }
   .title {
@@ -384,7 +390,8 @@ aside {
   width: 25%;
 
   .portfolio-side {
-    border: $gray-medium-light 1px solid;
+    border: #aaa 1px solid;
+    border-radius: 5px;
     position: -webkit-sticky;
     position: sticky;
     top: 50px;
@@ -393,6 +400,16 @@ aside {
     .portfolio-side-list {
       margin: 10px;
       display: block;
+      text-align: left;
+      padding-left: 30px;
+
+      a, button {
+        color: #333;
+      }
+      button {
+        text-align: left;
+        padding-left: 30px;
+      }
     }
     .relative {
       position: relative;
@@ -405,12 +422,14 @@ aside {
       width: 100%;
       padding-bottom: 0;
     }
+    .relative > div {
+      display: inline-block;
+    }
     .relative button {
       top: 0;
-      color: #007bff;
     }
-    .relative:hover button, .relative:hover span {
-      color: white
+    .portfolio-side-list:hover button, .portfolio-side-list:hover span {
+      color: #0056b3;
     }
   }
 }
@@ -721,7 +740,7 @@ aside {
 /* progress index */
 
 .progress-index {
-  li {
+  ol > li {
     padding: 10px;
     border: 1px solid #ddd;
     margin-bottom: 20px;

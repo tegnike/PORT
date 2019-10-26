@@ -1,3 +1,4 @@
+<% provide(:favorite, "お気に入り") %>
 $("#portfolio-<%= @portfolio.id %> #favorite_form, .portfolio-side #favorite_form").html("<%= escape_javascript(render partial: 'favorites/unfavorite', locals: { portfolio: @portfolio, user: @user }) %>");
 $("#portfolio-<%= @portfolio.id %> .favorite_count").html("(<%= @portfolio.favorite_users.count %>)");
 $("#favorites").html('<%= @user.favorite_portfolios.count %>');

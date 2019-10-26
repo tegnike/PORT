@@ -28,8 +28,18 @@
               <i class="fas fa-cog"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <li><%= link_to t("btn.edit"), edit_portfolio_progress_path(@portfolio, @progress) %></li>
-              <li><%= link_to t(".progress_new"), new_portfolio_progress_path(@portfolio) %></li>
+              <li>
+                <%= link_to edit_portfolio_progress_path(@portfolio, @progress) do %>
+                  <span><i class="fas fa-pencil-alt"></i> <%= t("btn.edit") %></span>
+                <% end %>
+              </li>
+              <li class="dropdown-divider"></li>
+              <li>
+                <%= link_to portfolio_progress_path(@portfolio, @progress),
+                  method: :delete, data: { confirm: t("common.delete_confirmation") } do %>
+                  <span><i class="fas fa-trash-alt"></i> <%= t("btn.delete") %></span>
+                <% end %>
+              </li>
             </ul>
           </span>
         <% end %>
