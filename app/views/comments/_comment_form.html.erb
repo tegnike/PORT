@@ -1,6 +1,6 @@
 <%= form_for [@portfolio, @progress, @comment], remote: yield(:remote).presence do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-
+  
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.rich_text_area :comment, id: (yield(:id).presence || "comment_comment") %>
 

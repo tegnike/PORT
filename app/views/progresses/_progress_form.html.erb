@@ -9,5 +9,7 @@
 
   <%= f.rich_text_area :content %>
 
-  <%= f.submit yield(:submit_text), class: "btn btn-primary" %>
+  <div class="action">
+    <%= f.submit "#{yield(:submit_text)}", class: "btn btn-primary" %>
+  </div>
 <% end %>

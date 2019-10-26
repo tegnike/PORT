@@ -14,7 +14,7 @@
 
     <%= f.text_field :git_url, class: "form-control", placeholder: "Github URL" %>
 
-    <% if controller.action_name = "new" %>
+    <% if controller.action_name == "new" %>
       <h2 class="py-2">プログレス</h2>
       <div class="field">
         <%= f.fields_for :progresses do |g| %>
@@ -22,6 +22,9 @@
         <% end %>
       </div>
     <% end %>
-    <%= f.submit "#{yield(:submit_text)}", class: "btn btn-primary" %>
+
+    <div class="action">
+      <%= f.submit "#{yield(:submit_text)}", class: "btn btn-primary" %>
+    </div>
   </div>
 <% end %>
