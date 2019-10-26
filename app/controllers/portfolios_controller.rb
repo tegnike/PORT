@@ -80,7 +80,7 @@ class PortfoliosController < ApplicationController
     end
 
     def delete_redis(portfolio)
-      (portfolio.created_at.to_datetime..Date.tomorrow).each do |date|
+      (portfolio.created_at.yesterday.to_datetime..Date.tomorrow).each do |date|
         REDIS.zrem "portfolios/#{date.strftime("%Y-%m-%d")}", portfolio.id
       end
       REDIS.del "portfolios/total/#{portfolio.id}"
