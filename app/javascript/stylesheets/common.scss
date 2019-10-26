@@ -130,16 +130,19 @@ footer {
 
 /* flash_message */
 
-.flash-message .alert {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 2;
-  width: 50%;
-  height: 50px;
-  margin: 70px auto;
+.flash-message {
+  .alert {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 2;
+    width: 50%;
+    margin: 70px auto;
+  }
+  .zindex-minus {
+    z-index: -10;
+  }
 }
 .alert-alert {
   color: #721c24;
