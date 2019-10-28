@@ -1,24 +1,38 @@
-<% @user ||= current_user %>
-<div class="stats-user-info border-bottom">
-  <%= set_user_image(current_user) %> <%= current_user.username %>
-</div>
-<div class="stats">
-  <a href="<%= following_user_path(@user) %>" class="stat">
-    <strong id="following">
-      <%= @user.following.count %>
-    </strong><br>
-    <span class="stat-label">フォロー</span>
-  </a>
-  <a href="<%= followers_user_path(@user) %>" class="stat border-left">
-    <strong id="followers">
-      <%= @user.followers.count %>
-    </strong><br>
-    <span class="stat-label">フォロワー</span>
-  </a>
-  <a href="<%= user_path(@user) %>" class="stat border-left">
-    <strong id="favorites">
-      <%= @user.favorite_portfolios.count %>
-    </strong><br>
-    <span class="stat-label">お気に入り</span>
-  </a>
-</div>
+<% if user_signed_in? %>
+  <% @user ||= current_user %>
+  <div class="stats-user-info border-bottom">
+    <%= set_user_image(current_user) %> <%= current_user.username %>
+  </div>
+  <div class="stats">
+    <a href="<%= following_user_path(@user) %>" class="stat">
+      <strong id="following">
+        <%= @user.following.count %>
+      </strong><br>
+      <span class="stat-label">フォロー</span>
+    </a>
+    <a href="<%= followers_user_path(@user) %>" class="stat border-left">
+      <strong id="followers">
+        <%= @user.followers.count %>
+      </strong><br>
+      <span class="stat-label">フォロワー</span>
+    </a>
+    <a href="<%= user_path(@user) %>" class="stat border-left">
+      <strong id="favorites">
+        <%= @user.favorite_portfolios.count %>
+      </strong><br>
+      <span class="stat-label">お気に入り</span>
+    </a>
+  </div>
+<% else %>
+  <div class="stat-before-login">
+    <h3>ユーザ登録しませんか？</h3>
+    <p>登録すると以下の機能が使えるようになります。</p>
+    <ul>
+      <li>ポートフォリオ投稿</li>
+      <li>コメント投稿</li>
+      <li>過去プログレスの閲覧</li>
+      <li>ユーザフォロー</li>
+      <li>投稿のお気に入り</li>
+    </ul>
+  </div>
+<% end %>

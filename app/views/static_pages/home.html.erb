@@ -57,7 +57,7 @@
   </div>
 <% end %>
 <div class="top-page-info">
-  <main class="main <%= "before-login" unless user_signed_in? %>">
+  <main class="main">
     <div class="portfolios-header bg-white">
       <span><i class="fas fa-hand-point-right"></i> 最新のポートフォリオをチェック！</span>
     </div>
@@ -70,11 +70,9 @@
     </ul>
     <%= paginate @portfolios %>
   </main>
-  <% if user_signed_in? %>
-    <aside class="sidebar">
-      <div class="stats-whole bg-white">
-        <%= render 'shared/stats' %>
-      </div>
-    </aside>
-  <% end %>
+  <aside class="sidebar">
+    <div class="stats-whole bg-white">
+      <%= render 'shared/stats' %>
+    </div>
+  </aside>
 </div>

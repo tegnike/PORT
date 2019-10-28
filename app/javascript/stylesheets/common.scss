@@ -439,9 +439,6 @@ aside {
     }
   }
 }
-.before-login {
-  width: 100%;
-}
 
 /* top page */
 
@@ -511,16 +508,6 @@ aside {
       padding: 15px;
       margin: auto 15px 5px auto;
       border-radius: 5px 5px 0 0;
-    }
-  }
-  .before-login {
-    width: 100%;
-
-    .portfolios-header {
-      margin: auto auto 5px;
-    }
-    .portfolios {
-      padding-right: 0px;
     }
   }
   .sidebar {
@@ -596,6 +583,17 @@ aside {
 }
 .stat-label {
   font-size: 14px;
+}
+.stat-before-login {
+  padding: 15px;
+
+  h3 {
+    font-size: 1.4rem
+  }
+  ul {
+    list-style: disc;
+    padding-left: inherit;
+  }
 }
 
 /* portfolio_media */

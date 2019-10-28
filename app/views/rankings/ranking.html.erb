@@ -12,11 +12,9 @@
       <% end %>
     </ol>
   </main>
-  <% if user_signed_in? %>
-    <aside class="sidebar">
-      <div class="stats-whole bg-white">
-        <%= render 'shared/stats' %>
-      </div>
-    </aside>
-  <% end %>
+  <aside class="sidebar">
+    <div class="stats-whole bg-white">
+      <%= render 'shared/stats' %>
+    </div>
+  </aside>
 </div>
