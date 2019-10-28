@@ -602,10 +602,14 @@ aside {
   margin-right: 15px;
   padding-left: 0px;
 
-  img {
+  .portfolio-image {
     width: 25%;
-    height: 125px;
-    object-fit: contain;
+
+    img {
+      width: 100%;
+      height: 115px;
+      object-fit: contain;
+    }
   }
   .media {
     height: 125px;

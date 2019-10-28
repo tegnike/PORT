@@ -1,9 +1,11 @@
 <li>
   <div id="portfolio-<%= portfolio.id %>" class="media bg-white">
-    <% if portfolio.image.url == nil %>
-      <img src="<%= asset_pack_path 'images/noimage.jpg' %>" class="mr-3"/>
-    <% else %>
-      <%= image_tag portfolio.image.url, class: "mr-3" %>
+    <%= link_to portfolio.user, class: "portfolio-image mr-3" do %>
+      <% if portfolio.image.url == nil %>
+        <img src="<%= asset_pack_path 'images/noimage.jpg' %>" />
+      <% else %>
+        <%= image_tag portfolio.image.url %>
+      <% end %>
     <% end %>
     <div class="media-body">
       <h4><%= link_to portfolio.title, portfolio, class: "title" %></h4>

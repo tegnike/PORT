@@ -1,7 +1,9 @@
 <% if user_signed_in? %>
   <% @user ||= current_user %>
   <div class="stats-user-info border-bottom">
-    <%= set_user_image(current_user) %> <%= current_user.username %>
+    <%= link_to current_user do %>
+      <%= set_user_image(current_user) %> <%= current_user.username %>
+    <% end %>
   </div>
   <div class="stats">
     <a href="<%= following_user_path(@user) %>" class="stat">
