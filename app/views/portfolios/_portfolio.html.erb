@@ -9,8 +9,12 @@
     <% end %>
     <div class="media-body">
       <h4><%= link_to portfolio.title, portfolio, class: "title" %></h4>
-      <%= link_to t("portfolios.show.web_url"), portfolio.web_url, class: "btn btn-outline-success" %>
-      <%= link_to t("portfolios.show.git_url"), portfolio.git_url, class: "btn btn-outline-secondary" %>
+      <%= link_to  portfolio.web_url, class: "btn portfolio-url" do %>
+        <i class="fas fa-desktop"></i> <%= t("portfolios.show.web_url") %>
+      <% end %>
+      <%= link_to  portfolio.git_url, class: "btn portfolio-url" do %>
+        <i class="fab fa-github"></i> <%= t("portfolios.show.git_url") %>
+      <% end %>
       <div class="portfolio-info">
         <span class="portfolio-info-user">
           by <%= link_to portfolio.user.username, portfolio.user %>

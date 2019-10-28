@@ -616,7 +616,15 @@ aside {
     margin-bottom: 5px;
   }
   .media-body {
-    padding-top: 10px;
+    padding: 10px 10px 10px 0;
+
+    .portfolio-url {
+      border: 1px solid #ced4da;
+      color: #333;
+    }
+    .portfolio-url:hover {
+      background-color: #f5f4f7;
+    }
   }
 }
 .portfolio-info {
