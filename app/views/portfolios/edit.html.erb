@@ -1,3 +1,10 @@
 <% provide(:title, t(".title")) %>
 <% provide(:submit_text, t("btn.update")) %>
-<%= render 'shared/portfolio_form' %>
+<div class="portfolio-show progress-form">
+  <main class="portfolio-whole <%= "before-login" unless user_signed_in? %>">
+    <%= render 'shared/portfolio_form' %>
+  </main>
+  <aside>
+    <%= render "shared/portfolio_sidebar", portfolio: @portfolio %>
+  </aside>
+</div>

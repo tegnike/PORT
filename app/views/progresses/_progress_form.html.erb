@@ -1,5 +1,5 @@
 <%= form_for [@portfolio, @progress] do |f| %>
-  <% if controller.action_name == "new" %>
+  <% if controller.action_name.in?(["new", "create"]) %>
     <h1><%= @portfolio.title %> #<%= @portfolio.progresses.count + 1 %></h1>
   <% else %>
     <h1><%= @portfolio.title %> #<%= get_number(@portfolio, @progress) %></h1>

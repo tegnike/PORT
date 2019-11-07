@@ -38,3 +38,22 @@
     <%= link_to @portfolio.title, @portfolio %>
   <% end %>
 </h1>
+<div class="portfolio-links row">
+  <div class="col">
+    <%= link_to portfolio.web_url, class: "btn portfolio-side-list" do %>
+      <span><i class="fas fa-desktop"></i> <%= t("portfolios.show.web_url") %></span>
+    <% end %>
+  </div>
+  <div class="col">
+    <%= link_to portfolio.git_url, class: "btn portfolio-side-list" do %>
+      <span><i class="fab fa-github"></i> <%= t("portfolios.show.git_url") %></span>
+    <% end %>
+  </div>
+  <% if user_signed_in? %>
+    <div class="col">
+      <div class="btn portfolio-side-list relative">
+        <%= render "favorites/favorite_form", { portfolio: portfolio, user: portfolio.user }  %>
+      </div>
+    </div>
+  <% end %>
+</div>

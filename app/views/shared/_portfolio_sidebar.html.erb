@@ -1,5 +1,8 @@
-<% provide(:favorite, "お気に入り") %>
+<% provide(:favorite, "お気に入り") if  %>
 <div class="portfolio-side">
+  <%= link_to portfolio, class: "btn portfolio-side-list" do %>
+    <span><i class="fas fa-anchor"></i> ポートフォリオトップ</span>
+  <% end %>
   <%= link_to portfolio.web_url, class: "btn portfolio-side-list" do %>
     <span><i class="fas fa-desktop"></i> <%= t("portfolios.show.web_url") %></span>
   <% end %>

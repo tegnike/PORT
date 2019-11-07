@@ -4,11 +4,6 @@
   <hr>
   <div class="row">
     <div class="col-md-6">
-      <div class="user-form-links">
-        <%= render "devise/shared/links" %>
-      </div>
-    </div>
-    <div class="col-md-6">
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "form-horizontal" }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
         <%= f.hidden_field :reset_password_token %>
@@ -28,6 +23,11 @@
           <%= f.submit t(".change_my_password"), class: "btn btn-outline-primary submit" %>
         </div>
       <% end %>
+    </div>
+    <div class="col-md-6">
+      <div class="user-form-links">
+        <%= render "devise/shared/links" %>
+      </div>
     </div>
   </div>
 </div>

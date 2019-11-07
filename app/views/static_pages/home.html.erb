@@ -8,7 +8,9 @@
     <div class="col-md-6">
       <div class="snses">
         <% User.omniauth_providers.each do |provider| %>
-          <%= link_to fa_icon("#{t(".LC.#{provider}")}", text: " #{t(".CL.#{provider}")}", class: "fab"), omniauth_authorize_path(@user, provider), class: "btn #{t(".LC.#{provider}")}" %>
+          <%= link_to omniauth_authorize_path(@user, provider), class: "btn #{t(".LC.#{provider}")}" do %>
+            <i class="fab fa-<%= t(".LC.#{provider}") %>"></i> <span><%= t(".CL.#{provider}") %></span>
+          <% end %>
         <% end %>
       </div>
       <div class="text-center or">OR</div>

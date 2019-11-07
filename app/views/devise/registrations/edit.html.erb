@@ -1,9 +1,9 @@
 <% provide(:title, t("devise.registrations.edit.title")) %>
-<div class="user-info-whole">
-  <section class="user-info col-sm-3">
+<div class="user-info-whole row">
+  <section class="user-info col-md-3">
     <%= render "shared/user_info" %>
   </section>
-  <section class="multi-info-box col-sm-9">
+  <section class="multi-info-box col-md-9">
     <h2><%= t(".title") %></h2>
     <%= form_for(@user, url: registration_path(@user), html: { class: "form-horizontal" }) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
@@ -21,11 +21,11 @@
       <div class="field form-group">
         <%= f.label :email %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "メールアドレス" %>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <p class="ml-1"><%= t(".currently_waiting_confirmation_for_email", email: resource.unconfirmed_email) %></p>
+        <% end %>
       </div>
 
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div><%= t(".currently_waiting_confirmation_for_email", email: resource.unconfirmed_email) %></div>
-      <% end %>
 
       <div class="field form-group">
         <%= f.label :image %><br />
@@ -44,8 +44,8 @@
       </div>
 
       <div class="field form-group mb-4">
-        <p class="ml-1 mb-0"><%= t("devise.registrations.edit.we_need_your_current_password_to_confirm_your_changes") %>
-        <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: "現在のパスワード" %></p>
+        <p class="ml-1 mb-0"><%= t("devise.registrations.edit.we_need_your_current_password_to_confirm_your_changes") %></p>
+        <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: "現在のパスワード" %>
       </div>
 
       <div class="actions">

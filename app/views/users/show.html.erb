@@ -1,9 +1,9 @@
 <% provide(:title, t("users.#{controller.action_name}.title", user_name: @user.username)) %>
-<div class="user-info-whole">
-  <section class="user-info col-sm-3">
+<div class="user-info-whole row">
+  <section class="user-info col-md-3">
     <%= render "shared/user_info" %>
   </section>
-  <section class="multi-info-box col-sm-9">
+  <section class="multi-info-box col-md-9">
     <h2><%= @user.portfolios.count %> 件のポートフォリオが登録されています。</h2>
     <% if @user.portfolios.any? %>
     <ul class="portfolios">

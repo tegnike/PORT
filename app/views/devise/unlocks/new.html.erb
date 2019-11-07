@@ -4,11 +4,6 @@
   <hr>
   <div class="row">
     <div class="col-md-6">
-      <div class="user-form-links">
-        <%= render "devise/shared/links" %>
-      </div>
-    </div>
-    <div class="col-md-6">
       <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: "form-horizontal" }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -20,6 +15,11 @@
           <%= f.submit t(".resend_unlock_instructions"), class: "btn btn-outline-primary submit" %>
         </div>
       <% end %>
+    </div>
+    <div class="col-md-6">
+      <div class="user-form-links">
+        <%= render "devise/shared/links" %>
+      </div>
     </div>
   </div>
 </div>

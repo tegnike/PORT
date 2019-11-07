@@ -1,9 +1,8 @@
 <% if user_signed_in? %>
   <% @user ||= current_user %>
   <div class="stats-user-info border-bottom">
-    <%= link_to current_user do %>
-      <%= set_user_image(current_user) %> <%= current_user.username %>
-    <% end %>
+    <%= link_to set_user_image(current_user), current_user %>
+    <span><%= link_to current_user.username, current_user %></span>
   </div>
   <div class="stats">
     <a href="<%= following_user_path(@user) %>" class="stat">
@@ -27,7 +26,7 @@
   </div>
 <% else %>
   <div class="stat-before-login">
-    <h3>ユーザ登録しませんか？</h3>
+    <h4>ユーザ登録しませんか？</h4>
     <p>登録すると以下の機能が使えるようになります。</p>
     <ul>
       <li>ポートフォリオ投稿</li>

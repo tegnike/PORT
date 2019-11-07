@@ -1,6 +1,12 @@
 <%= form_for(@portfolio) do |f| %>
   <%= render "shared/error_messages", object: f.object %>
   <div class="field">
+    <% if controller.action_name == "new" %>
+      <h1><%= t("portfolios.new.title") %></h1>
+    <% else %>
+      <h1><%= @portfolio.title %></h1>
+    <% end %>
+
     <h2 class="py-2">ポートフォリオ</h2>
 
     <%= f.text_field :title, class: "form-control", placeholder: "タイトル" %>

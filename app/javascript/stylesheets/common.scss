@@ -3,8 +3,11 @@
 $gray-medium-light: #f5f4f7;
 
 /* universal */
-
+html {
+  font-size: 62.5%;
+}
 body {
+  font-size: 1.6em;
   background-color: $gray-medium-light;
 }
 section {
@@ -30,25 +33,38 @@ ul, ol {
   list-style: none;
   padding-left: 0;
 }
-
-
-/* typography */
+.btn, .form-control {
+  font-size: 1.6rem;
+  line-height: 2;
+}
 
 h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
+  line-height: 1.2;
 }
 h1 {
-  font-size: 3em;
+  font-size: 4rem;
   letter-spacing: -2px;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   text-align: center;
 }
 h2 {
-  font-size: 1.2em;
+  font-size: 2.6rem;
   letter-spacing: -1px;
   margin-bottom: 20px;
   font-weight: normal;
   text-align: center;
+}
+h3 {
+  font-size: 2.2rem;
+}
+h4 {
+  font-size: 1.8rem;
+}
+.dropdown-menu {
+  font-size: 1.6rem;
+}
+#error_explanation .alert {
+  font-size: 2rem;
 }
 p {
   line-height: 1.7em;
@@ -71,14 +87,22 @@ header {
     width: 110px;
   }
   .nav-right {
-    padding-top: 12px;
+    padding-top: 10px;
   }
-  .user-image {
-    height: 32px;
-    border-radius: 5px;
+  .dropdown-toggle {
+    .user-image {
+      width: 32px;
+      height: 32px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    .fa-id-card, .myaccount {
+      display: none;
+    }
   }
   .dropdown-menu {
-    padding: 5px;
+    padding: 5px 10px;
+    min-width: 15rem;
     background-color: #e3f2fd;
 
     .dropdown-divider {
@@ -103,6 +127,8 @@ footer {
 
   #logo {
     padding-top: 0;
+    float: left;
+    font-size: 1.6rem;
   }
   a {
     color: gray;
@@ -121,6 +147,7 @@ footer {
 }
 
 /* error_message */
+
 #error_explanation {
   ul {
     list-style: disc;
@@ -168,9 +195,20 @@ footer {
 }
 
 /* user index */
+
 .users {
   padding-left: 0;
   margin-right: 15px;
+
+  .user-info {
+    padding: 5px 0;
+  }
+  .user-name {
+    line-height: 1.2;
+  }
+  .follow-form {
+    margin-right: 10px;
+  }
 }
 
 /* user show */
@@ -182,13 +220,15 @@ footer {
   padding-top: 15px;
 
   .user-info {
-    margin-right: 15px;
+    padding-bottom: 20px;
 
     .user-image {
       margin-bottom: 10px;
     }
     img {
-      width: 100%;
+      width: 255px;
+      height: 255px;
+      object-fit: cover;
     }
     form {
       margin-bottom: 10px;
@@ -197,22 +237,24 @@ footer {
       width: 100%;
     }
     h1 {
-      font-size: 2em;
+      font-size: 3rem;
       text-align: left;
       margin-bottom: 10px;
     }
     .profile {
-      font-size: 0.9rem;
-    }
-  }
-  .portfolios {
-    .media {
-      border-bottom: 1px solid #dee2e6;
+      font-size: 1.5rem;
     }
   }
 
   .multi-info-box {
     padding-bottom: 20px;
+
+    h2 {
+      font-size: 2rem;
+    }
+    .pagination {
+      margin-bottom: 2.5rem;
+    }
   }
 
   .form-horizontal {
@@ -234,6 +276,7 @@ footer {
 }
 
 /* portfolio show */
+
 .portfolio-show {
   display: flex;
   justify-content: space-between;
@@ -245,15 +288,21 @@ footer {
   background-color: white;
   padding: 30px;
 
+  h1 {
+    line-height: 1.2;
+  }
+
   .portfolio-header {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 
     img {
       width: 32px;
+      height: 32px;
+      object-fit: cover;
       margin-right: 5px;
     }
     .timestamp, .pageview {
-      font-size: 0.9rem;
+      font-size: 1.4rem;
       color: #aaa;
       margin-left: 10px;
     }
@@ -262,15 +311,39 @@ footer {
     }
     .dropdown {
       float: right;
+      line-height: 32px;
     }
     .dropdown-menu {
-      padding: 5px;
+      padding: 5px 10px;
+      min-width: 100px;
+    }
+    .dropdown-divider {
+      margin: 5px 0;
     }
   }
   .title {
     text-align: left;
     font-weight: 700;
     margin-bottom: 30px;
+  }
+  .portfolio-links {
+
+    .col {
+      margin-bottom: 15px;
+    }
+    .portfolio-side-list {
+      width: 100%;
+      height: 44px;
+      line-height: 30px;
+      border: 1px solid #ced4da;
+
+      button {
+        width: 100%;
+      }
+    }
+    .portfolio-side-list:hover {
+      background-color: $gray-medium-light;
+    }
   }
   .image {
     width: 100%;
@@ -288,11 +361,13 @@ footer {
 
     img {
       width: 60px;
+      height: 60px;
+      object-fit: cover;
       margin-right: 10px;
     }
     .profile {
       color: #777;
-      font-size: 0.8rem;
+      font-size: 1.3rem;
       margin-bottom: 5px;
     }
     .btn {
@@ -325,15 +400,25 @@ footer {
       padding: 0;
     }
     .dropdown-menu {
-      padding: 5px;
+      padding: 5px 10px;
+      min-width: 200px;
+
+      li {
+        margin-bottom: 5px;
+      }
     }
   }
   .comments {
+    .media {
+      border-bottom: none;
+    }
     .user-image {
       width: auto;
 
       img {
         width: 30px;
+        height: 30px;
+        object-fit: cover;
         margin-right: 2px;
         border-radius: 50%;
       }
@@ -363,12 +448,20 @@ footer {
       -webkit-transform: rotate(35deg);
       transform: rotate(35deg);
     }
+    h2 {
+      background-color: #f8d7da;
+    }
   }
 }
 .comment-form {
   .user-image {
     width: 36px;
+    height: 36px;
+    object-fit: cover;
     margin-bottom: 10px;
+  }
+  h2 {
+    background-color: #f8d7da;
   }
 }
 .new_comment, .edit_comment {
@@ -384,7 +477,7 @@ footer {
     margin-left: 5px;
   }
   .comment-form-footer {
-    justify-content: flex-end;
+    justify-content: space-between;
     display: flex;
   }
   .btn {
@@ -449,9 +542,14 @@ aside {
 
   .top-page-message {
     padding: 50px 25px 0px 15px;
+
+    p {
+      margin-bottom: 25px;
+    }
   }
   .control-label {
     margin-top: 8px;
+    padding: 0 10px;
   }
   .portfolios {
     padding-left: 0;
@@ -479,7 +577,11 @@ aside {
   .or {
     margin: 10px auto 15px;
   }
-
+}
+.top-page-box, .entry-box {
+  hr {
+    margin: 0.5rem 0 2.5rem;
+  }
   .submit {
     margin: auto;
     display: block;
@@ -516,6 +618,7 @@ aside {
 }
 
 /* sign up & sign in*/
+
 .entry-box {
   padding: 20px;
   background-color: white;
@@ -524,7 +627,6 @@ aside {
     margin-bottom: 15px;
 
     .btn {
-      width: 80%;
       color: white;
       font-weight: 400;
       border-radius: 5px;
@@ -547,8 +649,8 @@ aside {
   }
 }
 .user-form-links {
-  font-size: 0.8rem;
-  width: 80%;
+  font-size: 1.4rem;
+  width: 90%;
   margin: auto;
 }
 
@@ -566,11 +668,27 @@ aside {
 }
 .stats-user-info {
   padding: 15px;
+  display: flex;
 
   img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
     border-radius: 5px !important;
     margin-right: 5px;
   }
+  span {
+    position: relative;
+    width: 100%;
+
+    a {
+      position: absolute;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+  }
+
 }
 .stats {
   display: flex;
@@ -612,12 +730,16 @@ aside {
     }
   }
   .media {
-    height: 125px;
     margin-bottom: 5px;
+    background-color: #fff;
+    border-bottom: 1px solid #dee2e6;
   }
   .media-body {
     padding: 10px 10px 10px 0;
 
+    h4 {
+      line-height: 1.2;
+    }
     .portfolio-url {
       border: 1px solid #ced4da;
       color: #333;
@@ -643,13 +765,17 @@ aside {
 }
 
 /* user patial */
+
 .user-partial {
   display: flex;
   background-color: white;
   margin-bottom: 5px;
+  border-bottom: 1px solid #dee2e6;
 
   .user-image {
     width: 73px;
+    height: 73px;
+    object-fit: cover;
     margin-right: 10px;
   }
   .user-info {
@@ -666,12 +792,16 @@ aside {
 }
 
 /* comment patial */
+
 .comments {
   .media {
     margin-bottom: 10px;
+    border-bottom: 1px solid #ced4da;
   }
   .user-image {
     width: 73px;
+    height: 73px;
+    object-fit: cover;
     margin-right: 5px;
   }
   .comment-info {
@@ -680,11 +810,14 @@ aside {
     line-height: 19px;
 
     .user-info {
-      font-size: 0.8rem;
+      font-size: 1.3rem;
     }
     .user-image {
       width: 15px;
+      height: 15px;
+      object-fit: cover;
       margin-right: 0px;
+      margin-bottom: 0px;
     }
     a {
       color: #377bb5;
@@ -697,7 +830,7 @@ aside {
       color: #aaa;
     }
     .comment {
-      font-size: 0.8rem;
+      font-size: 1.3rem;
     }
     .trix-content {
       width: 100%;
@@ -707,10 +840,12 @@ aside {
 
 /* portfolio form & progress form*/
 
+.new_portfolio {
+  padding: 20px 20px 60px;
+}
 .new_portfolio, .edit_portfolio,
 .new_progress, .edit_progress {
   background-color: white;
-  padding: 20px 20px 50px;
 
   input, trix-editor {
     margin-bottom: 15px;
@@ -727,8 +862,8 @@ aside {
       padding: 7px 10px;
       min-width: 200px;
       max-width: 100%;
-      font-size: 16px;
       border-radius: 4px;
+      font-size: 2rem;
     }
     h2:before {
       content: "";
@@ -745,12 +880,6 @@ aside {
   }
   .action {
     float: right;
-  }
-}
-.progress-form {
-  h1 {
-    font-size: 2.0rem;
-    text-align: left;
   }
 }
 
@@ -793,6 +922,405 @@ aside {
       height: 40px;
       background-color: white;
       border-radius: 50%;
+    }
+  }
+}
+
+/* media query */
+
+@media screen and (max-width:1200px) {
+  aside {
+    .portfolio-side {
+      .portfolio-side-list {
+        padding-left: 5px;
+
+        button {
+          padding-left: 5px;
+        }
+      }
+    }
+  }
+  .user-info-whole .user-info img {
+    width: 210px;
+    height: 210px;
+  }
+  .comment-form .trix-button-group--history-tools {
+    display: none;
+  }
+}
+
+@media screen and (max-width:992px) {
+  body, .dropdown-menu {
+    font-size: 1.5rem;
+  }
+  #error_explanation .alert {
+    font-size: 1.8rem;
+  }
+  header {
+    .logo {
+      width: 100px;
+    }
+    .user-image {
+      display: none;
+    }
+    .dropdown-toggle {
+      .fa-id-card, .myaccount {
+        display: inline-block;
+      }
+    }
+  }
+  .container {
+    max-width: 100%;
+  }
+  .top-page-box .submit, .entry-box .submit {
+    width: 100%;
+  }
+  .entry-box {
+    form {
+      margin-bottom: 15px;
+    }
+    .snses .btn {
+      width: 100%;
+    }
+    .user-form-links {
+      width: 100%;
+      margin: 0;
+    }
+  }
+  .top-page-info .main {
+    width: 100%;
+
+    .portfolios-header, .portfolios {
+      margin-right: 0;
+    }
+  }
+  .portfolio-whole {
+    width: 100%;
+    margin: 0;
+  }
+  .user-info-whole {
+    .user-info img {
+      width: 100%;
+    }
+  }
+  aside, .sidebar, .portfolio-side {
+    display: none;
+  }
+  .users {
+    margin-right: 0;
+  }
+  .comment-form .trix-button-group--history-tools {
+    display: block;
+  }
+}
+
+@media screen and (max-width:768px) {
+  body, .dropdown-menu {
+    font-size: 1.4rem;
+  }
+  #error_explanation .alert {
+    font-size: 1.6rem;
+  }
+  h1 {
+    font-size: 3rem;
+  }
+  h4 {
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+  .btn, .form-control {
+    font-size: 1.5rem;
+  }
+  .flash-message {
+    .alert {
+      width: 75%;
+    }
+  }
+  header {
+    .logo {
+      width: 90px;
+    }
+  }
+  .top-page-box {
+    padding-bottom: 30px;
+
+    .top-page-message {
+      padding-top: 20px;
+    }
+  }
+  .entry-box {
+    .snses .btn span {
+      display: initial;
+    }
+    .col-md-6 {
+      margin-bottom: 20px;
+    }
+  }
+  .user-partial .user-info .user-name {
+    font-weight: 600;
+  }
+  .user-info-whole .user-info > .user-image {
+    width: 40%;
+    height: auto;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .user-info-whole > .user-info {
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 0;
+
+     img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 0;
+    }
+  }
+  .user-info-whole > .user-info > .user-info {
+    padding-bottom: 0;
+    width: 100%;
+    margin-left: 15px;
+
+    h1 {
+      margin-bottom: 5px;
+    }
+  }
+  .user-info-whole .multi-info-box {
+    h2 {
+      font-size: 1.7rem;
+      margin-bottom: 10px;
+    }
+  }
+  .portfolio-whole {
+    padding: 20px;
+  }
+  .new_portfolio, .edit_portfolio,
+  .new_progress, .edit_progress {
+    h1 {
+      font-size: 2.5rem;
+    }
+    .field {
+      h2 {
+        min-width: 150px;
+        font-size: 1.6rem;
+      }
+    }
+  }
+  .trix-button--icon-increase-nesting-level, .trix-button-group--history-tools {
+    display: none;
+  }
+}
+
+@media screen and (max-width:576px) {
+  .container {
+    padding: 0 5px;
+  }
+  h1 {
+    font-size: 2.5rem;
+  }
+  h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  .btn, .form-control {
+    font-size: 1.3rem;
+    line-height: 1.5;
+  }
+  input, textarea, trix-editor {
+    font-size: 1.3rem;
+    line-height: 1.5;
+  }
+  #error_explanation .alert {
+    font-size: 1.4rem;
+  }
+  #error_explanation ul {
+    -webkit-padding-start: 20px;
+    padding-inline-start: 20px;
+  }
+  .flash-message {
+    .alert {
+      width: 90%;
+    }
+  }
+  header {
+    .logo {
+      width: 80px;
+    }
+  }
+  .top-page-box {
+    h1 {
+      font-size: 3.5rem;
+    }
+    .snses .btn {
+      line-height: 2.5;
+    }
+    .or {
+      margin: 10px auto;
+    }
+  }
+  .user-info-whole {
+    width: 100%;
+    margin: 0;
+  }
+  .user-info-whole .user-info > .user-image {
+    width: 100%;
+    height: auto;
+  }
+  .user-info-whole > .user-info {
+    display: block;
+    margin-bottom: 10px;
+    padding-bottom: 0;
+  }
+  .user-info-whole > .user-info > .user-info {
+    text-align: center;
+    margin-left: 0px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #dee2e6;
+
+    img {
+      width: auto;
+      height: auto;
+    }
+    h1 {
+      font-size: 2.7rem;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      display: contents;
+    }
+    p {
+      text-align: left;
+      margin-top: 5px;
+    }
+  }
+  .user-partial, .comments {
+    .user-image {
+      width: 50px;
+      height: 50px;
+      margin-right: 5px;
+    }
+    .user-info .user-name {
+      font-size: 1.3rem;
+    }
+    .follow-form {
+      line-height: 50px;
+      margin-right: 5px;
+    }
+    .user-info {
+      margin-right: 8px;
+    }
+    .btn, .form-control {
+      font-size: 1rem;
+      padding: 4px 5px;
+    }
+  }
+  .portfolio-whole {
+    padding: 16px;
+
+    .portfolio-header {
+      position: relative;
+
+      a + a {
+        font-size: 1.4rem;
+        font-weight: 600;
+      }
+      .timestamp {
+        margin-top: 5px;
+      }
+      .timestamp, .pageview {
+        margin-left: 0;
+        display: block;
+      }
+      .dropdown {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+    .title {
+      margin-bottom: 15px;
+    }
+    .portfolio-links {
+      padding: 0 15px;
+
+      .col {
+        margin-bottom: 5px;
+        width: 33.3%;
+        padding-right: 2px;
+        padding-left: 2px;
+
+        .btn {
+          font-size: 1.4rem;
+          padding: 0.375rem 0.5rem;
+          line-height: 2.5;
+        }
+      }
+    }
+  }
+  .progress-whole {
+    h2 {
+      font-size: 2rem;
+    }
+  }
+  .portfolios {
+    .portfolio-image img {
+      height: 95px;
+    }
+    .media-body {
+      padding: 10px 10px 5px 0;
+    }
+  }
+  .ranking ol {
+    padding-left: 35px;
+
+    .media:before {
+      font-size: large;
+      left: -35px;
+      width: 30px;
+      height: 30px;
+    }
+  }
+  .new_portfolio, .edit_portfolio, .new_progress, .edit_progress {
+    h1 {
+      font-size: 1.7rem;
+      margin-bottom: 20px;
+    }
+    .field h2 {
+      font-size: 1.4rem;
+      display: block;
+      min-width: auto;
+      max-width: auto;
+    }
+    .field h2::before {
+      content: none;
+    }
+    .btn {
+      padding: 2px 20px;
+    }
+  }
+  footer {
+    margin-top: 30px;
+
+    #logo {
+      display: none;
+    }
+  }
+  .trix-button-group--history-tools {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width:370px) {
+  .top-page-box {
+    .snses .btn {
+      padding: 2px
+    }
+  }
+  .portfolio-whole {
+    .portfolio-links .col {
+      .fa-desktop {
+        display: none;
+      }
     }
   }
 }

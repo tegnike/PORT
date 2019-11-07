@@ -11,14 +11,14 @@
             <%= link_to fa_icon("book", text: t("header.about"), class: "fas"), about_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
-           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             <%= fa_icon("crown", text: t("header.ranking"), class: "fas") %>
-           </a>
-           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-             <li><%= link_to t("header.favorite"), rankings_favorite_path %></li>
-             <li><%= link_to t("header.total_pv"), rankings_total_pv_path %></li>
-             <li><%= link_to t("header.weekly_pv"), rankings_weekly_pv_path %></li>
-           </ul>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-crown"></i> <%= t("header.ranking") %>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><%= link_to t("header.favorite"), rankings_favorite_path %></li>
+              <li><%= link_to t("header.total_pv"), rankings_total_pv_path %></li>
+              <li><%= link_to t("header.weekly_pv"), rankings_weekly_pv_path %></li>
+            </ul>
           </li>
         </ul>
         <ul class="navbar-nav">
@@ -32,6 +32,7 @@
             <li class="nav-item dropdown">
              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                <%= set_user_image(current_user) %>
+               <i class="fas fa-id-card"></i> <span class="myaccount"><%= t("header.myaccount") %></span>
              </a>
              <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                <li><%= link_to current_user.username, current_user %></li>

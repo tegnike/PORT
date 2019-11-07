@@ -1,5 +1,5 @@
 <li>
-  <div id="portfolio-<%= portfolio.id %>" class="media bg-white">
+  <div id="portfolio-<%= portfolio.id %>" class="media">
     <%= link_to portfolio.user, class: "portfolio-image mr-3" do %>
       <% if portfolio.image.url == nil %>
         <img src="<%= asset_pack_path 'images/noimage.jpg' %>" />
