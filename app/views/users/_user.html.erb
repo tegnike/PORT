@@ -2,7 +2,10 @@
   <%= link_to set_user_image(user), user, class: "user-image" %>
   <span class="user-info">
     <%= link_to user.username, user, class: "user-name" %><br>
-    <span class="user-items">ポートフォリオ <%= user.portfolios.count %>  コメント <%= user.comments.count %></span>
+    <span class="user-items">
+      <%= t("activerecord.models.portfolio") %> <%= user.portfolios.count %>  
+      <%= t("activerecord.models.comment") %> <%= user.comments.count %>
+    </span>
   </span>
   <%= render "follow_form", user: user if user_signed_in? %>
 </li>

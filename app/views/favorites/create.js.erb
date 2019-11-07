@@ -1,5 +1,8 @@
-$("#portfolio-<%= @portfolio.id %> #favorite_form, .portfolio-links #favorite_form").html("<%= escape_javascript(render partial: 'favorites/unfavorite', locals: { portfolio: @portfolio, user: @user }) %>");
+$("#portfolio-<%= @portfolio.id %> #favorite_form, .portfolio-links #favorite_form").html(
+    "<%= escape_javascript(render partial: 'favorites/unfavorite',
+    locals: { portfolio: @portfolio, user: @user }) %>");
 <% provide(:favorite, "お気に入り") %>
-$(".portfolio-side #favorite_form").html("<%= escape_javascript(render partial: 'favorites/unfavorite', locals: { portfolio: @portfolio, user: @user }) %>");
+$(".portfolio-side #favorite_form").html("<%= escape_javascript(render partial: 'favorites/unfavorite',
+    locals: { portfolio: @portfolio, user: @user }) %>");
 $("#portfolio-<%= @portfolio.id %> .favorite_count").html("(<%= @portfolio.favorite_users.count %>)");
 $("#favorites").html('<%= @user.favorite_portfolios.count %>');

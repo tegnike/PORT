@@ -5,8 +5,8 @@
   provide(:url, user_registration_path)
 %>
 <div class="entry-box">
-  <h1>PORTへようこそ！</h1>
-  <h2>新規登録（無料）して利用を開始しましょう。</h2>
+  <h1><%= t(".sentence.welcome") %></h1>
+  <h2><%= t(".sentence.welcome2") %></h2>
   <hr>
   <%= render 'devise/shared/user_form' %>
 </div>

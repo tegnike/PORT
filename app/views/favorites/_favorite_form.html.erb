@@ -1,7 +1,7 @@
 <div id="favorite_form">
-<% if current_user.has_favorite?(portfolio) %>
-  <%= render 'favorites/unfavorite', { portfolio: portfolio, user: user } %>
-<% else %>
-  <%= render 'favorites/favorite', { portfolio: portfolio, user: user } %>
-<% end %>
+  <% if current_user.has_favorite?(portfolio) %>
+    <%= render 'favorites/unfavorite', { portfolio: portfolio, user: user } %>
+  <% else %>
+    <%= render 'favorites/favorite', { portfolio: portfolio, user: user } %>
+  <% end %>
 </div>

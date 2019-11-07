@@ -3,14 +3,18 @@
   <main class="portfolio-whole <%= "before-login" unless user_signed_in? %>">
     <%= render "shared/portfolio_info", portfolio: @portfolio %>
     <div class="progress-whole progress-index">
-      <h2 class="py-2">プログレス 一覧</h2>
+      <h2 class="py-2"><%= t(".index")%></h2>
       <ol>
         <% @progresses.each do |progress| %>
           <li id="progress-<%= progress.id %>">
             <div class="progress-header">
-              <span><%= link_to "##{get_number(@portfolio, progress)}", portfolio_progress_path(@portfolio, progress), class: "id" %> </span>
+              <span><%= link_to "##{get_number(@portfolio, progress)}",
+                  portfolio_progress_path(@portfolio, progress), class: "id" %> </span>
               <% if progress.has_any_evaluations? %>
-                <span class="average_evaluation">評価：<%= progress.average_evaluation %></span>（<%= progress.comments.count %> 件）
+                <span class="average_evaluation">
+                  <%= t("common.evaluation", evaluation: progress.average_evaluation) %>
+                </span>
+                <%= t("common.counts", counts: progress.comments.count) %>
               <% end %>
               <% if current_user?(@portfolio.user) %>
                 <span class="dropdown">

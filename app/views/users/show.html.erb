@@ -4,7 +4,7 @@
     <%= render "shared/user_info" %>
   </section>
   <section class="multi-info-box col-md-9">
-    <h2><%= @user.portfolios.count %> 件のポートフォリオが登録されています。</h2>
+    <h2><%= @user.portfolios.count %> <%= t(".has_portfolios") %></h2>
     <% if @user.portfolios.any? %>
     <ul class="portfolios">
       <%= render @my_portfolios, user: @user %>
@@ -14,22 +14,22 @@
     <ul class="nav nav-tabs nav-justified">
       <li class="nav-item favorites" >
         <%= link_to user_path(@user), class: is_action?("show") do %>
-          お気に入り <span id="favorites"><%= @user.favorites.count %></span>
+          <%= t(".favorite") %> <span id="favorites"><%= @user.favorites.count %></span>
         <% end %>
       </li>
       <li class="nav-item following" >
         <%= link_to following_user_path(@user), class: is_action?("following") do %>
-          フォロー <span id="following"><%= @user.following.count %></span>
+          <%= t(".following") %> <span id="following"><%= @user.following.count %></span>
         <% end %>
       </li>
       <li class="nav-item followers" >
         <%= link_to followers_user_path(@user), class: is_action?("followers") do %>
-          フォロワー <span id="followers"><%= @user.followers.count %></span>
+          <%= t(".follower") %> <span id="followers"><%= @user.followers.count %></span>
         <% end %>
       </li>
       <li class="nav-item comments" >
         <%= link_to comments_user_path(@user), class: is_action?("comments") do %>
-          コメント <span id="comments"><%= @user.comments.count %></span>
+          <%= t(".comment") %> <span id="comments"><%= @user.comments.count %></span>
         <% end %>
       </li>
     </ul>

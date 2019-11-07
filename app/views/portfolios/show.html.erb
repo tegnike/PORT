@@ -17,14 +17,18 @@
       </div>
     </div>
     <div class="progress-whole">
-      <h2 class="py-2">プログレス <%= link_to "##{get_number(@portfolio, @progress)}", portfolio_progress_path(@portfolio, @progress), class: "id" %></h2>
+      <h2 class="py-2"><%= t("activerecord.models.progress") %> <%= link_to "##{get_number(@portfolio, @progress)}", portfolio_progress_path(@portfolio, @progress), class: "id" %></h2>
       <div class="progress-header">
         <% if @progress.has_any_evaluations? %>
-          <span class="average_evaluation">評価：<%= @progress.average_evaluation %></span>（<%= @progress.comments.count %> 件）
+          <span class="average_evaluation">
+            <%= t("common.evaluation", evaluation: @progress.average_evaluation) %>
+          </span>
+          <%= t("common.counts", counts: @progress.comments.count) %>
         <% end %>
         <% if current_user?(@portfolio.user) %>
           <span class="dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-cog"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -35,7 +39,8 @@
               </li>
               <li>
                 <%= link_to portfolio_progresses_path(@portfolio) do %>
-                  <span><i class="far fa-list-alt"></i> <%= t("portfolios.show.progress_index") %> (<%= @portfolio.progresses.count %>)</span>
+                  <span><i class="far fa-list-alt"></i> <%= t("portfolios.show.progress_index") %>
+                      <%= t("common.brackets", content: @portfolio.progresses.count) %></span>
                 <% end %>
               </li>
               <li>
@@ -65,7 +70,7 @@
       <% if user_signed_in? %>
         <div class="comment-form">
           <%= link_to set_user_image(@portfolio.user), @portfolio.user, class: "user-image" %>
-          <strong>コメントを投稿する</strong>
+          <strong><%= t(".comment_new") %></strong>
           <%= render "comments/comment_form" %>
         </div>
       <% end %>

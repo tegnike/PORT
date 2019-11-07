@@ -4,11 +4,14 @@
   <hr>
   <div class="row">
     <div class="col-md-6">
-      <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: "form-horizontal" }) do |f| %>
+      <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name),
+          html: { method: :post, class: "form-horizontal" }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <div class="field form-group">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "form-control", placeholder: "メールアドレス" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",
+              value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
+              class: "form-control", placeholder: t("activerecord.attributes.user.email") %>
         </div>
 
         <div class="actions">

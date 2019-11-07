@@ -1,20 +1,20 @@
 <% provide(:favorite, "お気に入り") if  %>
 <div class="portfolio-side">
   <%= link_to portfolio, class: "btn portfolio-side-list" do %>
-    <span><i class="fas fa-anchor"></i> ポートフォリオトップ</span>
+    <span><i class="fas fa-anchor"></i> <%= t(".portfolio") %></span>
   <% end %>
   <%= link_to portfolio.web_url, class: "btn portfolio-side-list" do %>
-    <span><i class="fas fa-desktop"></i> <%= t("portfolios.show.web_url") %></span>
+    <span><i class="fas fa-desktop"></i> <%= t(".web_url") %></span>
   <% end %>
   <%= link_to portfolio.git_url, class: "btn portfolio-side-list" do %>
-    <span><i class="fab fa-github"></i> <%= t("portfolios.show.git_url") %></span>
+    <span><i class="fab fa-github"></i> <%= t(".git_url") %></span>
   <% end %>
   <% if user_signed_in? %>
     <div class="btn portfolio-side-list relative">
       <%= render "favorites/favorite_form", { portfolio: portfolio, user: portfolio.user }  %>
     </div>
     <%= link_to portfolio_progresses_path(portfolio), class: "progress_index btn portfolio-side-list relative" do %>
-      <span><i class="far fa-list-alt"></i> <%= t("portfolios.show.progress_index") %> (<%= portfolio.progresses.count %>)</span>
+      <span><i class="far fa-list-alt"></i> <%= t(".progress_index") %> (<%= portfolio.progresses.count %>)</span>
     <% end %>
   <% end %>
   <% if portfolio.user == current_user %>

@@ -2,11 +2,11 @@
   <%= link_to set_user_image(@portfolio.user), @portfolio.user %>
   <%= link_to @portfolio.user.username, @portfolio.user %>
   <span class="timestamp">
-    <%= @portfolio.created_at.strftime("%Y年%-m月%-d日") %>に作成
+    <%= t("common.created_date", date: l(@portfolio.created_at.to_date, format: :long)) %>
   </span>
   <% if current_user?(@portfolio.user) %>
     <span class="pageview">
-      <%= t("common.pageview", score: score(@portfolio)) %>
+      <%= t("common.pageview", count: score(@portfolio)) %>
     </span>
     <% if controller_name == "portfolios" %>
       <span class="dropdown">

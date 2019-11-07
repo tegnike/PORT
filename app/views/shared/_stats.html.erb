@@ -9,31 +9,31 @@
       <strong id="following">
         <%= @user.following.count %>
       </strong><br>
-      <span class="stat-label">フォロー</span>
+      <span class="stat-label"><%= t(".following") %></span>
     </a>
     <a href="<%= followers_user_path(@user) %>" class="stat border-left">
       <strong id="followers">
         <%= @user.followers.count %>
       </strong><br>
-      <span class="stat-label">フォロワー</span>
+      <span class="stat-label"><%= t(".follower") %></span>
     </a>
     <a href="<%= user_path(@user) %>" class="stat border-left">
       <strong id="favorites">
         <%= @user.favorite_portfolios.count %>
       </strong><br>
-      <span class="stat-label">お気に入り</span>
+      <span class="stat-label"><%= t(".favorite") %></span>
     </a>
   </div>
 <% else %>
   <div class="stat-before-login">
-    <h4>ユーザ登録しませんか？</h4>
-    <p>登録すると以下の機能が使えるようになります。</p>
+    <h4><%= t(".before_login.sentence1") %></h4>
+    <p><%= t(".before_login.sentence2") %></p>
     <ul>
-      <li>ポートフォリオ投稿</li>
-      <li>コメント投稿</li>
-      <li>過去プログレスの閲覧</li>
-      <li>ユーザフォロー</li>
-      <li>投稿のお気に入り</li>
+      <li><%= t(".before_login.sentence3") %></li>
+      <li><%= t(".before_login.sentence4") %></li>
+      <li><%= t(".before_login.sentence5") %></li>
+      <li><%= t(".before_login.sentence6") %></li>
+      <li><%= t(".before_login.sentence7") %></li>
     </ul>
   </div>
 <% end %>

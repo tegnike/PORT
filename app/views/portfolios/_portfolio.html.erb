@@ -18,19 +18,21 @@
       <div class="portfolio-info">
         <span class="portfolio-info-user">
           by <%= link_to portfolio.user.username, portfolio.user %>
-          <%= t("common.time_ago", time: time_ago_in_words(portfolio.created_at)) %>
+          <%= t("common.created_date", date: l(portfolio.created_at.to_date)) %>
         </span>
         <% if portfolio.pageview != nil %>
           <span class="pageview">
-            <%= t("common.pageview", score: portfolio.pageview) %>
+            <%= t('common.pageview', count: portfolio.pageview) %>
           </span>
         <% elsif portfolio.user == current_user %>
           <span class="pageview">
-            <%= t("common.pageview", score: score(portfolio)) %>
+            <%= t('common.pageview', count: score(portfolio)) %>
           </span>
         <% end %>
         <% if user_signed_in? %>
-          <span class="d-inline-block"><%= render 'favorites/favorite_form', { portfolio: portfolio, user: user } %></span>
+          <span class="d-inline-block">
+            <%= render 'favorites/favorite_form', { portfolio: portfolio, user: user } %>
+          </span>
         <% end %>
       </div>
     </div>

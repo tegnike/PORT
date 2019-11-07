@@ -1,9 +1,10 @@
 <% unless user_signed_in? %>
   <div class="row top-page-box">
     <div class="col-md-6 top-page-message">
-      <h1>Hello engineers !</h1>
-      <p>PORTは、エンジニアが自身のポートフォリオを共有するためのサービスです。<br>
-        他のエンジニアのポートフォリオを参考にしたり、レビューを依頼して、ポートフォリオのブラッシュアップに活用しましょう ;)</p>
+      <h1><%= t(".introduction.sentence1") %></h1>
+      <p>
+        <%= t(".introduction.sentence2") %><br><%= t(".introduction.sentence3") %>
+      </p>
     </div>
     <div class="col-md-6">
       <div class="snses">
@@ -19,19 +20,21 @@
         <div class="field form-group row">
           <%= f.label :username, class: "col-sm-4 control-label" %>
           <div class="col-sm-8">
-            <%= f.text_field :username, class: "form-control", placeholder: "port taro" %>
+            <%= f.text_field :username, class: "form-control", placeholder: t(".form.username") %>
           </div>
         </div>
         <div class="field form-group row">
           <%= f.label :email, class: "col-sm-4 control-label" %>
           <div class="col-sm-8">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "port@example.com" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control",
+                placeholder: t(".form.email") %>
           </div>
         </div>
         <div class="field form-group row">
           <%= f.label :password, class: "col-sm-4 control-label" %>
           <div class="col-sm-8">
-            <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "******" %>
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control",
+                placeholder: t(".form.password") %>
           </div>
           <div class="col-sm-4"></div>
           <div class="col-sm-8">
@@ -43,7 +46,8 @@
         <div class="field form-group row">
           <%= f.label :password_confirmation, class: "col-sm-4 control-label" %>
           <div class="col-sm-8">
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "******" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control",
+                placeholder: t(".form.password") %>
           </div>
         </div>
         <div class="actions">
@@ -55,13 +59,14 @@
 <% end %>
 <% if user_signed_in? && !(Portfolio.exists?(user_id: current_user.id)) %>
   <div class="alert alert-warning" role="alert">
-    初めてのポートフォリオを投稿しませんか？ <strong class="post-warning"><%= link_to fa_icon("edit", text: t("header.post"), class: "fas"), new_portfolio_path %></strong>
+    <%= t(".ask_to_post_first_portfolio") %> <strong class="post-warning">
+        <%= link_to fa_icon("edit", text: t("header.post"), class: "fas"), new_portfolio_path %></strong>
   </div>
 <% end %>
 <div class="top-page-info">
   <main class="main">
     <div class="portfolios-header bg-white">
-      <span><i class="fas fa-hand-point-right"></i> 最新のポートフォリオをチェック！</span>
+      <span><i class="fas fa-hand-point-right"></i> <%= t(".check_the_latest_portfolios") %></span>
     </div>
     <ul class="portfolios">
       <% if user_signed_in? %>

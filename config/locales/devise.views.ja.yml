@@ -71,6 +71,9 @@ ja:
           github: "github"
           twitter: "twitter"
           google_oauth2: "google"
+        sentence:
+          welcome: "PORTへようこそ！"
+          welcome2: "新規登録（無料）して利用を開始しましょう。"
     sessions:
       new:
         sign_in: "ログイン"
@@ -82,6 +85,8 @@ ja:
           github: "github"
           twitter: "twitter"
           google_oauth2: "google"
+        sentence:
+          sign_in: "PORTにログイン"
     shared:
       links:
         back: "戻る"

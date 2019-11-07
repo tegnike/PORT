@@ -5,24 +5,30 @@
 
       <% if request.fullpath != "/users/sign_in" %>
         <div class="field form-group">
-          <%= f.text_field :username, class: "form-control", placeholder: "ユーザ名" %>
+          <%= f.text_field :username, class: "form-control",
+              placeholder: t("activerecord.attributes.user.username") %>
         </div>
       <% end %>
 
       <div class="field form-group">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "メールアドレス" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control",
+            placeholder: t("activerecord.attributes.user.email") %>
       </div>
 
       <div class="field form-group">
-        <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "パスワード" %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control",
+            placeholder: t("activerecord.attributes.user.password") %>
         <% if @minimum_password_length %>
-          <p class="ml-1"><%= @minimum_password_length %><%= t("devise.registrations.edit.characters_minimum") %></p>
+          <p class="ml-1">
+            <%= @minimum_password_length %><%= t("devise.registrations.edit.characters_minimum") %>
+          </p>
         <% end %>
       </div>
 
       <% if request.fullpath != "/users/sign_in" %>
         <div class="field form-group">
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "確認用パスワード" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control",
+              placeholder: t("activerecord.attributes.user.password_confirmation") %>
         </div>
       <% end %>
 
@@ -33,7 +39,9 @@
   </div>
   <div class="col-md-6 snses">
     <% resource_class.omniauth_providers.each do |provider| %>
-      <%= link_to fa_icon("#{t("#{yield(:sns)}.#{provider}")}", text: " #{t("#{yield(:sign_sns)}.#{provider}")}", class: "fab"), omniauth_authorize_path(@user, provider), class: "btn #{t("#{yield(:sns)}.#{provider}")}" %>
+      <%= link_to omniauth_authorize_path(@user, provider), class: "btn #{t("#{yield(:sns)}.#{provider}")}" do %>
+        <i class="fa-<%= t("#{yield(:sns)}.#{provider}") %> fab"></i> <%= t("#{yield(:sign_sns)}.#{provider}") %>
+      <% end %>
     <% end %>
     <div class="user-form-links">
       <%= render "devise/shared/links" %>
