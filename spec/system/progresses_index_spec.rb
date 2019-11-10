@@ -25,7 +25,8 @@ RSpec.describe "ProgressesIndexTest", type: :system, js: true do
     end
     it "shows average evaluation" do
       (0..9).each do |n|
-        expect(page.all("ol li")[n]).to have_content "評価：#{"%0.1f" % (1 + n * 3)}（3 件）"
+        expect(page.all("ol li")[n]).to have_content "評価：#{"%0.1f" % (1 + n * 3)}"
+        expect(page.all("ol li")[n]).to have_content "（3 件）"
       end
     end
   end

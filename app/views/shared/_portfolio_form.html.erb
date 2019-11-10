@@ -24,7 +24,7 @@
       <h2 class="py-2"><%= t("activerecord.models.progress") %></h2>
       <div class="field">
         <%= f.fields_for :progresses do |g| %>
-          <%= g.rich_text_area :content, class: "progress_content", placeholder: t(".placeholder.progress") %>
+          <%= g.rich_text_area :content, id: "progress_content", placeholder: t(".placeholder.progress") %>
         <% end %>
       </div>
     <% end %>

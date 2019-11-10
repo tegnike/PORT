@@ -31,19 +31,19 @@ RSpec.describe "CommentsInterfaceTest", type: :system, js: true do
         click_button "投稿"
       }
       it "shows a posted comment" do
-        expect(page).to have_selector "#comments", text: "test_comment1"
+        expect(page).to have_selector ".comments", text: "test_comment1"
       end
       it "shows both posted comments" do
         second_post
-        expect(page).to have_selector "#comments", text: "test_comment1"
-        expect(page).to have_selector "#comments", text: "test_comment2"
+        expect(page).to have_selector ".comments", text: "test_comment1"
+        expect(page).to have_selector ".comments", text: "test_comment2"
       end
     end
     context "try to update a comment invalidly" do
       before {
         create(:comment, user: user, progress: progress)
         visit portfolio_path(portfolio)
-        first("#comments").click_link "編集"
+        first(".comments").click_link "編集"
         fill_in_rich_text_area "edit_comment", with: ""
         click_button "更新"
         sleep 1
@@ -56,14 +56,14 @@ RSpec.describe "CommentsInterfaceTest", type: :system, js: true do
       before {
         create(:comment, user: user, progress: progress)
         visit portfolio_path(portfolio)
-        first("#comments").click_link "編集"
+        first(".comments").click_link "編集"
         fill_in_rich_text_area "edit_comment", with: "test_comment3"
         click_button "更新"
         sleep 1
       }
       it "shows a update comment" do
         expect(page).to have_selector ".alert", text: "コメントを編集しました。"
-        expect(page).to have_selector "#comments", text: "test_comment3"
+        expect(page).to have_selector ".comments", text: "test_comment3"
       end
     end
     context "push delete button" do
@@ -74,7 +74,7 @@ RSpec.describe "CommentsInterfaceTest", type: :system, js: true do
         click_button "投稿"
       }
       subject {
-        first("#comments").click_link "削除"
+        first(".comments").click_link "削除"
         page.driver.browser.switch_to.alert.accept
         find ".alert-notice", text: "コメントを削除しました。"
       }
@@ -82,7 +82,7 @@ RSpec.describe "CommentsInterfaceTest", type: :system, js: true do
         expect { subject }.to change { Comment.count }.by(-1)
       end
       it "doesn't show other user's delete button" do
-        expect(page.all("#comments")).not_to have_link "削除"
+        expect(page.all(".comments")).not_to have_link "削除"
       end
     end
   end
