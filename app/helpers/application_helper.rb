@@ -11,4 +11,8 @@ module ApplicationHelper
   def current_user?(user)
     user == current_user
   end
+
+  def extract_content(content, options = { length: 100 })
+    strip_tags(content.to_s).gsub(/[\n]/, "").strip.truncate(options[:length])
+  end
 end

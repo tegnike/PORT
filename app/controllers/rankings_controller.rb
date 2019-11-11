@@ -1,6 +1,7 @@
 class RankingsController < ApplicationController
   def favorite
     @portfolios = Portfolio.find(Favorite.ranking)
+    render "ranking"
     rescue ActiveRecord::RecordNotFound => e
       flash.now[:alert] = current_user.admin ? e.message : t("flash.failed", action: t(".action"))
       redirect_to root_url
@@ -17,7 +18,7 @@ class RankingsController < ApplicationController
   private
     def pv_action(span)
       @portfolios = Portfolio.pv_data(span, action_name)
-      render "pageview"
+      render "ranking"
       rescue ActiveRecord::RecordNotFound => e
         flash.now[:alert] = current_user.admin ? e.message : t("flash.failed", action: t(".action"))
         redirect_to root_url

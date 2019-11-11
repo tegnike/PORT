@@ -9,4 +9,8 @@ class Comment < ApplicationRecord
   def progress_owner?
     self.user == self.progress.portfolio.user
   end
+
+  def progress_owner
+    self.progress.portfolio.user
+  end
 end

@@ -6,10 +6,15 @@ ja:
     policy: "プライバシーポリシー"
     terms: "利用規約"
     my_profile: "マイプロフィール"
-    time_ago: "%{time}前に作成"
-    pageview: "%{score} views"
+    created_date: "%{date}に作成"
+    pageview:
+      one: '1 view'
+      other: '%{count} views'
     delete_confirmation: "本当に削除しますか？"
     unfollow_confirmation: "%{username}さんをフォロー解除しますか？"
+    evaluation: "評価：%{evaluation}"
+    counts: "（%{counts} 件）"
+    brackets: "(%{content})"
   header:
     about: "はじめに"
     ranking: "ランキング"
@@ -25,6 +30,25 @@ ja:
     sign_up: "ユーザ登録"
     login: "ログイン"
   static_pages:
+    home:
+      introduction:
+        sentence1: "Hello engineers !"
+        sentence2: "PORTは、エンジニアが自身のポートフォリオを共有するためのサービスです。"
+        sentence3: "他のエンジニアのポートフォリオを参考にしたり、レビューを依頼して、ポートフォリオのブラッシュアップに活用しましょう ;)"
+      form:
+        username: "port taro"
+        email: "port@example.com"
+        password: "******"
+      ask_to_post_first_portfolio: "初めてのポートフォリオを投稿しませんか？"
+      check_the_latest_portfolios: "最新のポートフォリオをチェック！"
+      CL:
+        github: "Github"
+        twitter: "Twitter"
+        google_oauth2: "Google"
+      LC:
+        github: "github"
+        twitter: "twitter"
+        google_oauth2: "google"
     about:
       title: "PORTとは"
     help:
@@ -38,19 +62,25 @@ ja:
       title: "ユーザ一覧"
     show:
       title: "%{user_name}"
+      has_portfolios: "件のポートフォリオが登録されています。"
+      following: "フォロー"
+      follower: "フォロワー"
+      favorite: "お気に入り"
+      comment: "コメント"
     following:
-      title: "フォローユーザ"
+      title: "フォロー | %{user_name}"
     followers:
-      title: "フォロワー"
-    favorites:
-      title: "お気に入り"
+      title: "フォロワー | %{user_name}"
+    comments:
+      title: "コメント | %{user_name}"
   portfolios:
     show:
       title: "%{portfolio_title}"
       web_url: "WEBサイト"
       git_url: "Github"
       progress_index: "プログレス一覧"
-      progress_edit: "プログレス作成"
+      progress_new: "プログレス作成"
+      comment_new: "コメントを投稿する"
     new:
       title: "ポートフォリオ新規作成"
     edit:
@@ -58,6 +88,7 @@ ja:
   progresses:
     index:
       title: "%{portfolio_title}｜プログレス一覧"
+      index: "プログレス一覧"
     show:
       title: "%{portfolio_title}｜%{progress_id}"
     new:
@@ -77,11 +108,34 @@ ja:
   shared:
     error_messages:
       count: "%{count}件のエラーが発生したため投稿は保存されませんでした。"
+    portfolio_form:
+      placeholder:
+        content: "ポートフォリオを自由に紹介してください。"
+        progress: "最初のプログレスを記載してください。"
+      image_size: "（16×9のサイズがキレイに収まります。）"
+    portfolio_sidebar:
+      portfolio: "ポートフォリオトップ"
+      web_url: "WEBサイト"
+      git_url: "Github"
+      progress_index: "プログレス一覧"
+    stats:
+      following: "フォロー"
+      follower: "フォロワー"
+      favorite: "お気に入り"
+      before_login:
+        sentence1: "ユーザ登録しませんか？"
+        sentence2: "登録すると以下の機能が使えるようになります。"
+        sentence3: "ポートフォリオ投稿"
+        sentence4: "コメント投稿"
+        sentence5: "過去プログレスの閲覧"
+        sentence6: "ユーザフォロー"
+        sentence7: "投稿のお気に入り"
   btn:
     follow: "フォロー中"
     unfollow: "フォロー"
     favorite: "★"
     unfavorite: "☆"
+    registration: "アカウント登録"
     create: "投稿"
     edit: "編集"
     update: "更新"

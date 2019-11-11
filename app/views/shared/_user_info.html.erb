@@ -1,3 +1,8 @@
-<h1><%= current_user.username %></h1>
-<span><%= link_to t("common.my_profile"), current_user %></span><br>
-<span>マイポートフォリオ <%= current_user.portfolios.count %></span>
+<div class="user-image">
+  <%= set_user_image(@user) %>
+</div>
+<%= render "users/follow_form", user: @user if user_signed_in? %>
+<div class="user-info">
+  <h1><%= @user.username %></h1>
+  <p class="profile"><%= @user.profile %></p>
+</div>

@@ -1,31 +1,36 @@
 <%= form_for(@portfolio) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
+  <%= render "shared/error_messages", object: f.object %>
   <div class="field">
+    <% if controller.action_name == "new" %>
+      <h1><%= t("portfolios.new.title") %></h1>
+    <% else %>
+      <h1><%= @portfolio.title %></h1>
+    <% end %>
 
-    <%= f.label :title %>
-    <%= f.text_field :title, class: 'form-control' %>
+    <h2 class="py-2"><%= t("activerecord.models.portfolio") %></h2>
 
-    <%= f.label :content %>
-    <%= f.rich_text_area :content %>
+    <%= f.text_field :title, class: "form-control", placeholder: t("activerecord.attributes.portfolio.title") %>
 
-    <%= f.label :image %><br>
-    <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %><br>
+    <%= f.rich_text_area :content, placeholder: t(".placeholder.content") %>
 
-    <%= f.label :web_url %>
-    <%= f.text_field :web_url, class: 'form-control' %>
+    <%= f.label :image %><span><%= t(".image_size") %></span><br>
+    <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %><br>
 
-    <%= f.label :git_url %>
-    <%= f.text_field :git_url, class: 'form-control' %>
+    <%= f.text_field :web_url, class: "form-control", placeholder: t("activerecord.attributes.portfolio.web_url") %>
 
-    <% if controller.action_name = ("new" || "home") %>
+    <%= f.text_field :git_url, class: "form-control", placeholder: t("activerecord.attributes.portfolio.git_url") %>
+
+    <% if controller.action_name == "new" %>
+      <h2 class="py-2"><%= t("activerecord.models.progress") %></h2>
       <div class="field">
         <%= f.fields_for :progresses do |g| %>
-          <%= g.label :content %>
-          <%= g.rich_text_area :content, id: "progress_content" %>
+          <%= g.rich_text_area :content, id: "progress_content", placeholder: t(".placeholder.progress") %>
         <% end %>
       </div>
     <% end %>
 
+    <div class="action">
+      <%= f.submit "#{yield(:submit_text)}", class: "btn btn-primary" %>
+    </div>
   </div>
-  <%= f.submit "#{yield(:submit_text)}", class: "btn btn-primary" %>
 <% end %>

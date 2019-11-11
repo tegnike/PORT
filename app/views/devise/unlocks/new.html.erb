@@ -1,17 +1,27 @@
 <% provide(:title, t(".resend_unlock_instructions")) %>
-<h2><%= t(".resend_unlock_instructions") %></h2>
+<div class="entry-box">
+  <h2><%= t(".resend_unlock_instructions") %></h2>
+  <hr>
+  <div class="row">
+    <div class="col-md-6">
+      <%= form_for(resource, as: resource_name, url: unlock_path(resource_name),
+          html: { method: :post, class: "form-horizontal" }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="field form-group">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control",
+              placeholder: t("activerecord.attributes.user.email") %>
+        </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <div class="actions">
+          <%= f.submit t(".resend_unlock_instructions"), class: "btn btn-outline-primary submit" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-6">
+      <div class="user-form-links">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit  %>
-  </div>
-<% end %>
-
-<%= render t(".resend_unlock_instructions") %>
+</div>

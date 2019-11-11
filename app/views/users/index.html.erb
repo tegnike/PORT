@@ -1,13 +1,19 @@
 <% provide(:title, t(".title")) %>
-
-<h1>Users#index</h1>
-<section class="user_show fdb-block fp-active" data-block-type="testimonials" data-id="1">
-  <div class="container">
-    <div class="fdb-box">
-      <ul class="users">
-        <%= render @users %>
-      </ul>
-      <%= paginate @users %>
-    </div>
-  </div>
-</section>
+<div class="alert alert-light" role="alert">
+  <strong><%= t(".title") %></strong>
+</div>
+<div class="top-page-info">
+  <main class="main user-index <%= "before-login" unless user_signed_in? %>">
+    <ul class="users">
+      <%= render @users %>
+    </ul>
+    <%= paginate @users %>
+  </main>
+  <% if user_signed_in? %>
+    <aside class="sidebar">
+      <div class="stats-whole bg-white">
+        <%= render 'shared/stats' %>
+      </div>
+    </aside>
+  <% end %>
+</div>

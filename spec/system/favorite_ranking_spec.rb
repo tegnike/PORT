@@ -19,7 +19,7 @@ RSpec.describe "FavoriteRanking", type: :system, js: true do
       }
       it "shows correct ranking order" do
         (0..9).each do |n|
-          expect(page.all("ol li")[n]).to have_content "(#{10 - n})"
+          expect(page.all("ol li")[n]).to have_selector "#favorite_form", text: "#{10 - n}"
         end
       end
     end

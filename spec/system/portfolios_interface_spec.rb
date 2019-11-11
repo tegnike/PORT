@@ -40,15 +40,16 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
         expect(page).to have_selector ".title", text: "test_title"
         expect(page).to have_selector ".content", text: "test_content"
         expect(page).to have_css ".image"
-        expect(page).to have_selector ".web_url", text: "WEBサイト"
-        expect(page).to have_selector ".git_url", text: "Github"
-        expect(page).to have_selector "#progress", text: "test_prorgess"
+        expect(page).to have_selector ".portfolio-links", text: "WEBサイト"
+        expect(page).to have_selector ".portfolio-links", text: "Github"
+        expect(page).to have_selector ".progress-whole", text: "test_prorgess"
       end
     end
     context "push delete button" do
       before { correct_post }
       subject {
         visit portfolio_path(Portfolio.find_by(user: user1))
+        first(".portfolio-header .dropdown").click_on
         click_link "削除"
         page.driver.browser.switch_to.alert.accept
         find ".alert-notice", text: "ポートフォリオを削除しました。"
@@ -74,17 +75,18 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
     before { login(user) }
     context "user doesn't post any portfolio yet" do
       before { visit user_path(user) }
-      it "shows '0 ポートフォリオ'" do
-        expect(page).to have_content "0 ポートフォリオ"
+      it "shows '0 件のポートフォリオ'" do
+        expect(page).to have_content "0 件のポートフォリオ"
       end
     end
     context "user post a portfolio" do
       before {
+        visit new_portfolio_path
         correct_post
         visit user_path(user)
       }
-      it "shows '1 ポートフォリオ'" do
-        expect(page).to have_content "1 ポートフォリオ"
+      it "shows '1 件のポートフォリオ'" do
+        expect(page).to have_content "1 件のポートフォリオ"
       end
     end
   end

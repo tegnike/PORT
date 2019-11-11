@@ -1,52 +1,84 @@
 <% provide(:title, t(".title", portfolio_title: @portfolio.title)) %>
 <% provide(:submit_text, t("btn.create")) %>
-<h1>Portfolios#show</h1>
-<div id="portfolio-<%= @portfolio.id %>">
-  <%= link_to @portfolio.user.username, @portfolio.user %>
-  <span class="timestamp">
-    <%= t("common.time_ago", time: time_ago_in_words(@portfolio.created_at)) %>
-  </span>
-  <% if @portfolio.user == current_user %>
-    <span class="pageview">
-      <%= t("common.pageview", score: score(@portfolio)) %>
-    </span>
-  <% end %>
-  <% if user_signed_in? %>
-    <%= render 'favorites/favorite_form', { portfolio: @portfolio, user: @portfolio.user } %>
-    <%= link_to t(".progress_index"), portfolio_progresses_path(@portfolio), class: "progress_index" %>
-    <%= link_to t(".progress_edit"), new_portfolio_progress_path(@portfolio), class: "progress_new" %>
-  <% end %>
-  <%= link_to @portfolio.title, @portfolio, class: "title" %> <span class="favorite_count">(<%= @portfolio.favorite_users.count %>)</span>
-  <span class="content"><%= @portfolio.content %></span>
-  <% if @portfolio.image? %>
-    <%= image_tag @portfolio.image.url, class: "image" %>
-  <% end %>
-  <%= link_to t(".web_url"), @portfolio.web_url, class: "web_url" %>
-  <%= link_to t(".git_url"), @portfolio.git_url, class: "git_url" %>
-  <% if current_user?(@portfolio.user) %>
-    <%= link_to t("btn.edit"), edit_portfolio_path(@portfolio) %>
-    <%= link_to t("btn.delete"), @portfolio, method: :delete,
-                data: { confirm: t("common.delete_confirmation") } %>
-  <% end %>
-  <h2>プログレス</h2>
-  <div id="progress">
-    <%= link_to "##{get_number(@portfolio, @progress)}", portfolio_progress_path(@portfolio, @progress), class: "id" %>
-    <% if @progress.has_any_evaluations? %>
-      <span class="average_evaluation">評価：<%= @progress.average_evaluation %>（<%= @progress.comments.count %> 件）</span>
+<div class="portfolio-show">
+  <main class="portfolio-whole <%= "before-login" unless user_signed_in? %>">
+    <%= render "shared/portfolio_info", portfolio: @portfolio %>
+    <% if @portfolio.image? %>
+      <%= image_tag @portfolio.image.url, class: "image" %>
     <% end %>
-    <span class="content"><%= @progress.content %></span>
-    <% if @portfolio.user == current_user %>
-      <%= link_to t("btn.edit"), edit_portfolio_progress_path(@portfolio, @progress) %>
-    <% end %>
-    <% unless @comments == nil %>
-    <div id="comments">
-      <ol>
-        <%= render @comments, portfolio: @portfolio, progress: @progress %>
-      </ol>
+    <div class="content"><%= @portfolio.content %></div>
+    <hr>
+    <div class="progress-user">
+      <%= link_to set_user_image(@portfolio.user), @portfolio.user %>
+      <div class="user-info">
+        <%= link_to @portfolio.user.username, @portfolio.user %>
+        <div class="profile"><%= @portfolio.user.profile %></div>
+        <%= render "users/follow_form", user: @portfolio.user if user_signed_in? %>
+      </div>
     </div>
-    <% end %>
-    <%= render "comments/comment_form" %>
-  </div>
+    <div class="progress-whole">
+      <h2 class="py-2"><%= t("activerecord.models.progress") %> <%= link_to "##{get_number(@portfolio, @progress)}", portfolio_progress_path(@portfolio, @progress), class: "id" %></h2>
+      <div class="progress-header">
+        <% if @progress.has_any_evaluations? %>
+          <span class="average_evaluation">
+            <%= t("common.evaluation", evaluation: @progress.average_evaluation) %>
+          </span>
+          <%= t("common.counts", counts: @progress.comments.count) %>
+        <% end %>
+        <% if current_user?(@portfolio.user) %>
+          <span class="dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-cog"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <li>
+                <%= link_to edit_portfolio_progress_path(@portfolio, @progress) do %>
+                  <span><i class="fas fa-pencil-alt"></i> <%= t("btn.edit") %></span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to portfolio_progresses_path(@portfolio) do %>
+                  <span><i class="far fa-list-alt"></i> <%= t("portfolios.show.progress_index") %>
+                      <%= t("common.brackets", content: @portfolio.progresses.count) %></span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_portfolio_progress_path(@portfolio) do %>
+                  <span><i class="fas fa-pencil-alt"></i> <%= t("portfolios.show.progress_new") %></span>
+                <% end %>
+              </li>
+              <li class="dropdown-divider"></li>
+              <li>
+                <%= link_to portfolio_progress_path(@portfolio, @progress),
+                  method: :delete, data: { confirm: t("common.delete_confirmation") } do %>
+                  <span><i class="fas fa-trash-alt"></i> <%= t("btn.delete") %></span>
+                <% end %>
+              </li>
+            </ul>
+          </span>
+        <% end %>
+      </div>
+      <div class="content"><%= @progress.content %></div>
+      <% unless @comments == nil %>
+        <div class="comments">
+          <ol>
+            <%= render @comments, portfolio: @portfolio, progress: @progress %>
+          </ol>
+        </div>
+      <% end %>
+      <% if user_signed_in? %>
+        <div class="comment-form">
+          <%= link_to set_user_image(@portfolio.user), @portfolio.user, class: "user-image" %>
+          <strong><%= t(".comment_new") %></strong>
+          <%= render "comments/comment_form" %>
+        </div>
+      <% end %>
+    </div>
+  </main>
+  <aside>
+    <%= render "shared/portfolio_sidebar", portfolio: @portfolio %>
+  </aside>
 </div>
 
 <% if @progress.has_any_evaluations? %>

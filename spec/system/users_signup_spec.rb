@@ -5,16 +5,13 @@ RSpec.describe "UsersSignup", type: :system, js: true do
     subject {
       visit new_user_registration_path
       fill_in "user_username", with: username
-      fill_in "user_profile", with: profile
       fill_in "user_email", with: email
-      attach_file "user_image", "#{Rails.root}/spec/factories/rails.png"
       fill_in "user_password", with: password
       fill_in "user_password_confirmation", with: password_confirmation
       click_on "アカウント登録"
     }
     context "try to sign up by invalid user info" do
       let(:username) { "" }
-      let(:profile) { "" }
       let(:email) { "user@invalid" }
       let(:password) { "foo" }
       let(:password_confirmation) { "bar" }
@@ -26,7 +23,6 @@ RSpec.describe "UsersSignup", type: :system, js: true do
 
     context "try to sign up by valid user info" do
       let(:username) { "test_user" }
-      let(:profile) { "This is test_user profile." }
       let(:email) { "user@example.com" }
       let(:password) { "password" }
       let(:password_confirmation) { "password" }

@@ -1,0 +1,20 @@
+<% provide(:title, t("rankings.#{controller.action_name}.title")) %>
+<div class="alert alert-light" role="alert">
+  <strong><%= t("rankings.#{controller.action_name}.title") %></strong>
+</div>
+<div class="top-page-info ranking">
+  <main class="main <%= "before-login" unless user_signed_in? %>">
+    <ol class="portfolios">
+      <% if user_signed_in? %>
+        <%= render @portfolios, user: current_user %>
+      <% else %>
+        <%= render @portfolios %>
+      <% end %>
+    </ol>
+  </main>
+  <aside class="sidebar">
+    <div class="stats-whole bg-white">
+      <%= render 'shared/stats' %>
+    </div>
+  </aside>
+</div>

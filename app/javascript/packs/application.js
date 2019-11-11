@@ -20,13 +20,14 @@ console.log('Hello World from Webpacker')
 import 'jquery/dist/jquery.js'
 import 'popper.js/dist/popper.js'
 import 'bootstrap/dist/js/bootstrap'
+import Rails from 'rails-ujs';
 import "actiontext"
 import I18n from 'src/i18n-js/index.js.erb'
 import 'javascripts/jquery.raty';
+import '@fortawesome/fontawesome-free/js/all'
 
 import 'stylesheets/application';
 import 'javascripts/application';
 require.context('../images', true, /\.(png|jpg|jpeg|svg)$/);
 
-import Rails from 'rails-ujs';
 Rails.start();

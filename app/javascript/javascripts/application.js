@@ -6,3 +6,11 @@ $('#user_image').bind('change', function() {
     alert(I18n.t('errors.messages.size_range', {locale: "ja"}));
   }
 });
+$(function(){
+  setTimeout(function(){
+    setTimeout(function(){
+      $('.flash-message .alert').addClass("zindex-minus");
+    },1000);
+    $('.flash-message .alert').addClass("animated fadeOutUp");
+  },1000);
+});

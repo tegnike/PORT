@@ -1,7 +1,12 @@
-<% provide(:title, t("devise.registrations.new.sign_up")) %>
-<% provide(:submit_text, t("devise.registrations.new.sign_up")) %>
-<h2><%= t(".sign_up") %></h2>
-
-<%= render 'user_form' %>
-
-<%= render "devise/shared/links" %>
+<%
+  provide(:title, t(".sign_up"))
+  provide(:sns, "devise.registrations.new.sns")
+  provide(:sign_sns, "devise.registrations.new.sign_up_sns")
+  provide(:url, user_registration_path)
+%>
+<div class="entry-box">
+  <h1><%= t(".sentence.welcome") %></h1>
+  <h2><%= t(".sentence.welcome2") %></h2>
+  <hr>
+  <%= render 'devise/shared/user_form' %>
+</div>

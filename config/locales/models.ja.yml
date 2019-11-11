@@ -4,16 +4,17 @@ ja:
       user: "ユーザー"
       portfolio: "ポートフォリオ"
       progress: "プログレス"
+      comment: "コメント"
     attributes:
       portfolio:
         title: "タイトル"
         content: "概要"
         image: "サムネイル画像"
-        web_url: "WEB URL"
-        git_url: "GIT URL"
+        web_url: "WEBサイト URL"
+        git_url: "Github URL"
       progress:
         content: "内容"
-      comments:
+      comment:
         comment: "コメント"
         evaluation: "評価"
   attributes:

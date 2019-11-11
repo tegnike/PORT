@@ -1,33 +1,64 @@
 <% provide(:title, t(".title", portfolio_title: @portfolio.title)) %>
-<h1><%= @portfolio.title %></h1>
-<h2>プログレス一覧</h2>
-<ol>
-  <% @progresses.each do |progress| %>
-  <li id="progress-<%= progress.id %>">
-    <%= link_to "##{get_number(@portfolio, progress)}", portfolio_progress_path(@portfolio, progress), class: "id" %>
-    <% unless progress.comments.count == 0 %>
-      <span class="average_evaluation">評価：<%= progress.average_evaluation %>（<%= progress.comments.count %> 件）</span>
-    <% end %>
-    <span class="content"><%= progress.content %></span>
-    <% if @portfolio.user == current_user %>
-      <%= link_to t("btn.edit"), edit_portfolio_progress_path(@portfolio, progress) %>
-      <%= link_to t("btn.delete"), portfolio_progress_path(@portfolio, progress), method: :delete,
-                  data: { confirm: t("common.delete_confirmation") } %>
-    <% end %>
+<div class="portfolio-show">
+  <main class="portfolio-whole <%= "before-login" unless user_signed_in? %>">
+    <%= render "shared/portfolio_info", portfolio: @portfolio %>
+    <div class="progress-whole progress-index">
+      <h2 class="py-2"><%= t(".index")%></h2>
+      <ol>
+        <% @progresses.each do |progress| %>
+          <li id="progress-<%= progress.id %>">
+            <div class="progress-header">
+              <span><%= link_to "##{get_number(@portfolio, progress)}",
+                  portfolio_progress_path(@portfolio, progress), class: "id" %> </span>
+              <% if progress.has_any_evaluations? %>
+                <span class="average_evaluation">
+                  <%= t("common.evaluation", evaluation: progress.average_evaluation) %>
+                </span>
+                <%= t("common.counts", counts: progress.comments.count) %>
+              <% end %>
+              <% if current_user?(@portfolio.user) %>
+                <span class="dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-cog"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <li>
+                      <%= link_to edit_portfolio_progress_path(@portfolio, progress) do %>
+                        <span><i class="fas fa-pencil-alt"></i> <%= t("btn.edit") %></span>
+                      <% end %>
+                    </li>
+                    <li class="dropdown-divider"></li>
+                    <li>
+                      <%= link_to portfolio_progress_path(@portfolio, progress),
+                        method: :delete, data: { confirm: t("common.delete_confirmation") } do %>
+                        <span><i class="fas fa-trash-alt"></i> <%= t("btn.delete") %></span>
+                      <% end %>
+                    </li>
+                  </ul>
+                </span>
+              <% end %>
+            </div>
+            <div class="content"><%= extract_content(progress.content, length: 200) %></div>
 
-    <% if progress.has_any_evaluations? %>
-      <script>
-        $('#progress-<%= progress.id %> .average_evaluation').raty({
-          size: 36,
-          starOff:  "<%= asset_pack_path 'images/star-off.png' %>",
-          starOn : "<%= asset_pack_path 'images/star-on.png' %>",
-          starHalf: "<%= asset_pack_path 'images/star-half.png' %>",
-          half: true,
-          readOnly: true,
-          score: <%= progress.average_evaluation %>
-        });
-      </script>
-    <% end %>
-  </li>
-  <% end %>
-</ol>
+            <% if progress.has_any_evaluations? %>
+              <script>
+                $('#progress-<%= progress.id %> .average_evaluation').raty({
+                  size: 36,
+                  starOff:  "<%= asset_pack_path 'images/star-off.png' %>",
+                  starOn : "<%= asset_pack_path 'images/star-on.png' %>",
+                  starHalf: "<%= asset_pack_path 'images/star-half.png' %>",
+                  half: true,
+                  readOnly: true,
+                  score: <%= progress.average_evaluation %>
+                });
+              </script>
+            <% end %>
+          </li>
+        <% end %>
+      </ol>
+    </div>
+  </main>
+  <aside>
+    <%= render "shared/portfolio_sidebar", portfolio: @portfolio %>
+  </aside>
+</div>
