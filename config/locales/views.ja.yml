@@ -15,6 +15,7 @@ ja:
     evaluation: "評価：%{evaluation}"
     counts: "（%{counts} 件）"
     brackets: "(%{content})"
+    test_login: "テストユーザでログイン"
   header:
     about: "はじめに"
     ranking: "ランキング"

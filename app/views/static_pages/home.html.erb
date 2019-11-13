@@ -5,6 +5,14 @@
       <p>
         <%= t(".introduction.sentence2") %><br><%= t(".introduction.sentence3") %>
       </p>
+      <%= form_for(@user, url: user_session_path) do |f| %>
+        <%= f.hidden_field :email, value: "test@example.com" %>
+        <%= f.hidden_field :password, value: "password" %>
+        <div class="actions">
+          <%= f.submit t("common.test_login"), class: "btn submit"  %>
+        </div>
+      <% end %>
+
     </div>
     <div class="col-md-6">
       <div class="snses">
@@ -51,7 +59,7 @@
           </div>
         </div>
         <div class="actions">
-          <%= f.submit t("btn.registration"), class: "btn btn-outline-primary submit"  %>
+          <%= f.submit t("btn.registration"), class: "btn submit"  %>
         </div>
       <% end %>
     </div>

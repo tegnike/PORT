@@ -34,4 +34,18 @@ RSpec.describe "UsersLoginTest", type: :system, js: true do
       end
     end
   end
+  describe "test user login" do
+    let!(:test_user) { create(:user, username: "Example User", email: "test@example.com") }
+
+    context "click test login button" do
+      before {
+        visit root_path
+        click_button "テストユーザでログイン"
+      }
+      it "redirect to root_path and show test user name" do
+        expect(current_path).to eq root_path
+        expect(page).to have_selector ".stats-user-info", text: "Example User"
+      end
+    end
+  end
 end
