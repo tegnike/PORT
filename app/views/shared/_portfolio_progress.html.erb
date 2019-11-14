@@ -1,0 +1,78 @@
+<div class="progress-whole">
+  <h2 class="py-2">
+    <%= t("activerecord.models.progress") %>
+    <%= link_to "##{get_progress_number(portfolio, progress)}", portfolio_progress_path(portfolio, progress),
+        class: "id" %>
+    <span class="status"><%= progress.status_i18n %> #<%= get_status_number(progress) %></span>
+  </h2>
+  <div class="progress-header">
+    <% if progress.has_any_evaluations? %>
+      <span class="average_evaluation">
+        <%= t("common.evaluation", evaluation: progress.average_evaluation) %>
+      </span>
+      <%= t("common.counts", counts: progress.comments.count) %>
+    <% end %>
+    <% if current_user?(portfolio.user) %>
+      <span class="dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-cog"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <li>
+            <%= link_to edit_portfolio_progress_path(portfolio, progress) do %>
+              <span><i class="fas fa-pencil-alt"></i> <%= t("btn.edit") %></span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to portfolio_progresses_path(portfolio) do %>
+              <span><i class="far fa-list-alt"></i> <%= t("portfolios.show.progress_index") %>
+                  <%= t("common.brackets", content: portfolio.progresses.count) %></span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_portfolio_progress_path(portfolio) do %>
+              <span><i class="fas fa-pencil-alt"></i> <%= t("portfolios.show.progress_new") %></span>
+            <% end %>
+          </li>
+          <li class="dropdown-divider"></li>
+          <li>
+            <%= link_to portfolio_progress_path(portfolio, progress),
+              method: :delete, data: { confirm: t("common.delete_confirmation") } do %>
+              <span><i class="fas fa-trash-alt"></i> <%= t("btn.delete") %></span>
+            <% end %>
+          </li>
+        </ul>
+      </span>
+    <% end %>
+  </div>
+  <div class="content"><%= progress.content %></div>
+  <% unless comments == nil %>
+    <div class="comments">
+      <ol>
+        <%= render comments, portfolio: portfolio, progress: progress %>
+      </ol>
+    </div>
+  <% end %>
+  <% if user_signed_in? && controller.controller_name != "progresses" %>
+    <div class="comment-form">
+      <%= link_to set_user_image(portfolio.user), portfolio.user, class: "user-image" %>
+      <strong><%= t(".comment_new") %></strong>
+      <%= render "comments/comment_form" %>
+    </div>
+  <% end %>
+</div>
+
+<% if progress.has_any_evaluations? %>
+  <script>
+    $('.average_evaluation').raty({
+      size: 36,
+      starOff:  "<%= asset_pack_path 'images/star-off.png' %>",
+      starOn : "<%= asset_pack_path 'images/star-on.png' %>",
+      starHalf: "<%= asset_pack_path 'images/star-half.png' %>",
+      half: true,
+      readOnly: true,
+      score: <%= progress.average_evaluation %>
+    });
+  </script>
+<% end %>

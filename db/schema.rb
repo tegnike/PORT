@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_09_144037) do
+ActiveRecord::Schema.define(version: 2019_11_13_091208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 2019_10_09_144037) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
     t.index ["portfolio_id", "created_at"], name: "index_progresses_on_portfolio_id_and_created_at"
     t.index ["portfolio_id"], name: "index_progresses_on_portfolio_id"
   end

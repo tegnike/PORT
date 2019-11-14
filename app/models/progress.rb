@@ -3,6 +3,9 @@ class Progress < ApplicationRecord
   belongs_to :portfolio
   has_rich_text :content
   validates :content, presence: true
+  validates :status, presence: true
+
+  enum status: { plan: 0, design: 1, development: 2, release: 3 }
 
   def average_evaluation
     evaluations = self.comments.where.not(evaluation: nil).pluck(:evaluation)

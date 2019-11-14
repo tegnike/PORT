@@ -381,6 +381,17 @@ footer {
 
   h2 {
     background-color: #dfeffc;
+    padding-right: 20px;
+    padding-left: 60px;
+
+    .status {
+      float: right;
+      padding: 0.35rem 1rem;
+      font-size: 2rem;
+      background-color: #377BB5;
+      color: #fff;
+      border-radius: 0.3rem;
+    }
   }
   .progress-header {
     margin-bottom: 20px;
@@ -874,6 +885,9 @@ aside {
       border-top: 15px solid #e0edff;
     }
   }
+  .status {
+    margin-bottom: 10px;
+  }
   .btn {
     padding: 4px 40px;
     margin-left: 10px;
@@ -893,6 +907,9 @@ aside {
   }
   .edit {
     float: right;
+  }
+  .status {
+    margin-bottom: 15px;
   }
 }
 
@@ -1245,6 +1262,7 @@ aside {
     }
     .portfolio-links {
       padding: 0 15px;
+      margin-bottom: 10px;
 
       .col {
         margin-bottom: 5px;
@@ -1263,6 +1281,12 @@ aside {
   .progress-whole {
     h2 {
       font-size: 2rem;
+      padding-right: 10px;
+
+      .status {
+        padding: 0.3rem 0.8rem;
+        font-size: 1.5rem;
+      }
     }
   }
   .portfolios {

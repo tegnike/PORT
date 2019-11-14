@@ -21,6 +21,7 @@ RSpec.describe "ProgressesIndexTest", type: :system, js: true do
     it "shows correct progress order" do
       (0..9).each do |n|
         expect(page.all("ol li")[n]).to have_content "##{10 - n}"
+        expect(page.all("ol li")[n]).to have_content "公開"
       end
     end
     it "shows average evaluation" do

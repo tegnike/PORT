@@ -58,7 +58,7 @@ class ProgressesController < ApplicationController
     end
 
     def progress_params
-      params.require(:progress).permit(:content)
+      params.require(:progress).permit(:content, :status)
     end
 
     def correct_user

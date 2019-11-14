@@ -8,7 +8,7 @@
         <% @progresses.each do |progress| %>
           <li id="progress-<%= progress.id %>">
             <div class="progress-header">
-              <span><%= link_to "##{get_number(@portfolio, progress)}",
+              <span><%= link_to "##{get_progress_number(@portfolio, progress)}",
                   portfolio_progress_path(@portfolio, progress), class: "id" %> </span>
               <% if progress.has_any_evaluations? %>
                 <span class="average_evaluation">
@@ -37,6 +37,10 @@
                   </ul>
                 </span>
               <% end %>
+            </div>
+            <div class="status">
+              <%= t("activerecord.attributes.progress.status") %>：
+              <%= progress.status_i18n %> #<%= get_status_number(progress) %>
             </div>
             <div class="content"><%= extract_content(progress.content, length: 200) %></div>
 

@@ -67,7 +67,7 @@ class PortfoliosController < ApplicationController
         :image,
         :web_url,
         :git_url,
-        progresses_attributes: [ :content ]
+        progresses_attributes: [ :content, :status ]
       )
     end
 

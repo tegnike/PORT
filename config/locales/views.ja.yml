@@ -81,7 +81,6 @@ ja:
       git_url: "Github"
       progress_index: "プログレス一覧"
       progress_new: "プログレス作成"
-      comment_new: "コメントを投稿する"
     new:
       title: "ポートフォリオ新規作成"
     edit:
@@ -94,8 +93,11 @@ ja:
       title: "%{portfolio_title}｜%{progress_id}"
     new:
       title: "プログレス新規作成"
+      progress_status: "現在のステータス"
     edit:
       title: "プログレス編集"
+    progress_form:
+      progress_status: "現在のステータス"
   comments:
     edit:
       title: "コメント編集"
@@ -114,11 +116,14 @@ ja:
         content: "ポートフォリオを自由に紹介してください。"
         progress: "最初のプログレスを記載してください。"
       image_size: "（16×9のサイズがキレイに収まります。）"
+      progress_status: "現在のステータス"
     portfolio_sidebar:
       portfolio: "ポートフォリオトップ"
       web_url: "WEBサイト"
       git_url: "Github"
       progress_index: "プログレス一覧"
+    portfolio_progress:
+      comment_new: "コメントを投稿する"
     stats:
       following: "フォロー"
       follower: "フォロワー"

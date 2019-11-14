@@ -1,40 +1,9 @@
-<% provide(:title, t(".title", portfolio_title: @portfolio.title, progress_id: get_number(@portfolio, @progress))) %>
+<% provide(:title, t(".title", portfolio_title: @portfolio.title, progress_id: get_progress_number(@portfolio, @progress))) %>
 <% provide(:submit_text, t("btn.create")) %>
 <div class="portfolio-show">
   <main class="portfolio-whole <%= "before-login" unless user_signed_in? %>">
     <%= render "shared/portfolio_info", portfolio: @portfolio %>
-    <div class="progress-whole">
-      <h2 class="py-2"><%= t("activerecord.models.progress") %> <%= link_to "##{get_number(@portfolio, @progress)}",
-          portfolio_progress_path(@portfolio, @progress), class: "id" %></h2>
-      <div class="progress-header">
-        <% if @progress.has_any_evaluations? %>
-          <span class="average_evaluation">
-            <%= t("common.evaluation", evaluation: @progress.average_evaluation) %>
-          </span>
-          <%= t("common.counts", counts: @progress.comments.count) %>
-        <% end %>
-        <% if current_user?(@portfolio.user) %>
-          <span class="dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-cog"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <li><%= link_to t("btn.edit"), edit_portfolio_progress_path(@portfolio, @progress) %></li>
-              <li><%= link_to t("portfolios.show.progress_new"), new_portfolio_progress_path(@portfolio) %></li>
-            </ul>
-          </span>
-        <% end %>
-      </div>
-      <div class="content"><%= @progress.content %></div>
-      <% unless @comments == nil %>
-      <div class="comments">
-        <ol>
-          <%= render @comments, portfolio: @portfolio, progress: @progress %>
-        </ol>
-      </div>
-      <% end %>
-    </div>
+    <%= render "shared/portfolio_progress", portfolio: @portfolio, progress: @progress, comments: @comments %>
   </main>
   <aside>
     <%= render "shared/portfolio_sidebar", portfolio: @portfolio %>

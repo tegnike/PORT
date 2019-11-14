@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.describe "ProgressesInterfaceTest", type: :system, js: true do
   subject(:correct_post)  {
+    select "開発", from: "現在のステータス"
     fill_in_rich_text_area "progress_content", with: "test_prorgess1"
     click_button "投稿"
   }
@@ -31,6 +32,7 @@ RSpec.describe "ProgressesInterfaceTest", type: :system, js: true do
     context "try to post a valid portfolio" do
       before { correct_post }
       it "shows a posted progress" do
+        expect(page).to have_selector ".progress-whole", text: "開発"
         expect(page).to have_selector ".progress-whole", text: "test_prorgess"
       end
     end
