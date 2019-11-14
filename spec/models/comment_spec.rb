@@ -58,7 +58,7 @@ RSpec.describe Comment, type: :model do
           before { create(:comment, user: user, progress: progress) }
           subject { create(:comment, user: user, progress: progress) }
           it "should be valid" do
-            expect{ subject }.to raise_error ActiveRecord::RecordInvalid
+            expect { subject }.to raise_error ActiveRecord::RecordInvalid
           end
         end
       end

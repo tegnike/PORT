@@ -63,7 +63,7 @@ gem "rails-i18n"
 gem "devise-i18n"
 gem "devise-i18n-views"
 gem "i18n-js"
-gem 'enum_help'
+gem "enum_help"
 # fontawesome
 gem "font-awesome-rails"
 
