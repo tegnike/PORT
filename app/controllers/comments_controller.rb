@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
       redirect_to @portfolio
     else
       flash_failed_for_render
-      @comments = @progress.comments.page(params[:page])
+      @comments = @progress.comments.page(params[:page]).order("created_at ASC")
       render "portfolios/show"
     end
   end

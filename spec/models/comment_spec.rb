@@ -34,13 +34,13 @@ RSpec.describe Comment, type: :model do
         before { @comment = create(:comment, user: user2, progress: progress) }
         context "comment has evaluation" do
           it "should be valid" do
-            expect(comment).to be_valid
+            expect(@comment).to be_valid
           end
         end
         context "comment doesn't have evaluation" do
-          before { comment.evaluation = "" }
-          it "should be invalid" do
-            expect(comment).not_to be_valid
+          before { @comment.evaluation = "" }
+          it "should be valid" do
+            expect(@comment).to be_valid
           end
         end
       end
@@ -50,6 +50,15 @@ RSpec.describe Comment, type: :model do
           before { @comment.evaluation = "" }
           it "should be valid" do
             expect(@comment).to be_valid
+          end
+        end
+      end
+      context "post comment with evaluation 2 times" do
+        context "comment doesn't have evaluation" do
+          before { create(:comment, user: user, progress: progress) }
+          subject { create(:comment, user: user, progress: progress) }
+          it "should be valid" do
+            expect{ subject }.to raise_error ActiveRecord::RecordInvalid
           end
         end
       end

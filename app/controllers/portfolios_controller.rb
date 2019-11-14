@@ -13,7 +13,7 @@ class PortfoliosController < ApplicationController
     end
     @progress = @portfolio.progresses.limit(1).order("created_at DESC").first
     # comment index
-    @comments = @progress.comments.page(params[:page])
+    @comments = @progress.comments.page(params[:page]).order("created_at ASC")
     # comment new
     @comment = @progress.comments.build
   end
