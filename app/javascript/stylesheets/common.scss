@@ -481,6 +481,7 @@ footer {
   border-radius: 4px;
 
   #comment_comment, #edit_comment {
+    width: 100%;
     margin-bottom: 10px;
   }
   #star {
@@ -500,7 +501,8 @@ aside {
   width: 25%;
 
   .portfolio-side {
-    border: #aaa 1px solid;
+    border: #fff 1px solid;
+    background-color: #fff;
     border-radius: 5px;
     position: -webkit-sticky;
     position: sticky;
@@ -808,6 +810,10 @@ aside {
   .media {
     margin-bottom: 10px;
     border-bottom: 1px solid #ced4da;
+
+    .medis {
+      width: 100%;
+    }
   }
   .user-image {
     width: 73px;
