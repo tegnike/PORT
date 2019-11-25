@@ -11,9 +11,10 @@ class PortfoliosController < ApplicationController
         REDIS.zincrby "portfolios/#{Date.current}", 1, @portfolio.id
       end
     end
+    # the latest progress
     @progress = @portfolio.progresses.limit(1).order("created_at DESC").first
     # comment index
-    @comments = @progress.comments.page(params[:page]).order("created_at ASC")
+    @comments = @progress.comments.page(params[:page]).order(:created_at)
     # comment new
     @comment = @progress.comments.build
   end

@@ -47,7 +47,7 @@
     <% end %>
   </div>
   <div class="content"><%= progress.content %></div>
-  <% unless comments == nil %>
+  <% unless comments.nil? %>
     <div class="comments">
       <ol>
         <%= render comments, portfolio: portfolio, progress: progress %>
