@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_13_091208) do
+ActiveRecord::Schema.define(version: 2019_11_25_150600) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,11 +70,11 @@ ActiveRecord::Schema.define(version: 2019_11_13_091208) do
 
   create_table "portfolios", force: :cascade do |t|
     t.bigint "user_id"
-    t.string "title"
+    t.string "title", null: false
     t.text "content"
     t.string "image"
-    t.string "web_url"
-    t.string "git_url"
+    t.string "web_url", null: false
+    t.string "git_url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "created_at"], name: "index_portfolios_on_user_id_and_created_at"
@@ -85,14 +86,14 @@ ActiveRecord::Schema.define(version: 2019_11_13_091208) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "status", default: 0
+    t.integer "status", default: 0, null: false
     t.index ["portfolio_id", "created_at"], name: "index_progresses_on_portfolio_id_and_created_at"
     t.index ["portfolio_id"], name: "index_progresses_on_portfolio_id"
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "followed_id"
+    t.integer "follower_id", default: 0, null: false
+    t.integer "followed_id", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
@@ -122,7 +123,7 @@ ActiveRecord::Schema.define(version: 2019_11_13_091208) do
     t.datetime "updated_at", null: false
     t.string "provider"
     t.string "uid"
-    t.string "username"
+    t.string "username", null: false
     t.string "profile"
     t.string "image"
     t.boolean "admin", default: false
