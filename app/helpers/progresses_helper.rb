@@ -1,5 +1,6 @@
 module ProgressesHelper
   def get_status_number(progress)
-    Progress.where(id: progress.id).where(status: progress.status).count
+    ids = progress.portfolio.progresses.select { |r| r.status == progress.status }.pluck(:id)
+    ids.index(progress.id) + 1
   end
 end
