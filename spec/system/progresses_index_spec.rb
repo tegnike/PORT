@@ -7,7 +7,7 @@ RSpec.describe "ProgressesIndexTest", type: :system, js: true do
     let(:user3) { create(:user) }
     let(:portfolio) { create(:portfolio, user: user) }
     before {
-      create_list(:progress, 10, portfolio: portfolio)
+      create_list(:progress, 4, portfolio: portfolio)
       progresses = portfolio.progresses.order(created_at: :desc)
       progresses.each do |progress|
         progress.comments.create!(user: user, comment: "test", evaluation: 0)
@@ -18,13 +18,13 @@ RSpec.describe "ProgressesIndexTest", type: :system, js: true do
       visit portfolio_progresses_path(portfolio)
     }
     it "shows correct progress order" do
-      (0..9).each do |n|
-        expect(page.all("ol li")[n]).to have_content "##{10 - n}"
+      (0..3).each do |n|
+        expect(page.all("ol li")[n]).to have_content "##{4 - n}"
         expect(page.all("ol li")[n]).to have_content "公開"
       end
     end
     it "shows average evaluation" do
-      (0..9).each do |n|
+      (0..3).each do |n|
         expect(page.all("ol li")[n]).to have_content "評価：1.0"
         expect(page.all("ol li")[n]).to have_content "（3 件）"
       end
