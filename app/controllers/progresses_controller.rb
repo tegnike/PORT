@@ -4,7 +4,7 @@ class ProgressesController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @progresses = @portfolio.progresses.order(created_at: :desc).page(params[:page])
+    @progresses = @portfolio.progresses.includes(:portfolio).order(created_at: :desc).page(params[:page])
   end
 
   def show
@@ -58,7 +58,7 @@ class ProgressesController < ApplicationController
     end
 
     def progress_params
-      params.require(:progress).permit(:content)
+      params.require(:progress).permit(:content, :status)
     end
 
     def correct_user

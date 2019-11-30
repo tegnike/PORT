@@ -381,6 +381,17 @@ footer {
 
   h2 {
     background-color: #dfeffc;
+    padding-right: 20px;
+    padding-left: 60px;
+
+    .status {
+      float: right;
+      padding: 0.35rem 1rem;
+      font-size: 2rem;
+      background-color: #377BB5;
+      color: #fff;
+      border-radius: 0.3rem;
+    }
   }
   .progress-header {
     margin-bottom: 20px;
@@ -470,6 +481,7 @@ footer {
   border-radius: 4px;
 
   #comment_comment, #edit_comment {
+    width: 100%;
     margin-bottom: 10px;
   }
   #star {
@@ -489,7 +501,8 @@ aside {
   width: 25%;
 
   .portfolio-side {
-    border: #aaa 1px solid;
+    border: #fff 1px solid;
+    background-color: #fff;
     border-radius: 5px;
     position: -webkit-sticky;
     position: sticky;
@@ -797,6 +810,10 @@ aside {
   .media {
     margin-bottom: 10px;
     border-bottom: 1px solid #ced4da;
+
+    .medis {
+      width: 100%;
+    }
   }
   .user-image {
     width: 73px;
@@ -874,6 +891,9 @@ aside {
       border-top: 15px solid #e0edff;
     }
   }
+  .status {
+    margin-bottom: 10px;
+  }
   .btn {
     padding: 4px 40px;
     margin-left: 10px;
@@ -893,6 +913,9 @@ aside {
   }
   .edit {
     float: right;
+  }
+  .status {
+    margin-bottom: 15px;
   }
 }
 
@@ -923,6 +946,36 @@ aside {
       background-color: white;
       border-radius: 50%;
     }
+  }
+}
+
+/* about page */
+
+.container .about {
+  background-color: #DFEFFC;
+  padding: 80px 80px 70px;
+
+  h1 img {
+    width: 500px;
+  }
+  p {
+    font-size: 1.7rem;
+    margin-bottom: 20px;
+  }
+  .about-box {
+    padding: 30px;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  h2 {
+    text-align: left;
+  }
+  h3 {
+    font-size: 2rem;
+  }
+  ol {
+    list-style: decimal;
+    margin-left: 20px;
   }
 }
 
@@ -1012,6 +1065,13 @@ aside {
   .comment-form .trix-button-group--history-tools {
     display: block;
   }
+  .container .about {
+    padding: 60px 60px 50px;
+
+    h1 img {
+      width: 400px;
+    }
+  }
 }
 
 @media screen and (max-width:768px) {
@@ -1045,7 +1105,10 @@ aside {
     padding-bottom: 30px;
 
     .top-page-message {
-      padding-top: 20px;
+      padding: 50px 15px 0px 15px;
+    }
+    .new_user {
+      margin-bottom: 20px;
     }
   }
   .entry-box {
@@ -1108,6 +1171,13 @@ aside {
   }
   .trix-button--icon-increase-nesting-level, .trix-button-group--history-tools {
     display: none;
+  }
+  .container .about {
+    padding: 40px 30px 40px;
+
+    h1 img {
+      width: 350px;
+    }
   }
 }
 
@@ -1242,6 +1312,7 @@ aside {
     }
     .portfolio-links {
       padding: 0 15px;
+      margin-bottom: 10px;
 
       .col {
         margin-bottom: 5px;
@@ -1260,6 +1331,12 @@ aside {
   .progress-whole {
     h2 {
       font-size: 2rem;
+      padding-right: 10px;
+
+      .status {
+        padding: 0.3rem 0.8rem;
+        font-size: 1.5rem;
+      }
     }
   }
   .portfolios {
@@ -1300,13 +1377,36 @@ aside {
   }
   footer {
     margin-top: 30px;
+    margin-bottom: 50px;
 
     #logo {
       display: none;
     }
+    ul {
+      float: none;
+    }
   }
   .trix-button-group--history-tools {
     display: none !important;
+  }
+  .container .about {
+    padding: 20px;
+
+    h1 img {
+      width: 70%;
+    }
+    h2 {
+      font-size: 2.0rem;
+    }
+    h3 {
+      font-size: 1.8rem;
+    }
+    p {
+      font-size: 1.5rem;
+    }
+    .about-box {
+      padding: 15px;
+    }
   }
 }
 

@@ -18,16 +18,18 @@
         <%= f.text_area :profile, class: "form-control", placeholder: t("activerecord.attributes.user.profile") %>
       </div>
 
-      <div class="field form-group">
-        <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control",
-            placeholder: t("activerecord.attributes.user.email") %>
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <p class="ml-1">
-            <%= t(".currently_waiting_confirmation_for_email", email: resource.unconfirmed_email) %>
-          </p>
-        <% end %>
-      </div>
+      <% unless @user.provider %>
+        <div class="field form-group">
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control",
+              placeholder: t("activerecord.attributes.user.email") %>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <p class="ml-1">
+              <%= t(".currently_waiting_confirmation_for_email", email: resource.unconfirmed_email) %>
+            </p>
+          <% end %>
+        </div>
+      <% end %>
 
 
       <div class="field form-group">
@@ -35,29 +37,31 @@
         <%= f.file_field :image %>
       </div>
 
-      <div class="field form-group">
-        <%= f.password_field :password, autocomplete: "new-password", class: "form-control",
-            placeholder: t("activerecord.attributes.user.password") %>
-        <% if @minimum_password_length %>
-          <p class="ml-1">
-            <%= @minimum_password_length %><%= t("devise.registrations.edit.characters_minimum") %><br>
-            <%= t("devise.registrations.edit.leave_blank_if_you_don_t_want_to_change_it") %>
+      <% unless @user.provider %>
+        <div class="field form-group">
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control",
+              placeholder: t("activerecord.attributes.user.password") %>
+          <% if @minimum_password_length %>
+            <p class="ml-1">
+              <%= @minimum_password_length %><%= t("devise.registrations.edit.characters_minimum") %><br>
+              <%= t("devise.registrations.edit.leave_blank_if_you_don_t_want_to_change_it") %>
+            </p>
+          <% end %>
+        </div>
+
+        <div class="field form-group">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control",
+              placeholder: t("activerecord.attributes.user.password_confirmation") %>
+        </div>
+
+        <div class="field form-group mb-4">
+          <p class="ml-1 mb-0">
+            <%= t("devise.registrations.edit.we_need_your_current_password_to_confirm_your_changes") %>
           </p>
-        <% end %>
-      </div>
-
-      <div class="field form-group">
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control",
-            placeholder: t("activerecord.attributes.user.password_confirmation") %>
-      </div>
-
-      <div class="field form-group mb-4">
-        <p class="ml-1 mb-0">
-          <%= t("devise.registrations.edit.we_need_your_current_password_to_confirm_your_changes") %>
-        </p>
-        <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control",
-            placeholder: t("activerecord.attributes.user.current_password") %>
-      </div>
+          <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control",
+              placeholder: t("activerecord.attributes.user.current_password") %>
+        </div>
+      <% end %>
 
       <div class="actions">
         <%= f.submit t("btn.update"), class: "btn btn-outline-primary submit"  %>

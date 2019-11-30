@@ -38,6 +38,7 @@ end
 
 Portfolio.all.each do |portfolio|
   portfolio.progresses.create!(
+    status: "release",
     content: "これはプログレスです。ポートフォリオに1対多の関係で作成される、進捗報告用のモデルです。ステータスごとに更新して、その都度評価をもらいましょう。<br>これはプログレスです。ポートフォリオに1対多の関係で作成される、進捗報告用のモデルです。ステータスごとに更新して、その都度評価をもらいましょう。"
   )
 end
@@ -46,15 +47,12 @@ Progress.all.each do |progress|
   progress.comments.create!(
     user: progress.portfolio.user,
     comment: "これはコメントです。プログレスごとにコメントは管理されます。評価はあくまで個人における目安です。より良いポートフォリオ作りの参考にしましょう。<br>これはコメントです。プログレスごとにコメントは管理されます。評価はあくまで個人における目安です。より良いポートフォリオ作りの参考にしましょう。",
+  )
+  progress.comments.create!(
+    user: User.find(rand(1..User.count)),
+    comment: "これはコメントです。プログレスごとにコメントは管理されます。評価はあくまで個人における目安です。より良いポートフォリオ作りの参考にしましょう。<br>これはコメントです。プログレスごとにコメントは管理されます。評価はあくまで個人における目安です。より良いポートフォリオ作りの参考にしましょう。",
     evaluation: rand(0.0..5.0).round(1)
   )
-  2.times do
-    progress.comments.create!(
-      user: User.find(rand(1..User.count)),
-      comment: "これはコメントです。プログレスごとにコメントは管理されます。評価はあくまで個人における目安です。より良いポートフォリオ作りの参考にしましょう。<br>これはコメントです。プログレスごとにコメントは管理されます。評価はあくまで個人における目安です。より良いポートフォリオ作りの参考にしましょう。",
-      evaluation: rand(0.0..5.0).round(1)
-    )
-  end
 end
 
 users.each do |favorite_user|

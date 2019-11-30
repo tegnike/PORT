@@ -14,9 +14,18 @@ ja:
         git_url: "Github URL"
       progress:
         content: "内容"
+        status: "ステータス"
       comment:
         comment: "コメント"
         evaluation: "評価"
+        has_evaluation: "同じプログレスに2回以上評価することはできません"
+  enums:
+    progress:
+      status:
+        plan: "企画"
+        design: "設計"
+        development: "開発"
+        release: "公開"
   attributes:
     created_at: 作成日時
     updated_at: 更新日時

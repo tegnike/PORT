@@ -42,6 +42,7 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
         expect(page).to have_css ".image"
         expect(page).to have_selector ".portfolio-links", text: "WEBサイト"
         expect(page).to have_selector ".portfolio-links", text: "Github"
+        expect(page).to have_selector ".progress-whole", text: "企画"
         expect(page).to have_selector ".progress-whole", text: "test_prorgess"
       end
     end
