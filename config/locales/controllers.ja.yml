@@ -29,6 +29,7 @@ ja:
   portfolios:
     create:
       action: "ポートフォリオを作成"
+      no_progress: "プログレスを作成できなかったため、投稿に失敗しました。"
     edit:
       action: "ページを取得"
     update:
