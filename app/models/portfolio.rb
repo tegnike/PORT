@@ -13,7 +13,7 @@ class Portfolio < ApplicationRecord
   validates :web_url, presence: true
   validates :web_url, format: /\A#{URI.regexp(%w(http https))}\z/
   validates :git_url, presence: true
-  validates :git_url, format: /\A#{URI.regexp(%w(http https))}\z/
+  validates :git_url, format: /\Ahttps:\/\/github.com\/.*\z/
 
   def self.pv_data(span, title)
     keys = []
