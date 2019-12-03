@@ -1,7 +1,7 @@
 <%= form_for(@portfolio) do |f| %>
   <%= render "shared/error_messages", object: f.object %>
   <div class="field">
-    <% if controller.action_name == "new" %>
+    <% if controller.action_name.in?(["new", "create"]) %>
       <h1><%= t("portfolios.new.title") %></h1>
     <% else %>
       <h1><%= @portfolio.title %></h1>
@@ -20,7 +20,7 @@
 
     <%= f.text_field :git_url, class: "form-control", placeholder: t("activerecord.attributes.portfolio.git_url") %>
 
-    <% if controller.action_name == "new" %>
+    <% if controller.action_name.in?(["new", "create"]) %>
       <h2 class="py-2"><%= t("activerecord.models.progress") %></h2>
       <div class="field">
         <%= f.fields_for :progresses do |g| %>

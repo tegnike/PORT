@@ -61,7 +61,7 @@ RSpec.describe PortfoliosController, type: :request do
           title: "title2",
           content: "content2",
           web_url: "http://example/web_url_test2",
-          git_url: "http://example/git_url_test2" }
+          git_url: "https://github.com/git_url_test2" }
         }
       }
       it "redirect to portfolio_path and update information" do

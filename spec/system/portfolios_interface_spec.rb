@@ -6,7 +6,7 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
     fill_in_rich_text_area "portfolio_content", with: "test_content"
     attach_file "portfolio_image", "#{Rails.root}/spec/factories/rails.png"
     fill_in "portfolio_web_url", with: "http://example/web_url"
-    fill_in "portfolio_git_url", with: "http://example/git_url"
+    fill_in "portfolio_git_url", with: "https://github.com/git_url"
     fill_in_rich_text_area "progress_content", with: "test_prorgess"
     click_button "投稿"
   }

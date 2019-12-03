@@ -30,7 +30,8 @@ RSpec.describe Portfolio, type: :model do
             portfolio.web_url = url
             expect(portfolio).not_to be_valid
           end
-          invalid_url.each do |url|
+          git_invalid_url = %w[http test.com test http.com http://localhost:3000 https://port-port.herokuapp.com]
+          git_invalid_url.each do |url|
             portfolio.git_url = url
             expect(portfolio).not_to be_valid
           end
@@ -38,12 +39,13 @@ RSpec.describe Portfolio, type: :model do
       end
       context "valid format" do
         it "should be valid" do
-          invalid_url = %w[http://localhost:3000 https://port-port.herokuapp.com]
-          invalid_url.each do |url|
+          valid_url = %w[http://localhost:3000 https://port-port.herokuapp.com]
+          valid_url.each do |url|
             portfolio.web_url = url
             expect(portfolio).to be_valid
           end
-          invalid_url.each do |url|
+          git_valid_url = %w[https://github.com/tegnike/PORT/]
+          git_valid_url.each do |url|
             portfolio.git_url = url
             expect(portfolio).to be_valid
           end

@@ -26,12 +26,17 @@ class PortfoliosController < ApplicationController
 
   def create
     @portfolio = current_user.portfolios.build(portfolio_params)
-    if @portfolio.save
-      flash_success
-      redirect_to @portfolio
-    else
-      flash_failed_for_render
+    unless params[:portfolio][:progresses_attributes]
+      flash.now[:alert] = t(".no_progress")
       render "new"
+    else
+      if @portfolio.save
+        flash_success
+        redirect_to @portfolio
+      else
+        flash_failed_for_render
+        render "new"
+      end
     end
   end
 
