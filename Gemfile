@@ -69,6 +69,7 @@ gem "font-awesome-rails"
 
 group :production do
   gem "fog"
+  gem "google-analytics-rails"
 end
 
 group :development, :test do

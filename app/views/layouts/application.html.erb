@@ -2,6 +2,9 @@
 <html>
   <head>
     <title><%= full_title(yield(:title)) %></title>
+
+    <%= analytics_init if Rails.env.production? && GoogleAnalytics.valid_tracker? %>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
