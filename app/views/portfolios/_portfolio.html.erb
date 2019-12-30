@@ -41,11 +41,17 @@
             <%= t('common.pageview', count: score(portfolio)) %>
           </span>
         <% end %>
-        <% if user_signed_in? %>
-          <span class="d-inline-block">
+        <span class="d-inline-block">
+          <% if user_signed_in? %>
             <%= render 'favorites/favorite_form', { portfolio: portfolio, user: user } %>
-          </span>
-        <% end %>
+          <% else %>
+            <div id="favorite_form">
+              <div class="btn btn-unfavorite">
+                <i class='far fa-thumbs-up'></i> <%= portfolio.favorite_users.count %>
+              </div>
+            </div>
+          <% end %>
+        </span>
       </div>
     </div>
   </div>
