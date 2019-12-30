@@ -9,11 +9,23 @@
     <% end %>
     <div class="media-body">
       <h4><%= link_to portfolio.title, portfolio, class: "title" %></h4>
-      <%= link_to  portfolio.web_url, class: "btn portfolio-url" do %>
-        <i class="fas fa-desktop"></i> <%= t("portfolios.show.web_url") %>
+      <% if portfolio.web_url == "" %>
+        <div class="btn portfolio-url without-url">
+          <i class="fas fa-desktop"></i> <%= t("portfolios.show.web_url") %>
+        </div>
+      <% else %>
+        <%= link_to portfolio.web_url, class: "btn portfolio-url" do %>
+          <i class="fas fa-desktop"></i> <%= t("portfolios.show.web_url") %>
+        <% end %>
       <% end %>
-      <%= link_to  portfolio.git_url, class: "btn portfolio-url" do %>
-        <i class="fab fa-github"></i> <%= t("portfolios.show.git_url") %>
+      <% if portfolio.git_url == "" %>
+        <div class="btn portfolio-url without-url">
+          <i class="fab fa-github"></i> <%= t("portfolios.show.git_url") %>
+        </div>
+      <% else %>
+        <%= link_to portfolio.git_url, class: "btn portfolio-url" do %>
+          <i class="fab fa-github"></i> <%= t("portfolios.show.git_url") %>
+        <% end %>
       <% end %>
       <div class="portfolio-info">
         <span class="portfolio-info-user">

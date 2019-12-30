@@ -344,6 +344,13 @@ footer {
     .portfolio-side-list:hover {
       background-color: $gray-medium-light;
     }
+    .without-url {
+      text-decoration: line-through;
+      background-color: #f8f9fa;
+    }
+    .without-url:hover {
+      background-color: #f8f9fa;
+    }
   }
   .image {
     width: 100%;
@@ -759,6 +766,13 @@ aside {
     }
     .portfolio-url:hover {
       background-color: #f5f4f7;
+    }
+    .without-url {
+      text-decoration: line-through;
+      background-color: #f8f9fa;
+    }
+    .without-url:hover {
+      background-color: #f8f9fa;
     }
   }
 }

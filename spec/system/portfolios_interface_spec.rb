@@ -46,6 +46,43 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
         expect(page).to have_selector ".progress-whole", text: "test_prorgess"
       end
     end
+    context "try to post without urls and progress status not release" do
+      before {
+        fill_in "portfolio_title", with: "test_title"
+        fill_in_rich_text_area "portfolio_content", with: "test_content"
+        attach_file "portfolio_image", "#{Rails.root}/spec/factories/rails.png"
+        fill_in "portfolio_web_url", with: ""
+        fill_in "portfolio_git_url", with: ""
+        select "企画", from: "現在のステータス"
+        fill_in_rich_text_area "progress_content", with: "test_prorgess"
+        click_button "投稿"
+      }
+      it "can post a portfolio" do
+        expect(current_path).to eq portfolio_path(Portfolio.find_by(title: "test_title"))
+        expect(page).to have_selector ".title", text: "test_title"
+        expect(page).to have_selector ".content", text: "test_content"
+        expect(page).to have_css ".image"
+        expect(page).to have_selector ".without-url", text: "WEBサイト"
+        expect(page).to have_selector ".without-url", text: "Github"
+        expect(page).to have_selector ".progress-whole", text: "企画"
+        expect(page).to have_selector ".progress-whole", text: "test_prorgess"
+      end
+    end
+    context "try to post without urls and progress status release" do
+      before {
+        fill_in "portfolio_title", with: "test_title"
+        fill_in_rich_text_area "portfolio_content", with: "test_content"
+        attach_file "portfolio_image", "#{Rails.root}/spec/factories/rails.png"
+        fill_in "portfolio_web_url", with: ""
+        fill_in "portfolio_git_url", with: ""
+        select "企画", from: "現在のステータス"
+        fill_in_rich_text_area "progress_content", with: "test_prorgess"
+        click_button "投稿"
+      }
+      it "can't post a portfolio" do
+        expect(page).to have_css ".alert"
+      end
+    end
     context "push delete button" do
       before { correct_post }
       subject {
