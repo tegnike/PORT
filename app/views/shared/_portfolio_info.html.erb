@@ -40,7 +40,7 @@
 </h1>
 <div class="portfolio-links row">
   <div class="col">
-    <% if portfolio.web_url == "" %>
+    <% if portfolio.web_url.blank? %>
       <div class="btn portfolio-side-list without-url" >
         <span><i class="fas fa-desktop"></i> <%= t("portfolios.show.web_url") %></span>
       </div>
@@ -51,7 +51,7 @@
     <% end %>
   </div>
   <div class="col">
-    <% if portfolio.git_url == "" %>
+    <% if portfolio.git_url.blank? %>
       <div class="btn portfolio-side-list without-url" >
         <span><i class="fab fa-github"></i> <%= t("portfolios.show.git_url") %></span>
       </div>
