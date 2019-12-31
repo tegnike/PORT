@@ -7,7 +7,10 @@ RSpec.describe "ProgressesIndexTest", type: :system, js: true do
     let(:user3) { create(:user) }
     let(:portfolio) { create(:portfolio, user: user) }
     before {
-      create_list(:progress, 4, portfolio: portfolio)
+      (0..3).each do |n|
+        create(:progress, portfolio: portfolio)
+        sleep 1
+      end
       progresses = portfolio.progresses.order(created_at: :desc)
       progresses.each do |progress|
         progress.comments.create!(user: user, comment: "test", evaluation: 0)
