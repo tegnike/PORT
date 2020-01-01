@@ -40,13 +40,25 @@
 </h1>
 <div class="portfolio-links row">
   <div class="col">
-    <%= link_to portfolio.web_url, class: "btn portfolio-side-list" do %>
-      <span><i class="fas fa-desktop"></i> <%= t("portfolios.show.web_url") %></span>
+    <% if portfolio.web_url.blank? %>
+      <div class="btn portfolio-side-list without-url" >
+        <span><i class="fas fa-desktop"></i> <%= t("portfolios.show.web_url") %></span>
+      </div>
+    <% else %>
+      <%= link_to portfolio.web_url, class: "btn portfolio-side-list" do %>
+        <span><i class="fas fa-desktop"></i> <%= t("portfolios.show.web_url") %></span>
+      <% end %>
     <% end %>
   </div>
   <div class="col">
-    <%= link_to portfolio.git_url, class: "btn portfolio-side-list" do %>
-      <span><i class="fab fa-github"></i> <%= t("portfolios.show.git_url") %></span>
+    <% if portfolio.git_url.blank? %>
+      <div class="btn portfolio-side-list without-url" >
+        <span><i class="fab fa-github"></i> <%= t("portfolios.show.git_url") %></span>
+      </div>
+    <% else %>
+      <%= link_to portfolio.git_url, class: "btn portfolio-side-list" do %>
+        <span><i class="fab fa-github"></i> <%= t("portfolios.show.git_url") %></span>
+      <% end %>
     <% end %>
   </div>
   <% if user_signed_in? %>

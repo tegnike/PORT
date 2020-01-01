@@ -14,8 +14,6 @@ RSpec.describe Portfolio, type: :model do
       it { is_expected.to validate_presence_of :user_id }
       it { is_expected.to validate_presence_of :title }
       it { is_expected.to validate_presence_of :content }
-      it { is_expected.to validate_presence_of :web_url }
-      it { is_expected.to validate_presence_of :git_url }
     end
 
     describe "characters" do

@@ -12,6 +12,7 @@ ja:
         image: "サムネイル画像"
         web_url: "WEBサイト URL"
         git_url: "Github URL"
+        urls_validation_progress_status: "WEBサイトURL および Github URL を入力してください"
       progress:
         content: "内容"
         status: "ステータス"

@@ -37,6 +37,20 @@ ul, ol {
   font-size: 1.6rem;
   line-height: 2;
 }
+.trix-content {
+  ul {
+    list-style: disc;
+  }
+  ol {
+    list-style: decimal;
+  }
+  a {
+    color: #0366d6;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
@@ -343,6 +357,13 @@ footer {
     }
     .portfolio-side-list:hover {
       background-color: $gray-medium-light;
+    }
+    .without-url {
+      text-decoration: line-through;
+      background-color: #f8f9fa;
+    }
+    .without-url:hover {
+      background-color: #f8f9fa;
     }
   }
   .image {
@@ -759,6 +780,13 @@ aside {
     }
     .portfolio-url:hover {
       background-color: #f5f4f7;
+    }
+    .without-url {
+      text-decoration: line-through;
+      background-color: #f8f9fa;
+    }
+    .without-url:hover {
+      background-color: #f8f9fa;
     }
   }
 }

@@ -1,6 +1,6 @@
 <li>
   <div id="portfolio-<%= portfolio.id %>" class="media">
-    <%= link_to portfolio.user, class: "portfolio-image mr-3" do %>
+    <%= link_to portfolio, class: "portfolio-image mr-3" do %>
       <% if portfolio.image.url == nil %>
         <img src="<%= asset_pack_path 'images/noimage.jpg' %>" />
       <% else %>
@@ -9,11 +9,23 @@
     <% end %>
     <div class="media-body">
       <h4><%= link_to portfolio.title, portfolio, class: "title" %></h4>
-      <%= link_to  portfolio.web_url, class: "btn portfolio-url" do %>
-        <i class="fas fa-desktop"></i> <%= t("portfolios.show.web_url") %>
+      <% if portfolio.web_url.blank? %>
+        <div class="btn portfolio-url without-url">
+          <i class="fas fa-desktop"></i> <%= t("portfolios.show.web_url") %>
+        </div>
+      <% else %>
+        <%= link_to portfolio.web_url, class: "btn portfolio-url" do %>
+          <i class="fas fa-desktop"></i> <%= t("portfolios.show.web_url") %>
+        <% end %>
       <% end %>
-      <%= link_to  portfolio.git_url, class: "btn portfolio-url" do %>
-        <i class="fab fa-github"></i> <%= t("portfolios.show.git_url") %>
+      <% if portfolio.git_url.blank? %>
+        <div class="btn portfolio-url without-url">
+          <i class="fab fa-github"></i> <%= t("portfolios.show.git_url") %>
+        </div>
+      <% else %>
+        <%= link_to portfolio.git_url, class: "btn portfolio-url" do %>
+          <i class="fab fa-github"></i> <%= t("portfolios.show.git_url") %>
+        <% end %>
       <% end %>
       <div class="portfolio-info">
         <span class="portfolio-info-user">
@@ -29,11 +41,17 @@
             <%= t('common.pageview', count: score(portfolio)) %>
           </span>
         <% end %>
-        <% if user_signed_in? %>
-          <span class="d-inline-block">
+        <span class="d-inline-block">
+          <% if user_signed_in? %>
             <%= render 'favorites/favorite_form', { portfolio: portfolio, user: user } %>
-          </span>
-        <% end %>
+          <% else %>
+            <div id="favorite_form">
+              <div class="btn btn-unfavorite">
+                <i class='far fa-thumbs-up'></i> <%= portfolio.favorite_users.count %>
+              </div>
+            </div>
+          <% end %>
+        </span>
       </div>
     </div>
   </div>

@@ -10,10 +10,17 @@ class Portfolio < ApplicationRecord
   validates :user_id, presence: true
   validates :title, presence: true, length: { maximum: 100 }
   validates :content, presence: true
-  validates :web_url, presence: true
-  validates :web_url, format: /\A#{URI.regexp(%w(http https))}\z/
-  validates :git_url, presence: true
-  validates :git_url, format: /\Ahttps:\/\/github.com\/.*\z/
+  validates :web_url, format: /\A#{URI.regexp(%w(http https))}\z/,  allow_blank: true
+  validates :git_url, format: /\Ahttps:\/\/github.com\/.*\z/,  allow_blank: true
+  validate :urls_validation_progress_status
+
+  # 全てのprogressが企画・設計・開発段階の場合、urlの入力は任意
+  def urls_validation_progress_status
+    statuses = self.progresses.map(&:status)
+    if statuses.include?("release") && (self.web_url == "" || self.git_url == "")
+      errors[:base] << I18n.t("activerecord.attributes.portfolio.urls_validation_progress_status")
+    end
+  end
 
   def self.pv_data(span, title)
     keys = []
