@@ -33,6 +33,10 @@ WORKDIR /app
 
 # setting environment value
 ENV HOME /app
+ARG RAILS_ENV
+ARG RAILS_MASTER_KEY
+ENV RAILS_ENV ${RAILS_ENV}
+ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
 
 # executing bundle install
 COPY Gemfile /app/Gemfile

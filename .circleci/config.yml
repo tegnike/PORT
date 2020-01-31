@@ -70,6 +70,7 @@ workflows:
           region: AWS_REGION
           repo: "${MY_APP_PREFIX}-ecr"
           tag: "${CIRCLE_SHA1}"
+          extra-build-args: --build-arg RAILS_ENV=production --build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
           requires:
             - build
           filters:
