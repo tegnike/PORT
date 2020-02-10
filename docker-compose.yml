@@ -20,6 +20,7 @@ services:
   web: &app
     build:
       context: .
+      dockerfile: Dockerfile.dev
       args:
         RAILS_ENV: development
         RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
