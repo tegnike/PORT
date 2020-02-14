@@ -60,15 +60,33 @@ jobs:
 
 workflows:
   version: 2.1
-  build_and_deploy:
+  nginx_deploy:
     jobs:
       - build
       - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_ACCOUNT_URL
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          dockerfile: ./containers/nginx/Dockerfile
           region: AWS_REGION
-          repo: "${MY_APP_PREFIX}-ecr"
+          repo: nginx
+          tag: "${CIRCLE_SHA1}"
+          extra-build-args: --build-arg RAILS_ENV=production --build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+  rails_deploy:
+    jobs:
+      - build
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          dockerfile: ./Dockerfile
+          region: AWS_REGION
+          repo: rails
           tag: "${CIRCLE_SHA1}"
           extra-build-args: --build-arg RAILS_ENV=production --build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
           requires:
