@@ -69,7 +69,7 @@ workflows:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           dockerfile: ./containers/nginx/Dockerfile
           region: AWS_REGION
-          repo: nginx
+          repo: port-nginx-ecr
           tag: "${CIRCLE_SHA1}"
           extra-build-args: --build-arg RAILS_ENV=production --build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
           requires:
@@ -86,7 +86,7 @@ workflows:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           dockerfile: ./Dockerfile
           region: AWS_REGION
-          repo: rails
+          repo: port-app-ecr
           tag: "${CIRCLE_SHA1}"
           extra-build-args: --build-arg RAILS_ENV=production --build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
           requires:
