@@ -13,6 +13,7 @@ jobs:
         name: db
         environment:
           POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
           POSTGRES_DB: test
       - image: selenium/standalone-chrome
         name: chrome
@@ -62,7 +63,6 @@ workflows:
   version: 2.1
   nginx_deploy:
     jobs:
-      - build
       - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_ACCOUNT_URL
           aws-access-key-id: AWS_ACCESS_KEY_ID
@@ -72,8 +72,6 @@ workflows:
           repo: port-nginx-ecr
           tag: "${CIRCLE_SHA1}"
           extra-build-args: --build-arg RAILS_ENV=production --build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
-          requires:
-            - build
           filters:
             branches:
               only: master
