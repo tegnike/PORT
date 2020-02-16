@@ -31,7 +31,6 @@ services:
       - /app/tmp
       - /app/log
       - /app/.git
-      - sockets:/app/tmp/sockets
     environment:
       HOME: /app
     ports:
@@ -47,16 +46,6 @@ services:
     <<: *app
     command: bundle exec spring server
     ports: []
-  nginx:
-    build:
-      context: .
-      dockerfile: ./containers/nginx/Dockerfile
-    ports:
-      - "80:80"
-    volumes:
-      - sockets:/app/tmp/sockets
-    depends_on:
-      - web
 
 volumes:
   bundle:
@@ -65,4 +54,3 @@ volumes:
     driver: local
   redis-data:
     driver: local
-  sockets:

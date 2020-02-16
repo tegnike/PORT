@@ -41,9 +41,7 @@ WORKDIR $HOME
 COPY Gemfile $HOME/Gemfile
 COPY Gemfile.lock $HOME/Gemfile.lock
 
-RUN gem install bundler -v 2.0.2 && \
-    bundle config --global build.nokogiri --use-system-libraries && \
-    bundle install --path=vendor/bundle --jobs 4
+RUN bundle install -j4
 
 ADD . /$HOME
 EXPOSE 3000
