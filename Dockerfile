@@ -41,8 +41,10 @@ WORKDIR $HOME
 COPY Gemfile $HOME/Gemfile
 COPY Gemfile.lock $HOME/Gemfile.lock
 
-RUN bundle install -j4
+RUN gem install bundler -v 2.0.2 && \
+    bundle config --global build.nokogiri --use-system-libraries && \
+    bundle install --path=vendor/bundle --jobs 4
 
-ADD . /$HOME
+ADD . $HOME
 EXPOSE 3000
-CMD ["bundle", "exec", "rails", "assets:precompile", "RAILS_ENV=production"]
+RUN /bin/sh -c bundle exec rails assets:precompile
