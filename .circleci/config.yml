@@ -4,7 +4,7 @@ orbs:
   aws-ecr: circleci/aws-ecr@6.0.0
 
 jobs:
-  build:
+  test:
     docker:
       - image: circleci/ruby:2.5.3-node-browsers
         environment:
@@ -60,7 +60,6 @@ jobs:
           destination: test-results
 
 workflows:
-  version: 2.1
   nginx_deploy:
     jobs:
       - aws-ecr/build-and-push-image:
@@ -75,9 +74,16 @@ workflows:
           filters:
             branches:
               only: master
+      - aws-ecs/deploy-service-update:
+          requires:
+            - aws-ecr/build-and-push-image
+          family: "port-app"
+          cluster-name: "port-cluster"
+          service-name: "port-service"
+          container-image-name-updates: "container=port-nginx-ecr,tag=${CIRCLE_SHA1}"
   rails_deploy:
     jobs:
-      - build
+      - test
       - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_ACCOUNT_URL
           aws-access-key-id: AWS_ACCESS_KEY_ID
@@ -88,7 +94,14 @@ workflows:
           tag: "${CIRCLE_SHA1}"
           extra-build-args: --build-arg RAILS_ENV=production --build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
           requires:
-            - build
+            - test
           filters:
             branches:
               only: master
+      - aws-ecs/deploy-service-update:
+          requires:
+            - aws-ecr/build-and-push-image
+          family: "port-app"
+          cluster-name: "port-cluster"
+          service-name: "port-service"
+          container-image-name-updates: "container=port-app-ecr,tag=${CIRCLE_SHA1}"
