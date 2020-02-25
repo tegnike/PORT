@@ -67,7 +67,7 @@ gem "enum_help"
 # fontawesome
 gem "font-awesome-rails"
 # sprockets
-gem 'sprockets', '~> 3.7.2'
+gem "sprockets", "~> 3.7.2"
 
 group :production do
   gem "fog-aws"
