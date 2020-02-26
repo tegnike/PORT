@@ -1,8 +1,9 @@
 version: 2.1
 
 orbs:
-  aws-ecr: circleci/aws-ecr@6.0.0
-  aws-ecs: circleci/aws-ecs@1.1.0
+  # aws-ecr: circleci/aws-ecr@6.0.0
+  # aws-ecs: circleci/aws-ecs@1.1.0
+  heroku: circleci/heroku@1.0.1
 
 jobs:
   test:
@@ -61,54 +62,60 @@ jobs:
           destination: test-results
 
 workflows:
-  nginx_deploy:
-    jobs:
-      - aws-ecr/build-and-push-image:
-          account-url: AWS_ECR_ACCOUNT_URL
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          dockerfile: ./containers/nginx/Dockerfile
-          region: AWS_REGION
-          repo: port-nginx-ecr
-          tag: "${CIRCLE_SHA1}"
-          extra-build-args: --build-arg RAILS_ENV=production --build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
-          filters:
-            branches:
-              only: master
-      - aws-ecs/deploy-service-update:
-          requires:
-            - aws-ecr/build-and-push-image
-          family: "port-app"
-          cluster-name: "port-cluster"
-          service-name: "port-servise"
-          container-image-name-updates: "container=port-nginx-ecr,tag=${CIRCLE_SHA1}"
-          filters:
-            branches:
-              only: master
+  # nginx_deploy:
+  #   jobs:
+  #     - aws-ecr/build-and-push-image:
+  #         account-url: AWS_ECR_ACCOUNT_URL
+  #         aws-access-key-id: AWS_ACCESS_KEY_ID
+  #         aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+  #         dockerfile: ./containers/nginx/Dockerfile
+  #         region: AWS_REGION
+  #         repo: port-nginx-ecr
+  #         tag: "${CIRCLE_SHA1}"
+  #         extra-build-args: --build-arg RAILS_ENV=production --build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+  #         filters:
+  #           branches:
+  #             only: master
+  #     - aws-ecs/deploy-service-update:
+  #         requires:
+  #           - aws-ecr/build-and-push-image
+  #         family: "port-app"
+  #         cluster-name: "port-cluster"
+  #         service-name: "port-servise"
+  #         container-image-name-updates: "container=port-nginx-ecr,tag=${CIRCLE_SHA1}"
+  #         filters:
+  #           branches:
+  #             only: master
   rails_deploy:
     jobs:
       - test
-      - aws-ecr/build-and-push-image:
-          account-url: AWS_ECR_ACCOUNT_URL
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          dockerfile: ./Dockerfile
-          region: AWS_REGION
-          repo: port-app-ecr
-          tag: "${CIRCLE_SHA1}"
-          extra-build-args: --build-arg RAILS_ENV=production --build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+      # - aws-ecr/build-and-push-image:
+      #     account-url: AWS_ECR_ACCOUNT_URL
+      #     aws-access-key-id: AWS_ACCESS_KEY_ID
+      #     aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+      #     dockerfile: ./Dockerfile
+      #     region: AWS_REGION
+      #     repo: port-app-ecr
+      #     tag: "${CIRCLE_SHA1}"
+      #     extra-build-args: --build-arg RAILS_ENV=production --build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+      #     requires:
+      #       - test
+      #     filters:
+      #       branches:
+      #         only: master
+      # - aws-ecs/deploy-service-update:
+      #     requires:
+      #       - aws-ecr/build-and-push-image
+      #     family: "port-app"
+      #     cluster-name: "port-cluster"
+      #     service-name: "port-servise"
+      #     container-image-name-updates: "container=port-rails-ecr,tag=${CIRCLE_SHA1}"
+      #     filters:
+      #       branches:
+      #         only: master
+      - heroku/deploy-via-git:
           requires:
             - test
-          filters:
-            branches:
-              only: master
-      - aws-ecs/deploy-service-update:
-          requires:
-            - aws-ecr/build-and-push-image
-          family: "port-app"
-          cluster-name: "port-cluster"
-          service-name: "port-servise"
-          container-image-name-updates: "container=port-rails-ecr,tag=${CIRCLE_SHA1}"
           filters:
             branches:
               only: master
