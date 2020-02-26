@@ -6,6 +6,8 @@ services:
       - "5432:5432"
     volumes:
       - data:/var/lib/postgresql/data:cached
+    environment:
+      POSTGRES_PASSWORD: postgres
   redis:
     image: redis
     ports:
@@ -24,10 +26,12 @@ services:
       args:
         RAILS_ENV: development
         RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    command: bundle exec puma -C config/puma.rb
     volumes:
       - .:/app:cached
       - bundle:/usr/local/bundle:cached
+      - sockets:/app/tmp/sockets
+      - public-data:/app/public
       - /app/tmp
       - /app/log
       - /app/.git
@@ -35,17 +39,37 @@ services:
       HOME: /app
     ports:
       - "3000:3000"
-      - "3035:3035"
     stdin_open: true
     tty: true
     links:
       - db
       - chrome
       - redis
-  spring:
+  nginx:
+    build:
+      context: .
+      dockerfile: ./containers/nginx/Dockerfile
+    volumes:
+      - sockets:/app/tmp/sockets
+      - public-data:/app/public
+      - tmp-data:/app/tmp
+    ports:
+      - "80:80"
+    links:
+      - web
+  webpacker:
     <<: *app
-    command: bundle exec spring server
-    ports: []
+    command: ./bin/webpack-dev-server
+    volumes:
+      - .:/app:cached
+      - bundle:/usr/local/bundle:cached
+    environment:
+      WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
+    ports:
+      - "3035:3035"
+    stdin_open: false
+    tty: false
+    links: []
 
 volumes:
   bundle:
@@ -54,3 +78,6 @@ volumes:
     driver: local
   redis-data:
     driver: local
+  sockets:
+  public-data:
+  tmp-data:
