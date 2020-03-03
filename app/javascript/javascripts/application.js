@@ -10,7 +10,7 @@ $(function(){
   setTimeout(function(){
     setTimeout(function(){
       $('.flash-message .alert').addClass("zindex-minus");
-    },1000);
+    },3000);
     $('.flash-message .alert').addClass("animated fadeOutUp");
-  },1000);
+  },3000);
 });
