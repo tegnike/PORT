@@ -45,6 +45,7 @@ ja:
       action: "プログレスを更新"
     destroy:
       action: "プログレスを削除"
+      single_progress: "プログレスが1つしかない場合は削除できません。"
   rankings:
     favorite:
       action: "お気に入りランキングの取得"
