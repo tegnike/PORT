@@ -48,6 +48,7 @@
   </div>
   <div class="content"><%= progress.content %></div>
   <% unless comments.nil? %>
+    <h2 class="py-2"><%= t("activerecord.models.comment") %></h2>
     <div class="comments">
       <ol>
         <%= render comments, portfolio: portfolio, progress: progress %>
@@ -56,7 +57,7 @@
   <% end %>
   <% if user_signed_in? && controller.controller_name != "progresses" %>
     <div class="comment-form">
-      <%= link_to set_user_image(portfolio.user), portfolio.user, class: "user-image" %>
+      <%= link_to set_user_image(current_user), current_user, class: "user-image" %>
       <strong><%= t(".comment_new") %></strong>
       <%= render "comments/comment_form" %>
     </div>
