@@ -31,7 +31,6 @@ services:
       - .:/app:cached
       - bundle:/usr/local/bundle:cached
       - sockets:/app/tmp/sockets
-      - public-data:/app/public
       - /app/tmp
       - /app/log
       - /app/.git
@@ -51,7 +50,6 @@ services:
       dockerfile: ./containers/nginx/Dockerfile
     volumes:
       - sockets:/app/tmp/sockets
-      - public-data:/app/public
       - tmp-data:/app/tmp
     ports:
       - "80:80"
@@ -79,5 +77,4 @@ volumes:
   redis-data:
     driver: local
   sockets:
-  public-data:
   tmp-data:
