@@ -23,7 +23,7 @@ followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
 
-users = User.order(:created_at).take(100)
+users = User.order(:created_at).take(10)
 10.times do
   users.each do |portfolio_user|
     portfolio_user.portfolios.create!(
@@ -38,7 +38,7 @@ end
 
 Portfolio.all.each do |portfolio|
   portfolio.progresses.create!(
-    status: "release",
+    title: "これはプログレスのタイトルです。",
     content: "これはプログレスです。ポートフォリオに1対多の関係で作成される、進捗報告用のモデルです。ステータスごとに更新して、その都度評価をもらいましょう。<br>これはプログレスです。ポートフォリオに1対多の関係で作成される、進捗報告用のモデルです。ステータスごとに更新して、その都度評価をもらいましょう。"
   )
 end

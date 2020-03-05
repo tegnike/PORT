@@ -62,7 +62,8 @@ RSpec.describe ProgressesController, type: :request do
   describe "POST #create" do
     context "try to post progress before log in" do
       subject {
-        post portfolio_progresses_path(portfolio), params: { progress: { content: "content" } }
+        post portfolio_progresses_path(portfolio),
+             params: { progress: { title: "title", content: "content" } }
       }
       it "can't post progress and redirect to login_url" do
         expect { subject }.to change { Progress.count }.by(0)
@@ -72,7 +73,8 @@ RSpec.describe ProgressesController, type: :request do
     context "try to post progress after log in" do
       subject {
         login(user)
-        post portfolio_progresses_path(portfolio), params: { progress: { content: "content" } }
+        post portfolio_progresses_path(portfolio),
+             params: { progress: { title: "title", content: "content" } }
       }
       it "can post progress and redirect to portfolio_path" do
         expect { subject }.to change { Progress.count }.by(1)

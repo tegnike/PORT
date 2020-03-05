@@ -93,11 +93,9 @@ ja:
       title: "%{portfolio_title}｜%{progress_id}"
     new:
       title: "プログレス新規作成"
-      progress_status: "現在のステータス"
     edit:
       title: "プログレス編集"
     progress_form:
-      progress_status: "現在のステータス"
   comments:
     edit:
       title: "コメント編集"

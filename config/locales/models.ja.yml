@@ -15,7 +15,7 @@ ja:
         urls_validation_progress_status: "WEBサイトURL および Github URL を入力してください"
       progress:
         content: "内容"
-        status: "ステータス"
+        title: "タイトル"
       comment:
         comment: "コメント"
         evaluation: "評価"
