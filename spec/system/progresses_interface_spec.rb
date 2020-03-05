@@ -58,7 +58,7 @@ RSpec.describe "ProgressesInterfaceTest", type: :system, js: true do
         first(".progress-header .dropdown").click_on
         click_link "削除"
         page.driver.browser.switch_to.alert.accept
-        find ".alert-notice", text: "プログレスを削除しました。"
+        find ".alert-notice", text: "進捗報告を削除しました。"
       }
       it "delete a portfolio" do
         expect { subject }.to change { Progress.count }.by(-1)

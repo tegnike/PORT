@@ -29,7 +29,7 @@ ja:
   portfolios:
     create:
       action: "ポートフォリオを作成"
-      no_progress: "プログレスを作成できなかったため、投稿に失敗しました。"
+      no_progress: "進捗報告を作成できなかったため、投稿に失敗しました。"
     edit:
       action: "ページを取得"
     update:
@@ -38,14 +38,14 @@ ja:
       action: "ポートフォリオを削除"
   progresses:
     create:
-      action: "プログレスを作成"
+      action: "進捗報告を作成"
     edit:
       action: "ページを取得"
     update:
-      action: "プログレスを更新"
+      action: "進捗報告を更新"
     destroy:
-      action: "プログレスを削除"
-      single_progress: "プログレスが1つしかない場合は削除できません。"
+      action: "進捗報告を削除"
+      single_progress: "進捗報告が1つしかない場合は削除できません。"
   rankings:
     favorite:
       action: "お気に入りランキングの取得"
