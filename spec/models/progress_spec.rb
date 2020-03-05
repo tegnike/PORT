@@ -12,6 +12,11 @@ RSpec.describe Progress, type: :model do
   describe "Progress's columns validation" do
     describe "presence" do
       it { is_expected.to validate_presence_of :content }
+      it { is_expected.to validate_presence_of :title }
+    end
+
+    describe "characters" do
+      it { is_expected.to validate_length_of(:title).is_at_most(50) }
     end
   end
 end

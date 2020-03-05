@@ -79,25 +79,23 @@ ja:
       title: "%{portfolio_title}"
       web_url: "WEBサイト"
       git_url: "Github"
-      progress_index: "プログレス一覧"
-      progress_new: "プログレス作成"
+      progress_index: "進捗報告一覧"
+      progress_new: "進捗報告作成"
     new:
       title: "ポートフォリオ新規作成"
     edit:
       title: "ポートフォリオ編集"
   progresses:
     index:
-      title: "%{portfolio_title}｜プログレス一覧"
-      index: "プログレス一覧"
+      title: "%{portfolio_title}｜進捗報告一覧"
+      index: "進捗報告一覧"
     show:
       title: "%{portfolio_title}｜%{progress_id}"
     new:
-      title: "プログレス新規作成"
-      progress_status: "現在のステータス"
+      title: "進捗報告新規作成"
     edit:
-      title: "プログレス編集"
+      title: "進捗報告編集"
     progress_form:
-      progress_status: "現在のステータス"
   comments:
     edit:
       title: "コメント編集"
@@ -114,14 +112,14 @@ ja:
     portfolio_form:
       placeholder:
         content: "ポートフォリオを自由に紹介してください。"
-        progress: "最初のプログレスを記載してください。"
+        progress: "最初の進捗報告を記載してください。"
       image_size: "（16×9のサイズがキレイに収まります。）"
       progress_status: "現在のステータス"
     portfolio_sidebar:
       portfolio: "ポートフォリオトップ"
       web_url: "WEBサイト"
       git_url: "Github"
-      progress_index: "プログレス一覧"
+      progress_index: "進捗報告一覧"
     portfolio_progress:
       comment_new: "コメントを投稿する"
     stats:
@@ -133,7 +131,7 @@ ja:
         sentence2: "登録すると以下の機能が使えるようになります。"
         sentence3: "ポートフォリオ投稿"
         sentence4: "コメント投稿"
-        sentence5: "過去プログレスの閲覧"
+        sentence5: "過去の進捗報告の閲覧"
         sentence6: "ユーザフォロー"
         sentence7: "投稿のお気に入り"
   btn:

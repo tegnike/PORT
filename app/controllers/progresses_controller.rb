@@ -43,12 +43,17 @@ class ProgressesController < ApplicationController
   end
 
   def destroy
-    if @progress.destroy
-      flash_success
+    if @portfolio.progresses.count == 1
+      flash[:alert] = t(".single_progress")
       redirect_to portfolio_progresses_path(@portfolio)
     else
-      flash_failed_for_redirect
-      redirect_to root_url
+      if @progress.destroy
+        flash_success
+        redirect_to portfolio_progresses_path(@portfolio)
+      else
+        flash_failed_for_redirect
+        redirect_to root_url
+      end
     end
   end
 
@@ -58,7 +63,7 @@ class ProgressesController < ApplicationController
     end
 
     def progress_params
-      params.require(:progress).permit(:content, :status)
+      params.require(:progress).permit(:title, :content)
     end
 
     def correct_user

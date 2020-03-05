@@ -3,7 +3,7 @@ ja:
     models:
       user: "ユーザー"
       portfolio: "ポートフォリオ"
-      progress: "プログレス"
+      progress: "進捗報告"
       comment: "コメント"
     attributes:
       portfolio:
@@ -15,11 +15,11 @@ ja:
         urls_validation_progress_status: "WEBサイトURL および Github URL を入力してください"
       progress:
         content: "内容"
-        status: "ステータス"
+        title: "タイトル"
       comment:
         comment: "コメント"
         evaluation: "評価"
-        has_evaluation: "同じプログレスに2回以上評価することはできません"
+        has_evaluation: "同じ進捗報告に2回以上評価することはできません"
   enums:
     progress:
       status:

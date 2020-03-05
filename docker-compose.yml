@@ -26,12 +26,11 @@ services:
       args:
         RAILS_ENV: development
         RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
-    command: bundle exec puma -C config/puma.rb
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec puma -C config/puma.rb"
     volumes:
       - .:/app:cached
       - bundle:/usr/local/bundle:cached
       - sockets:/app/tmp/sockets
-      - public-data:/app/public
       - /app/tmp
       - /app/log
       - /app/.git
@@ -51,7 +50,6 @@ services:
       dockerfile: ./containers/nginx/Dockerfile
     volumes:
       - sockets:/app/tmp/sockets
-      - public-data:/app/public
       - tmp-data:/app/tmp
     ports:
       - "80:80"
@@ -79,5 +77,4 @@ volumes:
   redis-data:
     driver: local
   sockets:
-  public-data:
   tmp-data:

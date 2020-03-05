@@ -371,7 +371,7 @@ footer {
     margin-bottom: 20px;
   }
   .content {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
   hr {
     margin-bottom: 1.5rem;
@@ -402,21 +402,15 @@ footer {
 
   h2 {
     background-color: #dfeffc;
-    padding-right: 20px;
-    padding-left: 60px;
-
-    .status {
-      float: right;
-      padding: 0.35rem 1rem;
-      font-size: 2rem;
-      background-color: #377BB5;
-      color: #fff;
-      border-radius: 0.3rem;
-    }
+    padding-right: 30px;
+    padding-left: 30px;
   }
   .progress-header {
     margin-bottom: 20px;
 
+    .progress-title {
+      margin-bottom: 20px;
+    }
     .average_evaluation {
       img:first-child {
         padding-left: 6px
@@ -919,9 +913,6 @@ aside {
       border-top: 15px solid #e0edff;
     }
   }
-  .status {
-    margin-bottom: 10px;
-  }
   .btn {
     padding: 4px 40px;
     margin-left: 10px;
@@ -941,9 +932,6 @@ aside {
   }
   .edit {
     float: right;
-  }
-  .status {
-    margin-bottom: 15px;
   }
 }
 
@@ -1360,11 +1348,6 @@ aside {
     h2 {
       font-size: 2rem;
       padding-right: 10px;
-
-      .status {
-        padding: 0.3rem 0.8rem;
-        font-size: 1.5rem;
-      }
     }
   }
   .portfolios {

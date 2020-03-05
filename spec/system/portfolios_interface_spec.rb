@@ -2,12 +2,13 @@ require "rails_helper"
 
 RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
   subject(:correct_post) {
-    fill_in "portfolio_title", with: "test_title"
-    fill_in_rich_text_area "portfolio_content", with: "test_content"
+    fill_in "portfolio_title", with: "portfolio_title"
+    fill_in_rich_text_area "portfolio_content", with: "portfolio_content"
     attach_file "portfolio_image", "#{Rails.root}/spec/factories/rails.png"
     fill_in "portfolio_web_url", with: "http://example/web_url"
     fill_in "portfolio_git_url", with: "https://github.com/git_url"
-    fill_in_rich_text_area "progress_content", with: "test_prorgess"
+    fill_in "progress_title", with: "progress_title"
+    fill_in_rich_text_area "progress_content", with: "progress_content"
     click_button "投稿"
   }
 
@@ -25,6 +26,7 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
         attach_file "portfolio_image", "#{Rails.root}/spec/factories/rails.png"
         fill_in "portfolio_web_url", with: ""
         fill_in "portfolio_git_url", with: ""
+        fill_in "progress_title", with: ""
         fill_in_rich_text_area "progress_content", with: ""
         click_button "投稿"
         sleep 1
@@ -36,51 +38,36 @@ RSpec.describe "PortfoliosInterfaceTest", type: :system, js: true do
     context "try to post a valid portfolio" do
       before { correct_post }
       it "can post a portfolio" do
-        expect(current_path).to eq portfolio_path(Portfolio.find_by(title: "test_title"))
-        expect(page).to have_selector ".title", text: "test_title"
-        expect(page).to have_selector ".content", text: "test_content"
+        expect(current_path).to eq portfolio_path(Portfolio.find_by(title: "portfolio_title"))
+        expect(page).to have_selector ".title", text: "portfolio_title"
+        expect(page).to have_selector ".content", text: "portfolio_content"
         expect(page).to have_css ".image"
         expect(page).to have_selector ".portfolio-links", text: "WEBサイト"
         expect(page).to have_selector ".portfolio-links", text: "Github"
-        expect(page).to have_selector ".progress-whole", text: "企画"
-        expect(page).to have_selector ".progress-whole", text: "test_prorgess"
+        expect(page).to have_selector ".progress-whole", text: "progress_title"
+        expect(page).to have_selector ".progress-whole", text: "progress_content"
       end
     end
-    context "try to post without urls and progress status not release" do
+    context "try to post without urls" do
       before {
-        fill_in "portfolio_title", with: "test_title"
-        fill_in_rich_text_area "portfolio_content", with: "test_content"
+        fill_in "portfolio_title", with: "portfolio_title"
+        fill_in_rich_text_area "portfolio_content", with: "portfolio_content"
         attach_file "portfolio_image", "#{Rails.root}/spec/factories/rails.png"
         fill_in "portfolio_web_url", with: ""
         fill_in "portfolio_git_url", with: ""
-        select "企画", from: "現在のステータス"
-        fill_in_rich_text_area "progress_content", with: "test_prorgess"
+        fill_in "progress_title", with: "progress_title"
+        fill_in_rich_text_area "progress_content", with: "progress_content"
         click_button "投稿"
       }
       it "can post a portfolio" do
-        expect(current_path).to eq portfolio_path(Portfolio.find_by(title: "test_title"))
-        expect(page).to have_selector ".title", text: "test_title"
-        expect(page).to have_selector ".content", text: "test_content"
+        expect(current_path).to eq portfolio_path(Portfolio.find_by(title: "portfolio_title"))
+        expect(page).to have_selector ".title", text: "portfolio_title"
+        expect(page).to have_selector ".content", text: "portfolio_content"
         expect(page).to have_css ".image"
         expect(page).to have_selector ".without-url", text: "WEBサイト"
         expect(page).to have_selector ".without-url", text: "Github"
-        expect(page).to have_selector ".progress-whole", text: "企画"
-        expect(page).to have_selector ".progress-whole", text: "test_prorgess"
-      end
-    end
-    context "try to post without urls and progress status release" do
-      before {
-        fill_in "portfolio_title", with: "test_title"
-        fill_in_rich_text_area "portfolio_content", with: "test_content"
-        attach_file "portfolio_image", "#{Rails.root}/spec/factories/rails.png"
-        fill_in "portfolio_web_url", with: ""
-        fill_in "portfolio_git_url", with: ""
-        select "企画", from: "現在のステータス"
-        fill_in_rich_text_area "progress_content", with: "test_prorgess"
-        click_button "投稿"
-      }
-      it "can't post a portfolio" do
-        expect(page).to have_css ".alert"
+        expect(page).to have_selector ".progress-whole", text: "progress_title"
+        expect(page).to have_selector ".progress-whole", text: "progress_content"
       end
     end
     context "push delete button" do

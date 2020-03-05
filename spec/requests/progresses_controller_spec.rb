@@ -62,7 +62,8 @@ RSpec.describe ProgressesController, type: :request do
   describe "POST #create" do
     context "try to post progress before log in" do
       subject {
-        post portfolio_progresses_path(portfolio), params: { progress: { content: "content" } }
+        post portfolio_progresses_path(portfolio),
+             params: { progress: { title: "title", content: "content" } }
       }
       it "can't post progress and redirect to login_url" do
         expect { subject }.to change { Progress.count }.by(0)
@@ -72,7 +73,8 @@ RSpec.describe ProgressesController, type: :request do
     context "try to post progress after log in" do
       subject {
         login(user)
-        post portfolio_progresses_path(portfolio), params: { progress: { content: "content" } }
+        post portfolio_progresses_path(portfolio),
+             params: { progress: { title: "title", content: "content" } }
       }
       it "can post progress and redirect to portfolio_path" do
         expect { subject }.to change { Progress.count }.by(1)
@@ -130,11 +132,22 @@ RSpec.describe ProgressesController, type: :request do
     end
 
     context "try to delete portfolio after log in" do
-      before { login(user) }
-      subject { delete portfolio_progress_path(portfolio, progress) }
-      it "can delete progress and redis_data" do
-        expect { subject }.to change { Progress.count }.by(-1)
-        expect(response).to redirect_to portfolio_progresses_path(portfolio)
+      context "there is a progress" do
+        before { login(user) }
+        subject { delete portfolio_progress_path(portfolio, progress) }
+        it "can't delete progress" do
+          expect { subject }.to change { Progress.count }.by(0)
+          expect(response).to redirect_to portfolio_progresses_path(portfolio)
+        end
+      end
+      context "there are two progresses" do
+        let!(:progress2) { create(:progress, portfolio: portfolio) }
+        before { login(user) }
+        subject { delete portfolio_progress_path(portfolio, progress) }
+        it "can delete progress" do
+          expect { subject }.to change { Progress.count }.by(-1)
+          expect(response).to redirect_to portfolio_progresses_path(portfolio)
+        end
       end
     end
 
