@@ -15,6 +15,14 @@
             placeholder: t("activerecord.attributes.user.email") %>
       </div>
 
+      <% if request.fullpath != "/users/sign_in" %>
+        <div class="field form-group">
+          <%= f.label :engineer %><br />
+          <%= f.radio_button :engineer, true, checked: "checked" %> <%= f.label :engineer_true, t("users.engineer.true") %>
+          <%= f.radio_button :engineer, false %> <%= f.label :engineer_false, t("users.engineer.false") %>
+        </div>
+      <% end %>
+
       <div class="field form-group">
         <%= f.password_field :password, autocomplete: "new-password", class: "form-control",
             placeholder: t("activerecord.attributes.user.password") %>

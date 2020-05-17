@@ -4,5 +4,10 @@
 <%= render "users/follow_form", user: @user if user_signed_in? %>
 <div class="user-info">
   <h1><%= @user.username %></h1>
+  <% if @user.engineer? %>
+    <h3 class="badge badge-success"><%= t("users.engineer.true") %></h3>
+  <% else %>
+    <h3 class="badge badge-info"><%= t("users.engineer.false") %></h3>
+  <% end %>
   <p class="profile"><%= @user.profile %></p>
 </div>

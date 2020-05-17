@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   mount_uploader :image, ImageUploader
   validates :username, presence: true, length: { maximum: 50 }, allow_nil: true
+  validates :engineer, inclusion: { in: [true, false] }
   validates :profile, length: { maximum: 200 }
   devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :trackable, :validatable,
@@ -52,6 +53,11 @@ class User < ApplicationRecord
         user.email = auth["info"]["email"]
       else
         user.email = self.dumy_email(auth)
+      end
+      if auth["provider"] == "github"
+        user.engineer = true
+      else
+        user.engineer = false
       end
     end
   end

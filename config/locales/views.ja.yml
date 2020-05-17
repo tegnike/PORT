@@ -63,6 +63,7 @@ ja:
       title: "ユーザ一覧"
     show:
       title: "%{user_name}"
+      are_you_engineer?: "非エンジニアとして登録されています。あなたがエンジニアの場合は、ユーザ情報を編集してください。"
       has_portfolios: "件のポートフォリオが登録されています。"
       following: "フォロー"
       follower: "フォロワー"

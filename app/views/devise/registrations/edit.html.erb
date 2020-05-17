@@ -31,10 +31,15 @@
         </div>
       <% end %>
 
-
       <div class="field form-group">
         <%= f.label :image %><br />
         <%= f.file_field :image %>
+      </div>
+
+      <div class="field form-group">
+        <%= f.label :engineer %><br />
+        <%= f.radio_button :engineer, true %> <%= f.label :engineer_true, t("users.engineer.true") %>
+        <%= f.radio_button :engineer, false %> <%= f.label :engineer_false, t("users.engineer.false") %>
       </div>
 
       <% unless @user.provider %>

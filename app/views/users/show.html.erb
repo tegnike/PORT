@@ -4,6 +4,9 @@
     <%= render "shared/user_info" %>
   </section>
   <section class="multi-info-box col-md-9">
+    <% if current_user?(@user) && !@user.engineer? %>
+      <p class="list-group-item list-group-item-action list-group-item-info mb-4 small"><%= t(".are_you_engineer?") %></p>
+    <% end %>
     <h2><%= @user.portfolios.count %> <%= t(".has_portfolios") %></h2>
     <% if @user.portfolios.any? %>
     <ul class="portfolios">
