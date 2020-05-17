@@ -15,7 +15,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.from_omniauth(auth_params)
 
     unless @user.persisted?
-      @user.skip_confirmation!
+      # @user.skip_confirmation!
       @user.save!
     end
 

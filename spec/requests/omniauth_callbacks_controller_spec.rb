@@ -11,7 +11,7 @@ RSpec.describe OmniauthCallbacksController, type: :request do
             nickname: "mockuser",
             description: "これはprofileです。",
             email: email,
-            image: "http://www.ryolab.org/media/images/dummy-profile-pic-300x300.jpg"
+            image: "https://user-images.githubusercontent.com/35606144/82140082-81643600-982d-11ea-9c1d-12345b333dae.jpg"
           },
           credentials: {
             token: "token"

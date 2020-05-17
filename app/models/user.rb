@@ -13,7 +13,8 @@ class User < ApplicationRecord
   validates :profile, length: { maximum: 200 }
   devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :trackable, :validatable,
-           :confirmable, :lockable, :timeoutable, :omniauthable, omniauth_providers: [:twitter, :github, :google_oauth2]
+           :lockable, :timeoutable, :omniauthable, omniauth_providers: [:twitter, :github, :google_oauth2]
+  # :confirmable
 
   def follow(other_user)
     following << other_user
