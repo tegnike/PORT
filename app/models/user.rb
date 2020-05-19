@@ -45,20 +45,12 @@ class User < ApplicationRecord
     find_or_initialize_by(provider: auth["provider"], uid: auth["uid"]) do |user|
       user.provider = auth["provider"]
       user.uid = auth["uid"]
-      user.username = auth["info"]["nickname"]
+      user.username = auth["info"]["nickname"] || auth["info"]["name"]
       user.profile = auth["info"]["description"]
       user.remote_image_url = auth["info"]["image"]
       user.password = Devise.friendly_token[0, 20]
-      if auth["info"]["email"]
-        user.email = auth["info"]["email"]
-      else
-        user.email = self.dumy_email(auth)
-      end
-      if auth["provider"] == "github"
-        user.engineer = true
-      else
-        user.engineer = false
-      end
+      user.email = auth["info"]["email"] || self.dumy_email(auth)
+      user.engineer = auth["provider"] == "github"
     end
   end
 

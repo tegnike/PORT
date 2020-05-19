@@ -21,6 +21,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     flash_success
     sign_in_and_redirect @user
+
+  rescue ActiveRecord::RecordInvalid
+    flash[:alert] = t(".error.record_invalid")
+    redirect_to root_url
   end
 
   def auth_params

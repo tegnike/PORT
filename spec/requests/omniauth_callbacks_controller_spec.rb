@@ -105,4 +105,20 @@ RSpec.describe OmniauthCallbacksController, type: :request do
       end
     end
   end
+
+  describe "GET #sns_authentication" do
+    subject {
+      omniauth_callback("twitter", email)
+      post user_twitter_omniauth_callback_path
+    }
+
+    context "set oauth information with email already registerd" do
+      before { create(:user, email: "omniauth@example.com") }
+      let(:email) { "omniauth@example.com" }
+      it "doesnt't increase user count and get 302 response" do
+        expect { subject }.to change { User.count }.by(0)
+        expect(response.status).to eq(302)
+      end
+    end
+  end
 end
