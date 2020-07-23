@@ -30,12 +30,14 @@ services:
     volumes:
       - .:/app:cached
       - bundle:/usr/local/bundle:cached
+      - ./public:/app/public
       - sockets:/app/tmp/sockets
       - /app/tmp
       - /app/log
       - /app/.git
     environment:
       HOME: /app
+      WEBPACKER_DEV_SERVER_HOST: webpacker
     ports:
       - "3000:3000"
     stdin_open: true
@@ -49,6 +51,7 @@ services:
       context: .
       dockerfile: ./containers/nginx/Dockerfile
     volumes:
+      - ./public:/app/public
       - sockets:/app/tmp/sockets
       - tmp-data:/app/tmp
     ports:
