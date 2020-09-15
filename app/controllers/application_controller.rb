@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
 
   protected
     def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :profile, :image])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:username, :profile, :image])
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :profile, :image, :engineer])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:username, :profile, :image, :engineer])
     end
 
     def flash_success

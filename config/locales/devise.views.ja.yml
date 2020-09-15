@@ -6,6 +6,7 @@ ja:
         username: "ユーザ名"
         profile: "プロフィール"
         email: "メールアドレス"
+        engineer: "エンジニア選択"
         image: "プロフィール画像"
         password: "パスワード"
         password_confirmation: "確認用パスワード"

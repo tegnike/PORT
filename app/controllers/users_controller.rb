@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :user_infomation, except: :index
 
   def index
-    @users = User.where.not(confirmed_at: nil).order(created_at: :desc).page(params[:page])
+    # @users = User.where.not(confirmed_at: nil).order(created_at: :desc).page(params[:page])
+    @users = User.order(created_at: :desc).page(params[:page])
   end
 
   def show

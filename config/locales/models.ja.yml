@@ -27,6 +27,10 @@ ja:
         design: "設計"
         development: "開発"
         release: "公開"
+  users:
+    engineer:
+      true: "エンジニア"
+      false: "非エンジニア"
   attributes:
     created_at: 作成日時
     updated_at: 更新日時

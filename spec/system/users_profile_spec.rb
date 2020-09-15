@@ -11,6 +11,7 @@ RSpec.describe "UsersProfile", type: :system, js: true do
     it "shows correct information" do
       expect(page).to have_title full_title(user.username)
       expect(page).to have_content user.username
+      expect(page).to have_content "エンジニア"
       expect(page).to have_content user.portfolios.count.to_s
       expect(page).to have_css "ul.pagination"
     end

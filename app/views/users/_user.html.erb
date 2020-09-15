@@ -1,9 +1,15 @@
 <li id="user-<%= user.id %>" class="user-partial">
   <%= link_to set_user_image(user), user, class: "user-image" %>
   <span class="user-info">
-    <%= link_to user.username, user, class: "user-name" %><br>
+    <%= link_to user.username, user, class: "user-name" %>
+    <% if user.engineer? %>
+      <span class="badge badge-success"><%= t("users.engineer.true") %></span>
+    <% else %>
+      <span class="badge badge-info"><%= t("users.engineer.false") %></span>
+    <% end %>
+    <br>
     <span class="user-items">
-      <%= t("activerecord.models.portfolio") %> <%= user.portfolios.count %>  
+      <%= t("activerecord.models.portfolio") %> <%= user.portfolios.count %>
       <%= t("activerecord.models.comment") %> <%= user.comments.count %>
     </span>
   </span>

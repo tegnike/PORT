@@ -26,6 +26,8 @@ ja:
       action: "Githubでログイン"
     google_oauth2:
       action: "Googleでログイン"
+    error:
+      record_invalid: "こちらのメールアドレスはすでに登録されています。"
   portfolios:
     create:
       action: "ポートフォリオを作成"

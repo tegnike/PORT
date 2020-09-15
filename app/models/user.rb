@@ -10,10 +10,12 @@ class User < ApplicationRecord
 
   mount_uploader :image, ImageUploader
   validates :username, presence: true, length: { maximum: 50 }, allow_nil: true
+  validates :engineer, inclusion: { in: [true, false] }
   validates :profile, length: { maximum: 200 }
   devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :trackable, :validatable,
-           :confirmable, :lockable, :timeoutable, :omniauthable, omniauth_providers: [:twitter, :github, :google_oauth2]
+           :lockable, :timeoutable, :omniauthable, omniauth_providers: [:twitter, :github, :google_oauth2]
+  # :confirmable
 
   def follow(other_user)
     following << other_user
@@ -43,15 +45,12 @@ class User < ApplicationRecord
     find_or_initialize_by(provider: auth["provider"], uid: auth["uid"]) do |user|
       user.provider = auth["provider"]
       user.uid = auth["uid"]
-      user.username = auth["info"]["nickname"]
+      user.username = auth["info"]["nickname"] || auth["info"]["name"]
       user.profile = auth["info"]["description"]
       user.remote_image_url = auth["info"]["image"]
       user.password = Devise.friendly_token[0, 20]
-      if auth["info"]["email"]
-        user.email = auth["info"]["email"]
-      else
-        user.email = self.dumy_email(auth)
-      end
+      user.email = auth["info"]["email"] || self.dumy_email(auth)
+      user.engineer = auth["provider"] == "github"
     end
   end
 
